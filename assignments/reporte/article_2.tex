@@ -95,6 +95,7 @@
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 
+\usepackage{amsmath}
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -243,7 +244,7 @@ La configuración del compilador se realiza para un ambiente \textbf{LINUX Ubunt
 \end{enumerate}
 
 Es posible que haya notado que el compilador debe ejecutarse como superusuario para que funcione. Esto se debe a la forma en que Linux maneja los archivos del dispositivo y será necesario crear una regla udev para permitir que se ejecute con los permisos normales.\\
-udev es la utilidad a cargo de los dispositivos dinámicos (por ejemplo, dispositivos USB que deben permitir la conexión de forma rápida). En los sitemas Linux, cuando se conecta un nuevo dispositivo, busca a través de un conjunto de reglas predefinidas para decirle qué hacer con el dispositivo y quién puede acceder a él. Los detalles de cómo configurar la regla udev necesaria son demasiado largos para incluirlos aquí, pero hay excelente instrucciones en este sitio. \url{https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt}
+udev es la utilidad a cargo de los dispositivos dinámicos (por ejemplo, dispositivos USB que deben permitir la conexión de forma rápida). En los sitemas Linux, cuando se conecta un nuevo dispositivo, busca a través de un conjunto de reglas predefinidas para decirle qué hacer con el dispositivo y quién puede acceder a él. Los detalles de cómo configurar la regla udev necesaria son demasiado largos para incluirlos aquí, pero hay excelente instrucciones en este sitio.\\ \url{https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt}
 
 \subsection{Encoders y Cinemática Diferencial}
 
@@ -260,88 +261,202 @@ En nuestro robot hay dos ruedas (izquierda y derecha) decimos que estan unidas a
 
 Además de las ruedas motrices, también existe una rueda loca que simplemente se utiliza para darle estabilidad al robot móvil. Esta rueda loca no es motorizada ni es importante que tenga encoders.\\
 
-Al trabajar con el kit de robótica de LEGO Mindstorm NXT, los encoders se encuentran ya incluidos y disponibles para su uso bajo la siguiente función:\\
+Al trabajar con el kit de robótica de LEGO Mindstorm NXT, los encoders se encuentran ya incluidos y disponibles para su uso bajo, hacemos uso de la función \textbf{MotorRotationCount}, que obtiene un valor de posición relativa respecto a una salida especifica. La salida la obtenemos en grados.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.1]{graficos/robot.png}
+  \caption{Robot Lego utilizado}
+\end{figure}
 
 %Describir la parte del código que se usa
 
 \subsection{Modelo Cinemático}
 
-El programa del odometro debe consistir en las siguientes instrucciones:
+El modelo cinemático es el estudio de movimiento de sistemas mecánicos sin considerar las fuerzas que afectan dicho movimiento. Para el robot móvil diferencial, su principal propósito es representar la velocidad del robot en función a las velocidades de las ruedas conjuntamente a los parámetros geométricos del robot.\\
+
+Un robot móvil con ruedas se debe moverse sobre una superficie mediante la acción de ruedas montadas en él.
+\begin{itemize}
+\item El robot móvil se mueve sobre una superficie plana horizontal, es decir es constante
+\item Los ejes de referencia son perpendiculares al suelo
+\item No existen elementos flexibles en la estructura del robot
+\item El contacto entre cada rueda y el suelo se reduce a un solo punto
+\item No existe deslizamiento
+\end{itemize}
+
+El modelado del robot se puede representar como la siguiente imágen
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{graficos/odometria.png}
+  \caption{Modelo Robot}
+\end{figure}
+
+Donde:
+\begin{itemize}
+\item \textbf{$\theta$}: Ángulo de orientación del robot
+\item \textbf{$\omega_{l}$}: Velocidad angular rueda izquierda
+\item \textbf{$\omega_{r}$}: Velocidad angular rueda derecha
+\item \textbf{$\vec{v_{l}}$}: Velocidad rueda izquierda
+\item \textbf{$\vec{v_{r}}$}: Velocidad rueda derecha
+\item \textbf{$l$}: Distancian entre las dos ruedas medidas haciendo referencia a su punto de apoyo
+\item $R$: Radio del robot
+\item $x,y$: Posición x,y en el plano
+\item \textbf{$D_{l}$}: Distancia recorrida rueda izquierda
+\item \textbf{$D_{r}$}: Distancia recorrida rueda derecha
+\item \textbf{$Dc$}: Distancia recorrida por el robot
+\end{itemize}
+
+Partiendo de la ubicación del centro de nuestro robot, considerando el punto medio como el punto que corta entre la línea de acción l y una perpendicular a la rueda motriz, considerando un robot móvil de direccionamiento diferencial no holonómico que se mueve en un plano horizontal, se describe su cinemática con las ecuaciones:
+
+\[ x' = \frac{dx}{dt} = v*cos \theta \qquad y' = \frac{dy}{dt} = v*sen \theta \qquad \dot{\theta} = \omega \]
+
+\[ p = \begin{bmatrix}
+  \dot{x}\\
+  \dot{y}\\
+  \dot{\theta}
+\end{bmatrix}\]
+
+es el vector que nos indica la posición y orientación del robot
+
+Partiendo del gráfico del modelo del robot, podemos observar que existe una relaciónes donde hacemos uso de funciones trigonometricas \textbf{Seno y Coseno}, para conocer la posición x,y de nuestro robot a medida que recopilamos datos del encoder. Pero antes debemos contar con el vector resultante de nuestro robot con los datos conocidos de la rueda izquierda y derecha.\\
+
+Distancia Derecha - partiendo de las mediciones de rotación obtenidas en grados, las convertimos a radianes\\
+\[ D_{L} = radio * (Lectura Rueda Izquierda * (\frac{\pi}{180})) \qquad D_{R} = radio * (Lectura Rueda Derecha * (\frac{\pi}{180})) \]
+
+La distancia recorrida por nuestro robot será el promedio de ambas distancias:
+\[D_{ROBOT} = \frac{(D_{R}+D_{L})}{2}\]
+
+Una vez obtenidos los parámetros anteriores, podemos calcular nuestro ángulo de giro $\omega$
+\[\omega = \frac{(DR-DL)}{\mbox{longitud entre ruedas}} \]
+
+Nuestro ángulo de giro obtenido de la ecuación anterior nos dan los grados en radianes, para obtenerlo en grados multiplicamos por $\frac{180}{\pi}$, de esta forma podremos hacer uso de las primeras ecuaciones para conocer las nuevas coordenadas x,y en el plano.
+
+\[ x = x + \mbox{Distancia Robot} * \frac{cos(\theta)}{100} \qquad y = y + \mbox{Distancia Robot} * \frac{sen(\theta)}{100} \]
+
+\subsection{Programa}
+
+El programa del odómetro debe consistir en las siguientes fases dentro de un ciclo infinito
 
 \begin{itemize}
 \item Leer tacómetros
 \item Comparar con lectura anterior
 \item Calcular las diferencias $\Delta X$
 \item Calcular las diferencias $\Delta Y$
-\item Calcular las diferencias $\Delta \Theta$
-\item Actualizar odometro $(X+\Delta X, Y+\Delta Y, \Theta + \Delta Theta)$
+\item Calcular las diferencias $\Delta \theta$
+\item Actualizar odómetro $(X+\Delta X, Y+\Delta Y, \theta + \Delta \theta)$
 \item Actualizar mediciones
 \end{itemize}
 
-
-
 \subsection{Pseudocódigo}
 
-La parte fundamental
+Durante la realización del odómetro, el interprete no soporta asignaciones con expresiones largas, es por eso que en el código la asignación para las nuevas coordenadas x,y se dividieron para así contar con los datos correctos.
 
 \begin{algorithm}
-  \caption{Odometro}\label{alg:two}
+  \caption{Odómetro}\label{alg:two}
   Leer tacometros\;
   Comparar con lectura anterior\;
   \If{supera umbral}{
     $\Delta X \gets X + \Delta X$\; %\Comment*[r]{MAX iter for exploration, if no solution}
     $\Delta Y \gets Y + \Delta Y$\;
     $\Delta \Theta \gets \Theta + \Delta \Theta$\; 
-    Actualizar Odometro\;
+    Actualizar Odómetro\;
     Actualizar Tacometro\;
   }
   Wait(50ms)\;
 \end{algorithm}
 
+La implementación quedará dentro de una tarea (task), ya que el kit de LEGO NXT haciendo uso de NXC soporta multiples hilos de ejecución de tareas. Se incluyen más tareas como un seguidor de linea básico, e ir mostrando el desplazamiento del robot en la pantalla del ladrillo LEGO. La ejecución de los hilos la realiza el hilo principal con ayuda un organizador de una lista de tareas \textbf{Precedes} con el siguiente orden: \\
+\textbf{Precedes(odometria,sigue\_lineas,make\_draw)\;} 
 
 \subsection{Pruebas}
 
+Durante las pruebas se pueden observar errores, dichos errores sistemáticos los podemos considerar agenos al modelo dichos errores pueden ser variados como:
+\begin{itemize}
+\item Los diametros de las ruedas no son iguales
+\item Medida errorena de los diámetros de las ruedas
+\item Mal alineación de las ruedas
+\item Irregularidad del terreno
+\item Derrape, patinaje
+\end{itemize}
 
-\includegraphics[scale=0.09]{graficos/robot.png}
-\includegraphics[scale=0.09]{graficos/path_robot.png}
-\includegraphics[scale=0.09]{graficos/corrida1.png}
-\includegraphics[scale=0.09]{graficos/corrida2.png}
-\includegraphics[scale=0.09]{graficos/corrida3.png}
+Los errores no sistemáticos los podemos corregir con una calibración. A continuación se muestran tres erres de tres corridas diferentes.
+
 \includegraphics[scale=0.09]{graficos/error1.png}
 \includegraphics[scale=0.09]{graficos/error2.png}
 \includegraphics[scale=0.09]{graficos/error3.png}
+
+En la primera imágen después de un desplazamiento aproximado de 86 cm, los datos de desplazamiento del robot fueron: 88.49 cm y una inclinación de 10.38$^{\circ}$
+
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[scale=0.18]{graficos/prueba1.JPG}
+\end{figure}
+
+\newpage
+En la segunda prueba después de un desplazamiento aproximado de 75 cm, los datos de desplazamiento del robot fueron: 79.48 cm y una inclinación de 18.32$^{\circ}$
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[scale=0.18]{graficos/prueba2.JPG}
+\end{figure}
+
+En la tercera prueba después de un desplazamiento aproximado de 86 cm, los datos de desplazamiento del robot fueron: 87.56 cm y una inclinación de 18.65$^{\circ}$
+
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[scale=0.18]{graficos/prueba3.JPG}
+\end{figure}
+
+\newpage
+\subsection{Prueba con el siguelineas}
+
+Al tener calibrado nuestras mediciones del odómetro, lo integramos dentro de la rutina de sigue-líneas.
+
+\begin{figure}[!hb]
+  \centering
+  \includegraphics[angle=90,scale=0.2]{graficos/path_robot.png}
+\end{figure}
+\includegraphics[scale=0.09]{graficos/corrida1.png}
+\includegraphics[scale=0.09]{graficos/corrida2.png}
+\includegraphics[scale=0.09]{graficos/corrida3.png}
+\\\\
+Al superponer los recorridos, donde se observa el error por la oscilación originado de la colocación de los sensores que es amplio.
+
 %------------------------------------------------
 \newpage
 \twocolumn
 \section{Resultados}
 
 Los resultados de la estimación de la posición están dentro de lo esperado, teniendo en cuenta la precisión de los sensores y motores. Al cabo de varios metros recorridos el error empieza
-a ser considerable. En recorridos de unos 8 metros, tiene un error de entre unos 300 y 400 mm. Lo que más error produce son las trayectorias curvas, mayor velocidad angular es necesario peor, ya que los rozamientos hacen que las cálculos hechos con las lecturas de los tacómetros de los motores introduzcan demasiado error cuando el robot está girando.\\
-
-Trayecto de 4 metros en linea recta: En 10 pruebas realizadas, el error medio en
-distancia fue de 15 cm.\\
-Giro sobre si mismo de 360o En 5 pruebas realizadas, el error medio en grados era
-de 3o.\\
-Trayecto de 3 metros con giro: En 10 pruebas realizadas, el error medio en distancia
-fue de 24 cm.\\
-
+a ser considerable. Lo que más error produce son las trayectorias curvas, ya que los rozamientos hacen que los cálculos hechos con las lecturas de los tacómetros de los motores introduzcan demasiado error cuando el robot está girando.\\
 
 %------------------------------------------------
-\section{Discusión y análisis}
+\section{Conclusiones}
 
+En conclusión, la odometría es un método comúnmente utilizado para estimar la posición y orientación de un robot móvil en un entorno desconocido. Sin embargo, como cualquier técnica de medición, la odometría tiene errores que pueden afectar la estimación de la posición y orientación del robot.\\
 
+Los errores sistemáticos en la odometría pueden deberse a una variedad de factores, como el desgaste de las ruedas, la fricción en la superficie del suelo y la falta de precisión en los sensores utilizados para medir la velocidad de las ruedas. Estos errores pueden acumularse con el tiempo y afectar la capacidad del robot para navegar en un ambiente desconocido.\\
+
+Para reducir los errores, es importente realizar una calibración de las mediciones de los encoders y el mantenimiento/ajuste del robot.\\
+
+En resumen, aunque los erres sistemáticos son un desafío importante en la odometría, existen formas de minimizar su impacto y mejorar la precisión de la navegación del robot móvil. Es clave comprender y atender los errores de manera efectiva para lograr un rendimiento óptimo en la navegación autónoma del robot.
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
-\onecolumn
-\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
 
-  %http://ubuntudaily.blogspot.com/2011/03/using-lego-mindstorms-nxt-with-ubuntu.html
-  %https://github.com/pierre-24/nbc-compiler
-  %https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt
-  %https://howtoinstall.co/en/libusb-dev
-  %http://www.kramirez.net/Robotica/Material/Presentaciones/Odometria.pdf
+\begin{thebibliography}{0} % Bibliography - this is intentionally simple in this template
+
+  \href{http://ubuntudaily.blogspot.com/2011/03/using-lego-mindstorms-nxt-with-ubuntu.html}{Instalación NXC en Linux}\\\\
+  \href{https://github.com/pierre-24/nbc-compiler}{Repositorio NBC utilizado}\\\\
+  \href{https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt}{Documento para evitar el sudo en el comando NXC}\\\\
+  \href{https://howtoinstall.co/en/libusb-dev}{Comando para instalar libusb-dev}\\\\
+  \href{http://www.kramirez.net/Robotica/Material/Presentaciones/Odometria.pdf}{Presentación Odometría}\\\\
+  \href{https://www.redalyc.org/pdf/849/84916680034.pdf}{VALENCIA V., JHONNY A.; MONTOYA O., ALEJANDRO; RIOS, LUIS HERNANDO
+MODELO CINEMÁTICO DE UN ROBOT MÓVIL TIPO DIFERENCIAL Y NAVEGACIÓN A PARTIR DE
+LA ESTIMACIÓN ODOMÉTRICA}\\\\
+  \href{https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiu0_So28_9AhViDkQIHRlXDtcQFnoECBQQAQ&url=https%3A%2F%2Frevistas.udistrital.edu.co%2Findex.php%2FTecnura%2Farticle%2Fdownload%2F6810%2F8394%2F30717&usg=AOvVaw2PsCrkFGkk_nGN-G084B11}{Modelo Cinemático de un robot móvil implementado con LEGO NXT para un sistema de localización indoor diseñado en Labview}
+  
   
 \end{thebibliography}
 

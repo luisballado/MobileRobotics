@@ -1,0 +1,130 @@
+//Hacer documentacion de la instalacion no lleva el -EF
+// probar nueva instalacion para quitar el sudo
+
+#define SCREEN_WIDTH  100
+#define SCREEN_HEIGHT 60
+#define R_Motor OUT_C
+#define L_Motor OUT_A
+
+#define PI 3.1415926535
+
+#define SpeedSlow  5
+#define SpeedFast 50
+
+int pos1; //Posicion MotorA
+int pos2; //Posicion MotorC
+
+float x = 0;
+float y = 0;
+
+float phi = 0;
+
+float diametro = 5.5; //diametro ruedas
+float longitud = 16;  //distancia
+
+//Dibujar Dx, Dy, Dtheta
+//Calcular incrementos
+
+int SD;
+int SI;
+
+/**
+task odometria(){
+
+  float VL,VR;
+
+  VL = PI * (diametro/2) * WL;
+  VR = PI * (diametro/2) * WR
+
+  x = deltaX * cos(phi);
+  y = deltaY * sin(phi);
+  phi = phi + ((DR-DL)/2)
+}
+**/
+
+task sigue_lineas(){
+    
+  int Threshold1=560;
+  int Threshold2=600;
+    
+  // sensor1
+  SetSensorType(IN_1, IN_TYPE_LIGHT_ACTIVE);
+  SetSensorMode(IN_1, IN_MODE_RAW);
+
+  // sensor2
+  SetSensorType(IN_4, IN_TYPE_LIGHT_ACTIVE);
+  SetSensorMode(IN_4, IN_MODE_RAW);
+  
+  while (true){
+    
+    
+    SD = SensorRaw(IN_4);
+    SI = SensorRaw(IN_1);    
+
+    //manejar histeresis
+    // blanco
+    if (SI > Threshold2)
+      OnFwd(OUT_A, SpeedSlow);
+    else
+      OnFwd(OUT_A, SpeedFast);
+      
+    // linea
+    if (SD > Threshold2)
+      OnFwd(OUT_C, SpeedSlow);
+    else
+      OnFwd(OUT_C, SpeedFast);
+           
+        
+  }
+  
+}
+
+task motor_rotation(){
+     while(true){ 
+	pos1 = MotorTachoCount(OUT_A);
+	pos2 = MotorTachoCount(OUT_C);
+     }
+}
+
+//360 es una vuelta completa
+//revisar si acepta flotantes
+//convertir grados a radianes
+//humbral 5-10
+
+task show_text(){
+
+  string _si_;
+  string _sd_;
+  string msg1;
+  string msg2;
+  
+  while(true){
+    _si_ = NumToStr(pos1); //el valor se actualiza
+    _sd_ = NumToStr(pos2); //el valor se actualiza
+    msg1 = "M Izq: " + _si_;
+    msg2 = "M Der: " + _sd_;
+    TextOut(0,LCD_LINE1,msg1);
+    TextOut(0,LCD_LINE2,msg2);
+  }
+}
+
+task make_draw(){
+
+  int x;
+  int y;
+
+  ClearScreen();
+
+  while(true){
+	
+     x = pos2/100 + 50;
+     y = pos1/100 + 30;
+          
+     CircleOut(x,y,2);
+     
+  }
+}
+
+task main(){
+  Precedes(sigue_lineas,motor_rotation,show_text,make_draw);
+}

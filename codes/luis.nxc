@@ -1,0 +1,9 @@
+task main()
+{
+  
+    TextOut(10,10,"Ingenieria Computacional");
+    Wait(1000);
+    TextOut(1,1,"Hola Mundo");
+    Wait(1000);
+  
+}

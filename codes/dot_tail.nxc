@@ -1,0 +1,68 @@
+#define SCREEN_WIDTH  100
+#define SCREEN_HEIGHT 60
+
+// initialize an Ultrasonic sensor (p is Sensor like S1)
+#define NBSetSensorUltrasonic(p) asm { SetSensorUltrasonic(p) }
+
+// draw a single point (if cls is true, erase first screen first)
+#define NBDrawPoint( x, y ) asm { PointOut( x, y ) }
+
+#define TAIL_LENGTH 20
+
+int xDir=1;
+int yDir=1;
+int X[]={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+int Y[]={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+// move the elements in the tail
+void moveTail()
+{
+     for( int i = TAIL_LENGTH-1; i > 0; i-- )
+     {
+         X[i] = X[i-1];
+         Y[i] = Y[i-1];
+     }
+}
+
+// move the X[0] and Y[0] to a new position,
+// keeping them on the screen
+void move()
+{
+     X[0] += xDir; // works as of b23
+     Y[0] += yDir;
+
+     if( ( X[0] < 2 ) || ( X[0] >= SCREEN_WIDTH-1 ) )
+     {
+         xDir *= -1;
+     }
+
+     if( ( Y[0] < 2 ) || ( Y[0] >= SCREEN_HEIGHT-1 ) )
+     {
+         yDir *= -1;
+     }
+}
+
+task main()
+{
+     while( true )
+     {
+         // move each element in the array
+         // out one slot so that the value
+         // in slot 0 goes to slot 1, etc.
+         moveTail();
+
+         // move the 0 slot in the array to
+         // its new position
+         move();
+
+         // clear the screen
+         ClearScreen();
+         
+         // draw the array in reverse order
+         for( int i = TAIL_LENGTH-1; i > 0; i-- )
+         {
+             int tmp1=X[i], tmp2=Y[i];
+             NBDrawPoint( tmp1, tmp2 );
+         }
+     }
+}

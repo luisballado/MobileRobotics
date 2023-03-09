@@ -1,0 +1,51 @@
+
+/***	
+     int pos;
+     string msg;
+     string _sd_;
+     
+     while( true )
+     {
+     
+     _sd_ = NumToStr(pos);
+     msg = _sd_;
+     TextOut(0,LCD_LINE1,msg);
+     //int x = 50;
+     //int y = 30;
+     //ClearScreen();
+
+     
+     //CircleOut(x+i,y,1);
+     //delay(1);
+
+     for(int i=1;i<25;i++){
+     CircleOut(x,y+i,1);
+     delay(1);
+     }
+
+     }
+     
+     //NBDrawPoint(50,30);
+
+         // move each element in the array
+         // out one slot so that the value
+         // in slot 0 goes to slot 1, etc.
+         moveTail();
+
+         // move the 0 slot in the array to
+         // its new position
+         move();
+
+         // clear the screen
+	 ClearScreen();
+         
+         // draw the array in reverse order
+         for( int i = TAIL_LENGTH-1; i > 0; i-- )
+         {
+             int tmp1=X[i], tmp2=Y[i];
+             NBDrawPoint( tmp1, tmp2 );
+         }
+
+     }
+
+**/

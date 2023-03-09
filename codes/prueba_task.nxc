@@ -1,0 +1,28 @@
+task Musica(){
+     while(true){
+	PlayTone(TONE_A4,500);
+	Wait(500);
+     }
+}
+
+task Mover(){
+     while(true){
+
+	OnFwd(OUT_A,Random(100));
+	Wait(Random(SEC_1));
+	
+     }
+}
+
+task Control(){
+
+     Wait(SEC_10);
+     stop music;
+     Wait(SEC_5);
+     StopAllTask();
+}
+
+//Declara las precedencias de las tareas. Esquematiza la lista de tareas a ser ejecutadas una vez que la actual tarea a completado su ejecucion. Las tareas se ejecutan simultaneamente al menos que otras dependencias lo impidan hacerlo. Esta declaracion debe ser usada una vez dentro de la tarea preferentemente al inicio de la definicion de la tarea. Cualquier numero de tareas puede ser listada en el estado de Precedes
+task main(){
+     Precedes(Musica,Mover,Control);
+}

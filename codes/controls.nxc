@@ -1,0 +1,118 @@
+/**
+ * Robot Control Library
+ * for NXC robot with two active wheels and one passive caster wheel
+ *
+ * This library defines essential subroutines which allow to control robot's movement.
+ *
+ * (Created as part of 5CCS2RGP Robotic Group Project module at King's College London)
+ *
+ * @copyright   Copyright (c) 2013 Tomas Vitek
+ * @author      Tomas Vitek ~ http://tomasvitek.com
+ * @link        https://github.com/tomikvitek/NXC-Robot-Controllers
+ * @link        http://www.kcl.ac.uk/nms/depts/informatics/study/current/handbook/Progs/Modules/5CCS2RGP.aspx
+ */
+
+/**
+ * PROPERTIES
+ */
+
+// Sensors
+#define LEFT_SENSOR   IN_4
+#define CENTER_SENSOR IN_3
+#define RIGHT_SENSOR  IN_2
+
+// Motors
+#define LEFT_MOTOR  OUT_C
+#define RIGHT_MOTOR OUT_B
+
+/**
+ * CONTROL SUBRUTINES
+ */
+
+/**
+ * Makes left wheel go at certain speed
+ *
+ * @param  speed Speed (0 - 100), negative reverses the direction
+ */
+sub RunLeftWheel(int speed)
+{
+  OnFwd(LEFT_MOTOR, speed);
+}
+
+/**
+ * Makes left wheel go at certain speed
+ *
+ * @param  speed Speed (0 - 100), negative reverses the direction
+ */
+sub RunRightWheel(int speed)
+{
+  OnFwd(RIGHT_MOTOR, speed);
+}
+
+/**
+ * Makes both wheels go at certain speed
+ *
+ * @param  speed Speed (0 - 100), negative reverses the direction
+ */
+sub RunBothWheels(int speed)
+{
+  OnFwd(LEFT_MOTOR, speed);
+  OnFwd(RIGHT_MOTOR, speed);
+}
+
+/**
+ * Stop the robot
+ */
+sub StopWheels()
+{
+  Off(RIGHT_MOTOR);
+  Off(LEFT_MOTOR);
+}
+
+/**
+ * Reads a value from a sensor
+ */
+int ReadSensor(int input)
+{
+  return SensorRaw(input);
+}
+
+/**
+ * Actives a light sensor
+ */
+sub ActivateSensor(int sensor)
+{
+  SetSensorType(sensor, IN_TYPE_LIGHT_ACTIVE);
+  SetSensorMode(sensor, IN_MODE_RAW);
+}
+
+/**
+ * Activess all sensors
+ */
+sub ActivateAllSensors()
+{
+  ActivateSensor(LEFT_SENSOR);
+  ActivateSensor(CENTER_SENSOR);
+  ActivateSensor(RIGHT_SENSOR);
+}
+
+/**
+ * Display information from the light sensors
+ */
+sub PrintInfo()
+{
+    string msg = "LINE FOLLOWER";
+    TextOut(0, LCD_LINE1, msg);
+
+    msg = "Left:";
+    TextOut(0, LCD_LINE3, msg);
+    NumOut(0, LCD_LINE4, LeftLight, DRAW_OPT_NORMAL);
+
+    msg = "Center:";
+    TextOut(0, LCD_LINE5, msg);
+    NumOut(0, LCD_LINE6, CenterLight, DRAW_OPT_NORMAL);
+
+    msg = "Right:";
+    TextOut(0, LCD_LINE7, msg);
+    NumOut(0, LCD_LINE8, RightLight, DRAW_OPT_NORMAL);
+}

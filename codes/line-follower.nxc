@@ -1,0 +1,136 @@
+/**
+ * NXC Line Follower
+ *
+ * This program features three different solutions to the problem.
+ * 'Two sensor' is a simple dual sensor solution, when a sensor hits
+ * black the robot turns in that direction. Proportional controller
+ * uses only one sensor and follows the edge of the line. Third
+ * solution combines those two with a timer.
+ *
+ * (Created as part of 5CCS2RGP Robotic Group Project module at King's College London)
+ *
+ * @copyright   Copyright (c) 2012 Tomas Vitek, Josh Manuncia, Oluwasheun Adebari
+ * @author      Tomas Vitek ~ http://tomasvitek.com
+ * @link        https://github.com/tomikvitek/NXC-Robot-Controllers
+ * @link        http://youtu.be/otELJ-d51KA
+ * @link        http://youtu.be/iHUMTRf3DlA
+ * @link        http://www.kcl.ac.uk/nms/depts/informatics/study/current/handbook/Progs/Modules/5CCS2RGP.aspx
+ */
+
+/**
+ * LIBRARIES
+ */
+
+// Include control library
+#include "controls.nxc"
+
+// Include proportional controller
+#include "proportional.nxc"
+
+// Include two sensor controller
+#include "two-sensors.nxc"
+
+/**
+ * PROPERTIES
+ */
+
+// Sets which strategy is used
+const int STRATEGY = 1;
+
+#define PROPORTIONAL_TIME  6200
+#define TWO_SENSORS_TIME   19800
+
+/**
+ * Line following subroutine
+ *
+ * Utilises control library subroutines and
+ * proportional and two-sensor controller libraries.
+ */
+sub FollowLine()
+{
+  switch(STRATEGY) {
+    // Two sensors
+    case 1:
+      int left;
+      int right;
+
+      while (true) {
+        left  = ReadSensor(LEFT_SENSOR);
+        right = ReadSensor(RIGHT_SENSOR);
+        TwoSensors(left, right);
+      }
+      break;
+
+    // Proportional
+    case 2:
+      int center;
+
+      while (true) {
+        center = ReadSensor(CENTER_SENSOR);
+        Proportional(center);
+      }
+      break;
+
+    // Timed combination
+    case 3:
+      long start = CurrentTick();
+      long nextChange = PROPORTIONAL_TIME;
+      int current = 1;
+
+      int left;
+      int center;
+      int right;
+
+      while (true) {
+          left   = ReadSensor(LEFT_SENSOR);
+          center = ReadSensor(CENTER_SENSOR);
+          right  = ReadSensor(RIGHT_SENSOR);
+
+          long time = CurrentTick() - start;
+
+          // Continue
+          if (time < nextChange) {
+            switch(current) {
+              case 1:
+                TwoSensors(left, right);
+                break;
+              case 2:
+                Proportional(center);
+                break;
+            }
+          }
+          // Switch to other controller
+          else {
+            switch(current) {
+              case 1:
+                RunLeftWheel(TS_SPEED_TURNING_FORWARD);
+                RunRightWheel(TS_SPEED_TURNING_BACK);
+                Wait(100);
+                RunLeftWheel(TS_SPEED_FORWARD);
+                RunRightWheel(TS_SPEED_FORWARD);
+                Wait(100);
+
+                current = 2;
+                nextChange = time + TWO_SENSORS_TIME;
+                break;
+              case 2:
+                current = 1;
+                nextChange = time + PROPORTIONAL_TIME;
+                break;
+            }
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Main task
+ *
+ * Starts line following subroutine
+ */
+task main()
+{
+  ActivateAllSensors();
+  FollowLine();
+}

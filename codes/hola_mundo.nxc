@@ -1,0 +1,11 @@
+//Hola mundo
+/* Pruebas */
+
+task main(){
+     TextOut(0,0,"Hola CINVESTAV!");
+     Wait(1000);
+     //Limpia pantalla
+     ClearScreen();
+     TextOut(0,16,":)");
+     Wait(1000);
+}

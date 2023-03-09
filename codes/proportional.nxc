@@ -1,0 +1,65 @@
+/**
+ * Proportional Line Follower
+ *
+ * Utilises one light sensor, depending on the error (distance to the edge of the line),
+ * moves to left or to right and according to it's size it ajusts speed of turning.
+ *
+ * (Created as part of 5CCS2RGP Robotic Group Project module at King's College London)
+ *
+ * @copyright   Copyright (c) 2012 Tomas Vitek, Josh Manuncia, Oluwasheun Adebari
+ * @author      Tomas Vitek ~ http://tomasvitek.com
+ * @link        https://github.com/tomikvitek/NXC-Robot-Controllers
+ * @link        http://www.kcl.ac.uk/nms/depts/informatics/study/current/handbook/Progs/Modules/5CCS2RGP.aspx
+ */
+
+/**
+ * PROPERTIES
+ */
+
+// Proportional values
+#define P_SPEED 10
+#define P       55
+
+#define P_BLACK_COLOR 715
+#define P_WHITE_COLOR 438
+#define P_THRESHOLD (P_BLACK_COLOR + P_WHITE_COLOR) / 2
+
+/**
+ * CONTROLLER
+ */
+
+/**
+ * Propositional controller, using only one controller
+ * (Slower, but more accurate)
+ */
+sub Proportional(int value)
+{
+    int turn  = 0;
+    int left  = 0;
+    int right = 0;
+
+    int err =  value - P_THRESHOLD;
+
+    if (err == 0) {
+       left = P_SPEED;
+       right = P_SPEED;
+    }
+    else {
+       turn = P * err;
+       turn = turn / 100;
+
+       left = P_SPEED + turn;
+       right = P_SPEED - turn;
+    }
+
+    if (left > 100) left = 100;
+    else if (left < -100) left = -100;
+
+    if (right > 100) right = 100;
+    else if (right < -100) right = -100;
+
+    RunLeftWheel(left);
+    RunRightWheel(right);
+
+    PrintInfo();
+}

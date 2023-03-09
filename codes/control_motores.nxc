@@ -1,0 +1,66 @@
+/***
+#include "NXCDefs.h"
+
+#define MOVE_TIME 100
+
+task main(){
+     OnFwd(OUT_A,75);
+     Wait(1000);
+     ClearScreen();
+     TextOut(0,0,"ADIOS");
+     Wait(1000);
+}
+
+***/
+#define SET 0
+
+void func(int x)
+{
+	TextOut(0, 60, "SET"); // outputs the value of x
+	NumOut(0, 50, x); // outputs the value of x
+}
+
+task main()
+{
+	int x = 0;
+	int k=1;
+	int u;
+	int pos;
+	int error;
+	bool run = true;
+
+	//RotateMotorEx(OUT_AB, 75, 360, 50, true, true);
+	//RotateMotor(OUT_A,75,90);
+		
+	while(run){
+		
+		//x=MotorTachoCount(OUT_A);
+		pos=MotorRotationCount(OUT_A);
+		error = SET-pos;
+		u = k * error;
+		TextOut(0, 40, "error"); // outputs the value of x
+		NumOut(0, 30, error); // outputs the value of x
+		TextOut(0, 20, "u"); // outputs the value of x
+		NumOut(0, 10, u); // outputs the value of xTextOut(0, 40, "error"); // outputs the value of x
+		
+		
+		
+		func(SET);
+		OnFwd(OUT_A,u);
+		
+		/**
+		if(x<100){
+		OnFwd(OUT_A,20);
+		}else{
+		OnFwd(OUT_A,-20);
+		//Off(OUT_A);
+		//run = false;
+		}
+		**/
+		
+		//Leer la posicion del motor
+		//x = Posicion_motor();
+        	//func(x); // prints 0
+     
+	}
+}

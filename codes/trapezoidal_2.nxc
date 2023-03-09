@@ -1,0 +1,31 @@
+//funcion dummy de delay
+void delay(int seconds){
+     unsigned long int count = 5000,i,j;
+     for(i=0;i<seconds;i++)
+	for(j=0;j<count;j++);
+}
+
+task main(){
+
+     int pos;
+     int acc = 5;
+     int vel = 75;
+     PlayTone(5000,30); //Inicio programa
+     bool once = false;
+     while(true){
+	pos = MotorRotationCount(OUT_A);
+
+	if(pos < 120){
+	   OnFwd(OUT_A,20);
+	}else if(pos>120 && pos<240){
+	   OnFwd(OUT_A,50);
+	}else if(pos>240 && pos<360){
+	   OnFwd(OUT_A,20);
+	}else{
+	
+	}
+		
+     }
+     
+     
+}

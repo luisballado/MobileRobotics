@@ -1,0 +1,1000 @@
+ 1004  pdflatex article_2.tex 
+ 1005  fg
+ 1006  pdflatex article_2.tex 
+ 1007  fg
+ 1008  pdflatex article_2.tex 
+ 1009  fg
+ 1010  pdflatex article_2.tex 
+ 1011  fg
+ 1012  pdflatex article_2.tex 
+ 1013  fg
+ 1014  pdflatex article_2.tex 
+ 1015  fg
+ 1016  pdflatex article_2.tex 
+ 1017  fg
+ 1018  pdflatex article_2.tex 
+ 1019  fg
+ 1020  pdflatex article_2.tex 
+ 1021  fg
+ 1022  pdflatex article_2.tex 
+ 1023  fg
+ 1024  pdflatex article_2.tex 
+ 1025  fg
+ 1026  pdflatex article_2.tex 
+ 1027  fg
+ 1028  pdflatex article_2.tex 
+ 1029  fg
+ 1030  pdflatex article_2.tex 
+ 1031  fg
+ 1032  pdflatex article_2.tex 
+ 1033  fg
+ 1034  pdflatex article_2.tex 
+ 1035  fg
+ 1036  pdflatex article_2.tex 
+ 1037  fg
+ 1038  pdflatex article_2.tex 
+ 1039  fg
+ 1040  pdflatex article_2.tex 
+ 1041  fg
+ 1042  pdflatex article_2.tex 
+ 1043  fg
+ 1044  pdflatex article_2.tex 
+ 1045  fg
+ 1046  pdflatex article_2.tex 
+ 1047  fg
+ 1048  pdflatex article_2.tex 
+ 1049  fg
+ 1050  pdflatex article_2.tex 
+ 1051  fg
+ 1052  pdflatex article_2.tex 
+ 1053  fg
+ 1054  pdflatex article_2.tex 
+ 1055  fg
+ 1056  pdflatex article_2.tex 
+ 1057  fg
+ 1058  pdflatex article_2.tex 
+ 1059  fg
+ 1060  pdflatex article_2.tex 
+ 1061  fg
+ 1062  pdflatex article_2.tex 
+ 1063  fg
+ 1064  pdflatex article_2.tex 
+ 1065  fg
+ 1066  pdflatex article_2.tex 
+ 1067  fg
+ 1068  pdflatex article_2.tex 
+ 1069  fg
+ 1070  pdflatex article_2.tex 
+ 1071  fg
+ 1072  pdflatex article_2.tex 
+ 1073  fg
+ 1074  pdflatex article_2.tex 
+ 1075  fg
+ 1076  pdflatex article_2.tex 
+ 1077  fg
+ 1078  pdflatex article_2.tex 
+ 1079  fg
+ 1080  pdflatex article_2.tex 
+ 1081  fg
+ 1082  pdflatex article_2.tex 
+ 1083  fg
+ 1084  pdflatex article_2.tex 
+ 1085  fg
+ 1086  pdflatex article_2.tex 
+ 1087  fg
+ 1088  pdflatex article_2.tex 
+ 1089  fg
+ 1090  pdflatex article_2.tex 
+ 1091  fg
+ 1092  pdflatex article_2.tex 
+ 1093  fg
+ 1094  pdflatex article_2.tex 
+ 1095  fg
+ 1096  pdflatex article_2.tex 
+ 1097  fg
+ 1098  pdflatex article_2.tex 
+ 1099  fg
+ 1100  pdflatex article_2.tex 
+ 1101  fg
+ 1102  pdflatex article_2.tex 
+ 1103  f
+ 1104  fg
+ 1105  f
+ 1106  pdflatex article_2.tex 
+ 1107  fg
+ 1108  pdflatex article_2.tex 
+ 1109  fg
+ 1110  pdflatex article_2.tex 
+ 1111  fg
+ 1112  pdflatex article_2.tex 
+ 1113  fg
+ 1114  pdflatex article_2.tex 
+ 1115  fg
+ 1116  pdflatex article_2.tex 
+ 1117  fg
+ 1118  pdflatex article_2.tex 
+ 1119  fg
+ 1120  pdflatex article_2.tex 
+ 1121  fg
+ 1122  pdflatex article_2.tex 
+ 1123  fg
+ 1124  pdflatex article_2.tex 
+ 1125  fg
+ 1126  pdflatex article_2.tex 
+ 1127  fg
+ 1128  pdflatex article_2.tex 
+ 1129  fg
+ 1130  pdflatex article_2.tex 
+ 1131  fg
+ 1132  pdflatex article_2.tex 
+ 1133  fg
+ 1134  pdflatex article_2.tex 
+ 1135  fg
+ 1136  pdflatex article_2.tex 
+ 1137  fg
+ 1138  pdflatex article_2.tex 
+ 1139  fg
+ 1140  pdflatex article_2.tex 
+ 1141  fg
+ 1142  pdflatex article_2.tex 
+ 1143  fg
+ 1144  pdflatex article_2.tex 
+ 1145  fg
+ 1146  pdflatex article_2.tex 
+ 1147  fg
+ 1148  pdflatex article_2.tex 
+ 1149  fg
+ 1150  pdflatex article_2.tex 
+ 1151  fg
+ 1152  pdflatex article_2.tex 
+ 1153  fg
+ 1154  pdflatex article_2.tex 
+ 1155  fg
+ 1156  pdflatex article_2.tex 
+ 1157  fg
+ 1158  pdflatex article_2.tex 
+ 1159  fg
+ 1160  pdflatex article_2.tex 
+ 1161  fg
+ 1162  pdflatex article_2.tex 
+ 1163  fg
+ 1164  pdflatex article_2.tex 
+ 1165  fg
+ 1166  pdflatex article_2.tex 
+ 1167  fg
+ 1168  pdflatex article_2.tex 
+ 1169  fg
+ 1170  pdflatex article_2.tex 
+ 1171  fg
+ 1172  pdflatex article_2.tex 
+ 1173  fg
+ 1174  pdflatex article_2.tex 
+ 1175  fg
+ 1176  pdflatex article_2.tex 
+ 1177  fg
+ 1178  pdflatex article_2.tex 
+ 1179  fg
+ 1180  pdflatex article_2.tex 
+ 1181  fg
+ 1182  pdflatex article_2.tex 
+ 1183  fg
+ 1184  pdflatex article_2.tex 
+ 1185  fg
+ 1186  pdflatex article_2.tex 
+ 1187  fg
+ 1188  pdflatex article_2.tex 
+ 1189  fg
+ 1190  pdflatex article_2.tex 
+ 1191  fg
+ 1192  pdflatex article_2.tex 
+ 1193  fg
+ 1194  pdflatex article_2.tex 
+ 1195  fg
+ 1196  pdflatex article_2.tex 
+ 1197  fg
+ 1198  pdflatex article_2.tex 
+ 1199  fg
+ 1200  pdflatex article_2.tex 
+ 1201  ls
+ 1202  mv article_2.pdf wavefront_luis.pdf
+ 1203  ls
+ 1204  cd ..
+ 1205  ls
+ 1206  emacs -nw wave_robots.c 
+ 1207  gcc -o robots wave_robots.c 
+ 1208  ./robots 
+ 1209  fg
+ 1210  clear
+ 1211  cd ..
+ 1212  ls
+ 1213  git status
+ 1214  git add .
+ 1215  git commit -m "cosas x"
+ 1216  git push
+ 1217  cd ..
+ 1218  cd IC/
+ 1219  ls
+ 1220  git pull
+ 1221  ls
+ 1222  cd code
+ 1223  ls
+ 1224  emacs -nw ackly_gpt.py
+ 1225  python3.10 ackly_gpt.py 
+ 1226  fg
+ 1227  emacs -nw ackly_gpt.py
+ 1228  python3.10 ackly_gpt.py 
+ 1229  fg
+ 1230  python3.10 ackly_gpt.py 
+ 1231  fg
+ 1232  emacs -nw ackly_DE.py
+ 1233  python3.10 ackly_DE.py 
+ 1234  fg
+ 1235  emacs -nw ackly_DE.py
+ 1236  python3.10 ackly_DE.py 
+ 1237  fg
+ 1238  ls
+ 1239  emacs -nw ackly_EP.py
+ 1240  python3.10 ackly_DE.py 
+ 1241  python3.10 ackly_EP.py 
+ 1242  fg
+ 1243  emacs -nw ackly_gpt.py
+ 1244  python3.10 ackly_gpt.py
+ 1245  emacs -nw rosen_ep.py
+ 1246  python3.10 rosen_ep.py 
+ 1247  fg
+ 1248  emacs -nw rosen_de.py
+ 1249  python3.10 rosen_de.py 
+ 1250  ls
+ 1251  emacs -nw rosen_es.py
+ 1252  python3.10 rosen_es.py 
+ 1253  emacs -nw sphere_es.py
+ 1254  python3.10 sphere_es.py 
+ 1255  emacs -nw sphere_de.py
+ 1256  python3.10 sphere_de.py 
+ 1257  ls
+ 1258  emacs -nw sphere_ep.py
+ 1259  python sphere_ep.py 
+ 1260  python3.10 sphere_ep.py 
+ 1261  clear
+ 1262  ls
+ 1263  rm -rf *.py~
+ 1264  ls
+ 1265  clear
+ 1266  ls
+ 1267  mv ackly_gpt.py ackly_es.py
+ 1268  ls
+ 1269  clear
+ 1270  ls
+ 1271  clear
+ 1272  ls
+ 1273  emacs -nw sphere_de.py 
+ 1274  python3.10 sphere_de.py
+ 1275  ls
+ 1276  emacs -nw sphere_ep.py 
+ 1277  python sphere_ep.py 
+ 1278  python3.10 sphere_ep.py 
+ 1279  git status
+ 1280  git add .
+ 1281  git commit -m "trash"
+ 1282  git push
+ 1283  ls
+ 1284  emacs -nw rosen_de.py 
+ 1285  python3.10 rosen_de.py 
+ 1286  cd ..
+ 1287  ls
+ 1288  cd ..
+ 1289  cd ADA/
+ 1290  ls
+ 1291  cd practice_code/
+ 1292  ls
+ 1293  emacs -nw determinante_iter.cpp 
+ 1294  fg
+ 1295  clea
+ 1296  clear
+ 1297  fg
+ 1298  ls
+ 1299  emacs -nw det_rec.cpp 
+ 1300  emacs -nw det_recursivo.cpp 
+ 1301  clear
+ 1302  ls
+ 1303  g++ -o det_cal det_recursivo.cpp 
+ 1304  fg
+ 1305  g++ -o det_cal det_recursivo.cpp 
+ 1306  ./det_cal 
+ 1307  fg
+ 1308  g++ -o det_cal det_recursivo.cpp 
+ 1309  ./det_cal 
+ 1310  fg
+ 1311  g++ -o det_cal det_recursivo.cpp 
+ 1312  ./det_cal 
+ 1313  fg
+ 1314  g++ -o det_cal det_recursivo.cpp 
+ 1315  ./det_cal 
+ 1316  clear
+ 1317  ls
+ 1318  emacs -nw determinante_iter.cpp 
+ 1319  ls
+ 1320  ./bfs 
+ 1321  cd..
+ 1322  cd ..
+ 1323  ls
+ 1324  cd assignments/
+ 1325  ls
+ 1326  cp -R assignment_2/ assignment_3
+ 1327  ls
+ 1328  cd assignment_3/
+ 1329  ls
+ 1330  evince BALLADO_LUIS_assignment_2.pdf 
+ 1331  cd ..
+ 1332  cd assignment_1
+ 1333  ls
+ 1334  evince BALLADO_LUIS_assignment_1.pdf 
+ 1335  ls
+ 1336  cp main.tex ../assignment_3/main_2.tex
+ 1337  cd ..
+ 1338  ls
+ 1339  cd assignment_3/
+ 1340  ls
+ 1341  emacs -nw main_2.tex 
+ 1342  pdflatex main_2.tex 
+ 1343  evince main_2.pdf 
+ 1344  fg
+ 1345  evince main_2.pdf 
+ 1346  pdflatex main_2.tex 
+ 1347  evince main_2.pdf 
+ 1348  fg
+ 1349  pdflatex main_2.tex 
+ 1350  evince main_2.pdf 
+ 1351  fg
+ 1352  clear
+ 1353  fg
+ 1354  clear
+ 1355  fg
+ 1356  cd ..
+ 1357  cd practice_code/
+ 1358  ls
+ 1359  emacs -nw det_it.cpp
+ 1360  g++ -o det_it det_it.cpp 
+ 1361  ./det_it 
+ 1362  fg
+ 1363  emacs -nw det_it.cpp
+ 1364  g++ -o det_it det_it.cpp 
+ 1365  ./det_it 
+ 1366  fg
+ 1367  g++ -o det_it det_it.cpp 
+ 1368  fg
+ 1369  g++ -o det_it det_it.cpp 
+ 1370  fg
+ 1371  g++ -o det_it det_it.cpp 
+ 1372  ./det_it 
+ 1373  fg
+ 1374  ls
+ 1375  emacs -nw det_rec.cpp 
+ 1376  g++ -o det_rec det_rec.cpp 
+ 1377  fg
+ 1378  emacs -nw det_rec.cpp 
+ 1379  g++ -o det_rec det_rec.cpp 
+ 1380  ./det_rec 
+ 1381  fg
+ 1382  emacs -nw det_rec.cpp 
+ 1383  g++ -o det_rec det_rec.cpp 
+ 1384  ./det_rec 
+ 1385  fg
+ 1386  clear
+ 1387  ls
+ 1388  clear
+ 1389  ls
+ 1390  fg
+ 1391  clear
+ 1392  ls
+ 1393  cd ..
+ 1394  cd IC/
+ 1395  ls
+ 1396  cd code
+ 1397  ls
+ 1398  clear
+ 1399  ls
+ 1400  emacs -nw sphere_ep.py
+ 1401  python sphere_ep.py 
+ 1402  python3.10 sphere_ep.py 
+ 1403  fg
+ 1404  emacs -nw sphere_ep.py
+ 1405  emacs -nw sphere_de.py
+ 1406  python3.10 sphere_de.py
+ 1407  fg
+ 1408  ls
+ 1409  emacs -nw estrategia_evolutiva_comma.py 
+ 1410  python3.10 sphere_ep.py 
+ 1411  emacs -nw sphere_ep.py
+ 1412  cd ..
+ 1413  git status
+ 1414  git add .
+ 1415  git rm --cache code-torcs/
+ 1416  git add .
+ 1417  git commit -m "cosas"
+ 1418  git push
+ 1419  cd ..
+ 1420  ls
+ 1421  cd ADA/
+ 1422  ls
+ 1423  git status
+ 1424  git add .
+ 1425  git commit -m "cosas"
+ 1426  git push
+ 1427  cd ..
+ 1428  ls
+ 1429  cd IC/code
+ 1430  ls
+ 1431  emacs -nw sphere_ep.py
+ 1432  python3.10 sphere_ep.py
+ 1433  fg
+ 1434  ls
+ 1435  emacs -nw sphere_ep.py
+ 1436  python3.10 sphere_ep.py
+ 1437  fg
+ 1438  python3.10 sphere_ep.py
+ 1439  fg
+ 1440  clear
+ 1441  ls
+ 1442  clear
+ 1443  ls
+ 1444  emacs -nw ackly_DE.py 
+ 1445  python3.10 ackly_DE.py 
+ 1446  fg
+ 1447  emacs -nw ackly_DE.py 
+ 1448  python3.10 ackley_de_scipy.py 
+ 1449  ls
+ 1450  cd ..
+ 1451  cd ADA/
+ 1452  ls
+ 1453  cd practice_code/
+ 1454  ls
+ 1455  emacs -nw det_rec.cpp 
+ 1456  ls
+ 1457  fg
+ 1458  cd ..
+ 1459  cd IC/
+ 1460  ls
+ 1461  cd code
+ 1462  ls
+ 1463  python ackly_DE.py 
+ 1464  python3.10 ackly_DE.py 
+ 1465  fg
+ 1466  python3.10 sphere_de_scipy.py
+ 1467  fg
+ 1468  python3.10 sphere_de_scipy.py
+ 1469  fg
+ 1470  python3.10 sphere_de_scipy.py
+ 1471  fg
+ 1472  python3.10 sphere_de_scipy.py
+ 1473  fg
+ 1474  python3.10 sphere_de_scipy.py
+ 1475  fg
+ 1476  python3.10 sphere_de.py
+ 1477  ls
+ 1478  fg
+ 1479  python3.10 rosen_de_scipy.py
+ 1480  fg
+ 1481  emacs -nw sphere_de_scratch.py
+ 1482  python3.10 sphere_de_scratch.py 
+ 1483  fg
+ 1484  emacs -nw sphere_de_scratch.py
+ 1485  python3.10 sphere_de_scratch.py 
+ 1486  fg
+ 1487  emacs -nw sphere_de_scratch.py
+ 1488  python3.10 sphere_de_scratch.py 
+ 1489  fg
+ 1490  git status
+ 1491  git add .
+ 1492  git commit -m "cosas"
+ 1493  git push
+ 1494  cd ..
+ 1495  cd ADA/
+ 1496  git status
+ 1497  clear
+ 1498  fg
+ 1499  cd practice_code/
+ 1500  ls
+ 1501  emacs -nw det_it.cpp
+ 1502  g++ -o it_det det_it.cpp
+ 1503  ./it_det 
+ 1504  fg
+ 1505  clear
+ 1506  fg
+ 1507  cd
+ 1508  cd Downloads/
+ 1509  ls
+ 1510  gcc hello_parallel.c -o hello_parallel -lpthread
+ 1511  ./hello_parallel 
+ 1512  clear
+ 1513  ls
+ 1514  cd ..
+ 1515  ls
+ 1516  cd Downloads/
+ 1517  mv hello_parallel.c ../Documents/cinvestav/ParallelComputing
+ 1518  cd ..
+ 1519  cd Documents/
+ 1520  cd cinvestav/ParallelComputing
+ 1521  clear
+ 1522  ls
+ 1523  gcc hello_parallel.c -o hola -lpthread
+ 1524  ./hola 
+ 1525  emacs -nw multithread.c
+ 1526  gcc multithread.c -lpthread
+ 1527  ./a.out 
+ 1528  ls
+ 1529  emacs -nw hello_parallel.c 
+ 1530  gcc multithread.c -lpthread
+ 1531  gcc hello_parallel.c.c -lpthread
+ 1532  gcc hello_parallel.c -lpthread
+ 1533  ./a.out 
+ 1534  fg
+ 1535  emacs -nw hello_parallel.c 
+ 1536  ./a.out 4
+ 1537  clear
+ 1538  ls
+ 1539  fg
+ 1540  emacs -nw hello_parallel.c
+ 1541  gcc hello_parallel.c -lpthread
+ 1542  fg
+ 1543  gcc hello_parallel.c -lpthread
+ 1544  fg
+ 1545  gcc hello_parallel.c -lpthread
+ 1546  fg
+ 1547  gcc hello_parallel.c -lpthread
+ 1548  fg
+ 1549  gcc hello_parallel.c -lpthread
+ 1550  clear
+ 1551  fg
+ 1552  gcc hello_parallel.c -lpthread
+ 1553  fg
+ 1554  gcc hello_parallel.c -lpthread
+ 1555  fg
+ 1556  gcc hello_parallel.c -lpthread
+ 1557  fg
+ 1558  gcc hello_parallel.c -lpthread
+ 1559  fg
+ 1560  gcc hello_parallel.c -lpthread
+ 1561  fg
+ 1562  wget https://redirect.cs.umbc.edu/~tsimo1/CMSC483/cs220/code/pth-mat-vect/pth_mat_vect.c
+ 1563  gcc pth_mat_vect.c -lpthread
+ 1564  ./a.out 
+ 1565  ./a.out 4
+ 1566  fg
+ 1567  emacs -nw hello_parallel.c
+ 1568  gcc hello_parallel.c -lpthread
+ 1569  fg
+ 1570  gcc hello_parallel.c -lpthread 
+ 1571  fg
+ 1572  gcc hello_parallel.c -lpthread 
+ 1573  ls
+ 1574  emacs -nw archivo.txt
+ 1575  fg
+ 1576  gcc hello_parallel.c -lpthread 
+ 1577  fg
+ 1578  gcc hello_parallel.c -lpthread 
+ 1579  fg
+ 1580  gcc hello_parallel.c -lpthread 
+ 1581  ./a.out 
+ 1582  fg
+ 1583  ./a.out 
+ 1584  fg
+ 1585  gcc hello_parallel.c -lpthread 
+ 1586  fg
+ 1587  gcc hello_parallel.c -lpthread 
+ 1588  fg
+ 1589  gcc hello_parallel.c -lpthread 
+ 1590  fg
+ 1591  gcc hello_parallel.c -lpthread 
+ 1592  ./a.out 
+ 1593  ./a.out
+ 1594  ./a.out archivo.txt 
+ 1595  fg
+ 1596  gcc hello_parallel.c -lpthread 
+ 1597  ./a.out archivo.txt 
+ 1598  fg
+ 1599  ./a.out archivo.txt 1
+ 1600  ./a.out archivo.txt 3
+ 1601  fg
+ 1602  ./a.out archivo.tx2t 3
+ 1603  ./a.out archivo.txt
+ 1604  fg
+ 1605  gcc hello_parallel.c -lpthread 
+ 1606  ./a.out archivo.txt
+ 1607  fg
+ 1608  gcc hello_parallel.c -lpthread 
+ 1609  fg
+ 1610  gcc hello_parallel.c -lpthread 
+ 1611  ./a.out archivo.txt archivo2.txt 
+ 1612  fg
+ 1613  ./a.out archivo.txt archivo2.txt 
+ 1614  fg
+ 1615  gcc hello_parallel.c -lpthread 
+ 1616  ./a.out archivo.txt archivo2.txt 3
+ 1617  fg
+ 1618  emacs -nw hello_parallel.c
+ 1619  gcc hello_parallel.c -lpthread 
+ 1620  ./a.out archivo.txt archivo2.txt
+ 1621  cat archivo.txt
+ 1622  fg
+ 1623  ./a.out archivo.txt archivo2.txt
+ 1624  fg
+ 1625  gcc hello_parallel.c -lpthread 
+ 1626  fg
+ 1627  gcc hello_parallel.c -lpthread 
+ 1628  ./a.out archivo.txt archivo2.txt
+ 1629  cat archivo.txt
+ 1630  fg
+ 1631  gcc hello_parallel.c -lpthread 
+ 1632  ./a.out archivo.txt archivo2.txt
+ 1633  fg
+ 1634  gcc hello_parallel.c -lpthread 
+ 1635  ./a.out archivo.txt archivo2.txt
+ 1636  cat archivo.txt
+ 1637  fg
+ 1638  gcc hello_parallel.c -lpthread 
+ 1639  ./a.out archivo.txt archivo2.txt
+ 1640  fg
+ 1641  gcc hello_parallel.c -lpthread 
+ 1642  ./a.out archivo.txt archivo2.txt
+ 1643  fg
+ 1644  gcc hello_parallel.c -lpthread 
+ 1645  ./a.out archivo.txt archivo2.txt
+ 1646  fg
+ 1647  gcc hello_parallel.c -lpthread 
+ 1648  fg
+ 1649  gcc hello_parallel.c -lpthread 
+ 1650  fg
+ 1651  gcc hello_parallel.c -lpthread 
+ 1652  fg
+ 1653  gcc hello_parallel.c -lpthread 
+ 1654  fg
+ 1655  gcc hello_parallel.c -lpthread 
+ 1656  fg
+ 1657  gcc hello_parallel.c -lpthread 
+ 1658  ./a.out archivo.txt archivo2.txt
+ 1659  fg
+ 1660  ./a.out archivo.txt archivo2.txt
+ 1661  gcc hello_parallel.c -lpthread 
+ 1662  ./a.out archivo.txt archivo2.txt
+ 1663  cat archivo.txt
+ 1664  emacs -nw archivo.txt
+ 1665  gcc hello_parallel.c -lpthread 
+ 1666  ./a.out archivo.txt archivo2.txt
+ 1667  emacs -nw archivo2.txt
+ 1668  gcc hello_parallel.c -lpthread 
+ 1669  ./a.out archivo.txt archivo2.txt
+ 1670  fg
+ 1671  gcc hello_parallel.c -lpthread 
+ 1672  ./a.out archivo.txt archivo2.txt
+ 1673  fg
+ 1674  gcc hello_parallel.c -lpthread 
+ 1675  ./a.out archivo.txt archivo2.txt
+ 1676  fg
+ 1677  gcc hello_parallel.c -lpthread 
+ 1678  fg
+ 1679  gcc hello_parallel.c -lpthread 
+ 1680  fg
+ 1681  gcc hello_parallel.c -lpthread 
+ 1682  ./a.out archivo.txt archivo2.txt
+ 1683  cat archivo.txt
+ 1684  fg
+ 1685  gcc hello_parallel.c -lpthread 
+ 1686  ./a.out archivo.txt archivo2.txt
+ 1687  fg
+ 1688  gcc hello_parallel.c -lpthread 
+ 1689  ./a.out archivo.txt archivo2.txt
+ 1690  fg
+ 1691  gcc hello_parallel.c -lpthread 
+ 1692  ./a.out archivo.txt archivo2.txt
+ 1693  fg
+ 1694  gcc hello_parallel.c -lpthread 
+ 1695  ./a.out archivo.txt archivo2.txt
+ 1696  fg
+ 1697  gcc hello_parallel.c -lpthread 
+ 1698  ./a.out archivo.txt archivo2.txt
+ 1699  fg
+ 1700  gcc hello_parallel.c -lpthread 
+ 1701  ./a.out archivo.txt archivo2.txt
+ 1702  fg
+ 1703  gcc hello_parallel.c -lpthread 
+ 1704  ./a.out archivo.txt archivo2.txt
+ 1705  cat archivo.txt
+ 1706  fg
+ 1707  ./a.out archivo.txt archivo2.txt
+ 1708  fg
+ 1709  gcc hello_parallel.c -lpthread 
+ 1710  ./a.out archivo.txt archivo2.txt
+ 1711  fg
+ 1712  gcc hello_parallel.c -lpthread 
+ 1713  ./a.out archivo.txt archivo2.txt
+ 1714  fg
+ 1715  gcc hello_parallel.c -lpthread 
+ 1716  fg
+ 1717  gcc hello_parallel.c -lpthread 
+ 1718  fg
+ 1719  gcc hello_parallel.c -lpthread 
+ 1720  ./a.out archivo.txt archivo2.txt
+ 1721  fg
+ 1722  gcc hello_parallel.c -lpthread 
+ 1723  ./a.out archivo.txt archivo2.txt
+ 1724  fg
+ 1725  gcc hello_parallel.c -lpthread 
+ 1726  ./a.out archivo.txt archivo2.txt
+ 1727  fg
+ 1728  ./a.out archivo.txt archivo2.txt
+ 1729  fg
+ 1730  cat archivo2.txt
+ 1731  clear
+ 1732  fg
+ 1733  gcc hello_parallel.c -lpthread 
+ 1734  ./a.out archivo.txt archivo2.txt
+ 1735  gcc hello_parallel.c -lpthread 
+ 1736  ./a.out archivo.txt archivo2.txt
+ 1737  fg
+ 1738  gcc hello_parallel.c -lpthread 
+ 1739  ./a.out archivo.txt archivo2.txt
+ 1740  fg
+ 1741  emacs -nw archivo2.txt
+ 1742  fg
+ 1743  emacs -nw archivo2.txt
+ 1744  emacs -nw hello_parallel.c
+ 1745  gcc hello_parallel.c -lpthread 
+ 1746  ./a.out archivo.txt archivo2.txt
+ 1747  fg
+ 1748  gcc hello_parallel.c -lpthread 
+ 1749  fg
+ 1750  gcc hello_parallel.c -lpthread 
+ 1751  ./a.out archivo.txt archivo2.txt
+ 1752  fg
+ 1753  gcc hello_parallel.c -lpthread 
+ 1754  ./a.out archivo.txt archivo2.txt
+ 1755  fg
+ 1756  gcc hello_parallel.c -lpthread 
+ 1757  ./a.out archivo.txt archivo2.txt
+ 1758  fg
+ 1759  gcc hello_parallel.c -lpthread 
+ 1760  fg
+ 1761  ls
+ 1762  gcc -o pth pth_mat_vect.c 
+ 1763  gcc -o pth pth_mat_vect.c -lpthread
+ 1764  ./pth
+ 1765  ./pth 
+ 1766  gcc -o pth.out pth_mat_vect.c -lpthread
+ 1767  ./pth.out 
+ 1768  fg
+ 1769  gcc hello_parallel.c -lpthread 
+ 1770  ./a.out archivo.txt archivo2.txt
+ 1771  fg
+ 1772  ./a.out archivo.txt archivo2.txt
+ 1773  gcc hello_parallel.c -lpthread 
+ 1774  ./a.out archivo.txt archivo2.txt
+ 1775  fg
+ 1776  gcc -g -Wall -o pth_mat_vect pth_mat_vect.c -lpthread
+ 1777  ./pth_mat_vect 4
+ 1778  fg
+ 1779  gcc hello_parallel.c -lpthread 
+ 1780  ./a.out archivo.txt archivo2.txt
+ 1781  fg
+ 1782  gcc hello_parallel.c -lpthread 
+ 1783  fg
+ 1784  gcc hello_parallel.c -lpthread 
+ 1785  fg
+ 1786  gcc hello_parallel.c -lpthread 
+ 1787  fg
+ 1788  gcc hello_parallel.c -lpthread 
+ 1789  ./a.out archivo.txt archivo2.txt
+ 1790  fg
+ 1791  gcc hello_parallel.c -lpthread 
+ 1792  fg
+ 1793  gcc hello_parallel.c -lpthread 
+ 1794  fg
+ 1795  gcc hello_parallel.c -lpthread 
+ 1796  ./a.out archivo.txt archivo2.txt
+ 1797  fg
+ 1798  gcc hello_parallel.c -lpthread 
+ 1799  ./a.out archivo.txt archivo2.txt
+ 1800  fg
+ 1801  gcc hello_parallel.c -lpthread 
+ 1802  ./a.out archivo.txt archivo2.txt
+ 1803  fg
+ 1804  gcc hello_parallel.c -lpthread 
+ 1805  ./a.out archivo.txt archivo2.txt
+ 1806  fg
+ 1807  gcc hello_parallel.c -lpthread 
+ 1808  ./a.out archivo.txt archivo2.txt
+ 1809  emacs -nw archivo.txt
+ 1810  ./a.out archivo.txt archivo2.txt
+ 1811  fg
+ 1812  emacs -nw archivo.txt
+ 1813  gcc hello_parallel.c -lpthread 
+ 1814  ./a.out archivo.txt archivo2.txt
+ 1815  fg
+ 1816  gcc hello_parallel.c -lpthread 
+ 1817  ./a.out archivo.txt archivo2.txt
+ 1818  fg
+ 1819  gcc hello_parallel.c -lpthread 
+ 1820  ./a.out archivo.txt archivo2.txt
+ 1821  emacs -nw readme.txt
+ 1822  fg
+ 1823  emacs -nw hello_parallel.c
+ 1824  clear
+ 1825  git status
+ 1826  ls
+ 1827  rm -rf pth pth_mat_vect pth_mat_vect.c  pth.out 
+ 1828  ls
+ 1829  clear
+ 1830  ls
+ 1831  git status
+ 1832  git add .
+ 1833  git commit -m "ejemplos threads"
+ 1834  git push
+ 1835  ls
+ 1836  cd ..
+ 1837  cd IC/
+ 1838  ls
+ 1839  cd code
+ 1840  ls
+ 1841  clear
+ 1842  ls
+ 1843  cd ..
+ 1844  git status
+ 1845  cd ..
+ 1846  cd ADA/
+ 1847  ls
+ 1848  git status
+ 1849  git add .
+ 1850  git commit -m "cosas"
+ 1851  git push
+ 1852  cd ..
+ 1853  cd IC/
+ 1854  ls
+ 1855  git status
+ 1856  cd ..
+ 1857  ls
+ 1858  cd ParallelComputing
+ 1859  ls
+ 1860  git status
+ 1861  ls
+ 1862  cd ..
+ 1863  cd IC/code
+ 1864  ls
+ 1865  emacs -nw sphere_ep_example.py
+ 1866  python3.10 sphere_ep_example.py 
+ 1867  fg
+ 1868  emacs -nw sphere_ep_example.py
+ 1869  python3.10 sphere_ep_example.py 
+ 1870  fg
+ 1871  clear
+ 1872  ls
+ 1873  fg
+ 1874  ls
+ 1875  clear
+ 1876  ls
+ 1877  emacs -nw ackly_EP.py 
+ 1878  fg
+ 1879  python ackly_EP.py 
+ 1880  python3.10 ackly_EP.py 
+ 1881  fg
+ 1882  python3.10 ackly_EP.py 
+ 1883  fg
+ 1884  clear
+ 1885  tmux 
+ 1886  tmux new -s programacion
+ 1887  fg
+ 1888  tmux attach -t programacion
+ 1889  htop
+ 1890  ls
+ 1891  cp EP_sphere.py tarea/EP/EP_sphere.py
+ 1892  cat tarea/EP/EP_sphere.py 
+ 1893  cp ES_another.py tarea/ES/ES_another.py
+ 1894  ls
+ 1895  cd EP/
+ 1896  cd ..
+ 1897  cd tarea/EP/
+ 1898  ls
+ 1899  emacs -nw EP_sphere.py 
+ 1900  tmux attach -t programacion
+ 1901  cd ..
+ 1902  git status
+ 1903  git add .
+ 1904  git commit -m "resultados"
+ 1905  git push
+ 1906  htop
+ 1907  tmux attach -t programacion
+ 1908  cd ..
+ 1909  cd Fundamentos-de-Ingenier-a-Computacional/FundamentosIngComputacional/
+ 1910  ls
+ 1911  cd ..
+ 1912  ls
+ 1913  cd ..
+ 1914  ls
+ 1915  cd Fundamentos-de-Ingenier-a-Computacional/
+ 1916  ls
+ 1917  cd ..
+ 1918  ls
+ 1919  cd ..
+ 1920  ls
+ 1921  cd cinvestav/
+ 1922  ls
+ 1923  cd fund_ing_comp_labs/
+ 1924  ls
+ 1925  cd control/
+ 1926  ls
+ 1927  cd codes/
+ 1928  ls
+ 1929  emacs -nw luis.nxc 
+ 1930  cd ..
+ 1931  ls
+ 1932  cd assignments/assignment_01/
+ 1933  ls
+ 1934  evince luisballado_assignment01.pdf 
+ 1935  ls
+ 1936  cd ..
+ 1937  cd codes/
+ 1938  ls
+ 1939  nbc luis.nxc -sm --d -S=usb
+ 1940  nbc luis.nxc -sm- -d -S=usb
+ 1941  nbc luis.nxc -O=luis.rxe -sm-
+ 1942  nbc luis.nxc -sm- -d -S=usb
+ 1943  nbc luis.nxc 
+ 1944  nbc luis.nxc -u
+ 1945  ls
+ 1946  emacs -nw hola_mundo.nxc 
+ 1947  clear
+ 1948  ls
+ 1949  cd ..
+ 1950  cd codes/
+ 1951  tmux attach -t programacion
+ 1952  clear
+ 1953  ls
+ 1954  nbc hola.rxe 
+ 1955  nbc hola_mundo.nxc 
+ 1956  nbc hola_mundo.nxc -d
+ 1957  nbc hola_mundo.nxc -d -S=USB
+ 1958  nbc hola_mundo.nxc -d
+ 1959  nbc hola_mundo.nxc -S=USB -d
+ 1960  nbc luis.nxc -sm- -d -S=usb
+ 1961  nbc luis.nxc -d -S=usb
+ 1962  nbc -help
+ 1963  nbc luis.nxc -r -S=USB
+ 1964  nbc luis.nxc -r
+ 1965  ls
+ 1966  cd ..
+ 1967  ls
+ 1968  cd ..
+ 1969  ls
+ 1970  cd ..
+ 1971  ls
+ 1972  cd nbc-compiler/
+ 1973  ls
+ 1974  ./nbc tests/test.nxc -r
+ 1975  ./nbc tests/test.nxc
+ 1976  ./nbc tests/test.nxc -r
+ 1977  cd ..
+ 1978  ls
+ 1979  cd fund_ing_comp_labs/
+ 1980  ls
+ 1981  cd control/
+ 1982  ls
+ 1983  cd codes/
+ 1984  ls
+ 1985  cat hola_mundo.nxc 
+ 1986  nbc hola_mundo.nxc -r
+ 1987  nbc hola_mundo.nxc
+ 1988  nbc hola_mundo.nxc -O=hola_mundo.rxe
+ 1989  nbc hola_mundo.rxe -r
+ 1990  nbc hola_mundo.nxc -r 
+ 1991  nbc hola_mundo.nxc -sm- -d -S=usb
+ 1992  nbc hola_mundo.nxc -sm- -d -S=usb -r
+ 1993  nbc hola_mundo.nxc -sm- -r -S=usb
+ 1994  nbc hola_mundo.nxc -r -S=usb
+ 1995  nbc -d -v=103 hola_mundo.nxc
+ 1996  tmux attach -t programacion
+ 1997  fg
+ 1998  sudo shutdown -r now
+ 1999  cd Documents/cinvestav/fund_ing_comp_labs/control/
+ 2000  cd codes/
+ 2001  nbc hola_mundo.nxc -r
+ 2002  nbc hola_mundo.nxc -r -S=usb
+ 2003  history > historial.txt

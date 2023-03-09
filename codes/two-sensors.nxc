@@ -1,0 +1,58 @@
+/**
+ * Two Sensor Line Follower
+ *
+ * Simple two sensor controller. When one of the sensor hits black line,
+ * the robot rotates in that direction, until both sensors are back on white.
+ *
+ * (Created as part of 5CCS2RGP Robotic Group Project module at King's College London)
+ *
+ * @copyright   Copyright (c) 2012 Tomas Vitek, Josh Manuncia, Oluwasheun Adebari
+ * @author      Tomas Vitek ~ http://tomasvitek.com
+ * @link        https://github.com/tomikvitek/NXC-Robot-Controllers
+ * @link        http://www.kcl.ac.uk/nms/depts/informatics/study/current/handbook/Progs/Modules/5CCS2RGP.aspx
+ */
+
+/**
+ * PROPERTIES
+ */
+
+#define TS_SPEED_TURNING_FORWARD   100
+#define TS_SPEED_TURNING_BACK     -100
+#define TS_SPEED_FORWARD            60
+
+#define TS_BLACK_COLOR 749
+#define TS_WHITE_COLOR 435
+#define TS_THRESHOLD (TS_BLACK_COLOR + TS_WHITE_COLOR) / 2
+
+/**
+ * CONTROLLER
+ */
+
+/**
+ * Dual sensors, if one hits black, the robot turns in that direction
+ * Fast, but less accurate. Used for the bigger track.
+ */
+sub TwoSensors(int left_sensor, int right_sensor)
+{
+  // Both sensors on white
+  if (left_sensor < TS_THRESHOLD && right_sensor < TS_THRESHOLD) {
+     RunBothWheels(TS_SPEED_FORWARD);
+  }
+  // Both sensors on black
+  else if (left_sensor > TS_THRESHOLD && right_sensor > TS_THRESHOLD) {
+     // Keep doing, whatever you were doing
+     Wait(120);
+  }
+  else {
+     if (left_sensor > TS_THRESHOLD) {
+         RunLeftWheel(TS_SPEED_TURNING_BACK);
+         RunRightWheel(TS_SPEED_TURNING_FORWARD);
+     }
+     if (right_sensor > TS_THRESHOLD) {
+         RunLeftWheel(TS_SPEED_TURNING_FORWARD);
+         RunRightWheel(TS_SPEED_TURNING_BACK);
+     }
+  }
+
+  PrintInfo();
+}

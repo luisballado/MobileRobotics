@@ -1,0 +1,75 @@
+//funcion dummy para crear delays
+//un segundo 40
+//dos segundos 80 ..etc
+void delay(int seconds){
+	unsigned long int count=5000,i,j;
+	
+	for(i=0;i<seconds;i++)
+	    for(j=0;j<count;j++);
+}
+
+task main(){
+
+     bool run = true;
+     
+     /*while(run){
+	ResetTachoCount(OUT_AC);
+	delay(2);
+	Off(OUT_AC);
+	PlayTone(4000,50);
+	delay(4);
+	OnFwdReg(OUT_AC,50,OUT_REGMODE_SPEED);
+	delay(10);
+	Off(OUT_AC);
+	PlayTone(4000,50);
+	//OnFwd(OUT_A, 75); //Mover hacia delante velocidad de 75%	
+	//delay(10);
+	//OnRev(OUT_A, 15);
+	//Off(OUT_AC);
+	//delay(5);
+	//OnRev(OUT_A, 75); //Mover hacia atras velocidad de 75%
+	
+	//
+	//OnRev(OUT_A, 75); //Mover hacia atras velocidad de 75%
+	//Off(OUT_AC); //Apagar los motores
+     
+     }*/
+
+     /*
+     PlayTone(5000,30);
+     OnFwdSync(OUT_AC,50,0);
+     delay(10);
+     PlayTone(5000,30);
+     OnFwdSync(OUT_AC,50,20);
+     delay(10);
+     PlayTone(5000,30);
+     OnFwdSync(OUT_AC,50,-40);
+     delay(10);
+     PlayTone(5000,30);
+     OnRevSync(OUT_AC,50,90);
+     delay(10);
+     Off(OUT_AC);
+     */
+     int pos;
+     bool once = false;
+     PlayTone(5000,30); //Inicio programa
+     while(true){
+	pos = MotorRotationCount(OUT_A);
+
+	if(pos < 270){
+	       OnFwd(OUT_A,75);
+	}else{
+		Off(OUT_AC);
+		if(once == false){
+		once = true;
+		PlayTone(5000,30);
+		
+		}
+		
+		
+	}
+		
+	
+     }
+     
+}

@@ -1,0 +1,74 @@
+// sudo nbc -r -EF seguidor.nxc
+// TODO PONER ODOMETRO
+// DIBUJAR LA TRAYECTORIA CON LINEAS O PUNTOS EN PANTALLA
+// 
+
+#define SCREEN_WIDTH 100
+#define SCREEN_HEIGHT 60
+
+#define SpeedSlow 20
+#define SpeedFast 50
+
+void delay(int seconds){
+     unsigned long int count = 5000,i,j;
+     for(i=0;i<seconds;i++)
+	for(j=0;j<count;j++);
+}
+
+int SD;
+int SI;
+
+sub sigue_lineas(){
+    
+  int Threshold1=560;
+  int Threshold2=600;
+    
+  // sensor1
+  SetSensorType(IN_1, IN_TYPE_LIGHT_ACTIVE);
+  SetSensorMode(IN_1, IN_MODE_RAW);
+
+  // sensor2
+  SetSensorType(IN_4, IN_TYPE_LIGHT_ACTIVE);
+  SetSensorMode(IN_4, IN_MODE_RAW);
+  
+  while (true){
+    
+    
+    SD = SensorRaw(IN_4);
+    SI = SensorRaw(IN_1);    
+
+    //manejar histeresis
+    // blanco
+    if (SI > Threshold2)
+      OnFwd(OUT_A, SpeedSlow);
+    else
+      OnFwd(OUT_A, SpeedFast);
+      
+    // linea
+    if (SD > Threshold2)
+      OnFwd(OUT_C, SpeedSlow);
+    else
+      OnFwd(OUT_C, SpeedFast);
+           
+    string msg;
+    string _sd_;
+    string _si_;
+    
+    _sd_ = NumToStr(SD);
+    _si_ = NumToStr(SI);
+
+    msg = "SD: " + _sd_ + " SI: " + _si_;
+    TextOut(0, LCD_LINE1, msg);
+    TextOut(0, LCD_LINE2, msg);
+    
+  }
+  
+  return;
+}
+
+task main(){
+    
+  //sigue lineas
+  sigue_lineas();
+    
+}

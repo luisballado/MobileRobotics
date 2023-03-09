@@ -1,0 +1,39 @@
+/*------------------------------------------------------------------------------
+; File          : proyecto_motor.nxc
+; Description   : A program demonstrating a Proporcional Control
+;-----------------------------------------------------------------------------*/
+
+#define SET 0
+
+//Funcion para imprimir cosas
+void imprimir_cosas(int x,int error,int u)
+{
+	TextOut(0, 60, "SET"); // outputs the value of x
+	NumOut(0, 50, x); // outputs the value of x
+	TextOut(0, 40, "error"); // Imprimo string error
+	NumOut(0, 30, error); // Imprimo el valor de error
+	TextOut(0, 20, "u"); // Imprimo string u
+	NumOut(0, 10, u); // Imprimo el valor de u
+}
+
+task main()
+{
+	int k=1;
+	int u;
+	int pos;
+	int error;
+
+	//RotateMotor(OUT_A,75,90);
+	//Wait(1000);
+
+	while(true){
+		
+		pos=MotorRotationCount(OUT_A);
+		
+		error = SET-pos;
+		u = k * error;
+		
+		OnFwd(OUT_A,u); //Mover motor con con correccion
+		imprimir_cosas(SET,error,u);     
+	}
+}

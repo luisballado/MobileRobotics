@@ -1,0 +1,243 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.4 (15/5/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com) with extensive modifications by
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+%\documentclass{article}
+\documentclass[oneside,twocolumn]{article}
+
+\usepackage{blindtext} % Package to generate dummy text throughout this template 
+\usepackage{multicol}
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+%\usepackage[english]{babel} % Language hyphenation and typographical rules
+\usepackage[spanish]{babel}
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+\usepackage{listings} % Required for insertion of code
+
+\usepackage{enumitem} % Customized lists
+\setlist[itemize]{noitemsep} % Make itemize lists more compact
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\renewcommand\thesubsection{\roman{subsection}} % roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+%\fancyhead[C]{Running title $\bullet$ May 2016 $\bullet$ Vol. XXI, No. 1} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\usepackage{titling} % Customizing the title section
+
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1,1,1}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\renewcommand{\lstlistingname}{Código}% Listing -> Algorithm
+\lstset{style=mystyle}
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\setlength{\droptitle}{-4\baselineskip} % Move the title up
+
+\pretitle{\begin{center}\Huge\bfseries} % Article title formatting
+\posttitle{\end{center}} % Article title closing formatting
+\title{Odometría} % Article title
+\author{%
+\textsc{Luis Alberto Ballado Aradias} \\%\thanks{A thank you or further information} \\[1ex] % Your name
+\normalsize Cinvestav Unidad Tamaulipas \\ % Your institution
+\normalsize \href{mailto:luis.ballado@cinvestav.mx}{luis.ballado@cinvestav.mx} % Your email address
+%\and % Uncomment if 2 authors are required, duplicate these 4 lines if more
+%\textsc{Jane Smith}\thanks{Corresponding author} \\[1ex] % Second author's name
+%\normalsize University of Utah \\ % Second author's institution
+%\normalsize \href{mailto:jane@smith.com}{jane@smith.com} % Second author's email address
+}
+\date{\today} % Leave empty to omit a date
+\renewcommand{\maketitlehookd}{%
+  \begin{abstract}
+    \noindent El presente trabajo describe el uso de odometría para un robot móvil no holonomico de tipo diferencial y su implementación utilizando un robot LEGO NXT bajo el ambiente NXC (Not eXactly C). La odometría es una técnica utilizada en robótica móvil diferencial para estimar la posición y orientación de un robot mientras se mueve en un entorno. En robots móviles diferenciales, la odometría se basa en la medición de las velocidades de las ruedas y el diámetro de las mismas. La integración de las velocidades permite obtener una estimación de la trayectoria seguida por el robot, pero los errores acumulativos pueden afectar la precisión de la estimación.
+  \end{abstract}
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+% Print the title
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Introducción}
+
+\lettrine[nindent=0em,lines=3]{L}a odometría es el estudio de la estimación de la posición de vehículos con ruedas durante la navegación. Para realizar esta estimación se usa información sobre la rotación de las ruedas para estimar cambios en la posición a lo largo del tiempo. El término se usa a veces para referirse a la distancia que ha recorrido uno de estos vehículos.\\
+
+La palabra \textbf{odometría} se compone por las palabras griegas \textbf{hodos} (viajar,trayecto) y \textbf{metron} (medida). La idea fundamental es la integración de información incremental del movimiento a lo largo del tiempo.\\
+
+A pesar de las limitaciones, es una parte importante del sistema de navegación de un robot, y que debe usarse con medidas del posicionamiento absolutas para proporcionar una estimación de la posición más fiable.\\
+
+Hay casos, cuando no hay referencias externas la odometría es la única información de navegación \\
+
+En la odometría, se utiliza un modelo matemático que tiene en cuenta las catacterísticas del movimiento del robot y la geometría del entorno. Este modelo permite predecir la posición y orientación del robot a medida que se mueve, lo que puede ser utilizado para planificar trayectorias y evitar obstáculos.\\
+
+La odometría es una técnica fundamental en la navegación autónoma de robots móviles, ya que permite que el robot tenga una estimación en tiempo real de su posición en el entorno y, y por lo tanto, pueda tomar decisiones en función de esta información.
+
+\subsection{Pasos de la odometría}
+
+La metodología para realizar odometría en robots móviles depende del tipo de robot y de los sensores utilizados, pero en general, se pueden seguir los siguientes pasos:
+\begin{enumerate}
+\item Caracterización de las ruedas: se debe medir el diámetro de las ruedas y la relación entre las velocidades de ambas para poder integrar las velocidades y calcular la posición y orientación del robot.
+\item Adquisición de datos: se deben medir las velocidades de las ruedas y la dirección de giro del robot. Esto se puede realizar mediante encoders en las ruedas o mediante sensores inerciales.
+\item Integración de las velocidades: se deben integrar las velocidades medidas para calcular la posición y orientación del robot.
+\item Corrección de errores: se deben corregir los errores que pueden afectar la precisión de la odometría, como el deslizamiento de las ruedas, la fricción con el suelo o la deformación de los neumáticos.
+\item Evaluación de la precisión: se deben evaluar la precisión y el error de la odometría. Para ellos, se pueden comparar las estimaciones obtenidas con la posición real del robot o con la información obtenida por otros sensores.
+\end{enumerate}
+
+%------------------------------------------------
+
+\newpage
+\onecolumn
+\section{Métodos}
+
+\includegraphics[scale=0.5]{graficos/motor.png}
+
+\subsection{Instalación}
+
+Comenzaremos con la instalación de NXC (Not Exactly C)\\
+
+Para la configuración del compilador NBC/NXC para el uso en un ambiente LINUX se describe a continuación:
+
+\begin{enumerate}
+\item Verificar si podemos reconocer el bloque NXT
+  (Agregrar el comando)
+\item Para poder compilar y descargar nuestros programas NXC o NBC, necesitamos instalar parte de actual del proyecto mantenido por el usuario pierre-24 de github \url{https://github.com/pierre-24/nbc-compiler}{nbc-compiler}
+\end{enumerate}
+
+El programa del odometro debe consistir en las siguientes instrucciones:
+
+\begin{itemize}
+\item Leer tacómetros
+\item Comparar con lectura anterior
+\item Calcular las diferencias $\Delta X$
+\item Calcular las diferencias $\Delta Y$
+\item Calcular las diferencias $\Delta \Theta$
+\item Actualizar odometro $(X+\Delta X, Y+\Delta Y, \Theta + \Delta Theta)$
+\item Actualizar mediciones
+\end{itemize}
+
+\subsection{Pseudocódigo}
+
+La parte fundamental
+
+\begin{algorithm}
+  \caption{Odometro}\label{alg:two}
+  Leer tacometros\;
+  Comparar con lectura anterior\;
+  \If{supera umbral}{
+    $\Delta X \gets X + \Delta X$\; %\Comment*[r]{MAX iter for exploration, if no solution}
+    $\Delta Y \gets Y + \Delta Y$\;
+    $\Delta \Theta \gets \Theta + \Delta \Theta$\; 
+    Actualizar Odometro\;
+    Actualizar Tacometro\;
+  }
+  Wait(50ms)\;
+\end{algorithm}
+
+
+\subsection{Pruebas}
+
+
+\includegraphics[scale=0.09]{graficos/robot.png}
+\includegraphics[scale=0.09]{graficos/path_robot.png}
+\includegraphics[scale=0.09]{graficos/corrida1.png}
+\includegraphics[scale=0.09]{graficos/corrida2.png}
+\includegraphics[scale=0.09]{graficos/corrida3.png}
+\includegraphics[scale=0.09]{graficos/error1.png}
+\includegraphics[scale=0.09]{graficos/error2.png}
+\includegraphics[scale=0.09]{graficos/error3.png}
+%------------------------------------------------
+\newpage
+\twocolumn
+\section{Resultados}
+
+%------------------------------------------------
+\section{Discusión y análisis}
+
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\onecolumn
+\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
+
+  
+    
+\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

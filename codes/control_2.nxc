@@ -1,0 +1,27 @@
+#include "NXCDefs.h"
+
+// When run, this program alternates between task A and task B until halted
+// by pressing the gray button.
+task B();
+void beep(const int tone)
+{
+   PlayTone(tone, MS_500);
+   Wait(1000);
+}
+task A()
+{
+   beep(TONE_C4);
+   Off(OUT_A);
+   ExitTo(B);
+}
+task B()
+{
+   //beep(TONE_C6);
+   Off(OUT_A);
+   ExitTo(A);
+}
+task main()
+{
+   // ExitTo(B) would work as well here.
+   Precedes(B);
+}

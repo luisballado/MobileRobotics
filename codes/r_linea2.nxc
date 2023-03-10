@@ -99,11 +99,8 @@ task odometria(){
 
 	//theta temporal
 	ttemp = theta * (180.0/pi);
-	//DD=10.0;
-	
+		
 	//x
-	//x = x + ((DD * Cos(ttemp))/100);
-	// x = x + ((DD * Cos(ttemp))/100.0);
 	xx=Cos(ttemp) / 100.0;
 	xx=DD*xx;
 	xx=x+xx;
@@ -113,9 +110,7 @@ task odometria(){
 	yy=DD*yy;
 	yy=y+yy;
 	y = yy;
-	//y = y + ((DD * Sin(theta))/100);
-	//y = y + ((DD * Sin(ttemp))/100);
-
+	
 	theta = theta + DW;
 	
      	Lprev = LPOS;

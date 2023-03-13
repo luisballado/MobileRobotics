@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.7)  9 MAR 2023 14:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.7)  13 MAR 2023 15:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -51,11 +51,6 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 (/usr/local/texlive/2022/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \c@tracingmulticols=\count277
-
-
-Package multicol Warning: May not work with the twocolumn option on input line 
-142.
-
 \mult@box=\box50
 \multicol@leftmargin=\dimen139
 \c@unbalance=\count278
@@ -121,7 +116,8 @@ Package multicol Warning: May not work with the twocolumn option on input line
 \mult@nat@firstbox=\box93
 \colbreak@box=\box94
 \mc@col@check@num=\count286
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/mathpazo.sty
+)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/mathpazo.sty
 Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
 \symupright=\mathgroup4
 )
@@ -352,7 +348,7 @@ rs
 )
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 60.
+less on input line 61.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
@@ -656,36 +652,36 @@ LaTeX Info: Redefining \% on input line 26.
 )
 \openout1 = `article_2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Info: Redefining \microtypecontext on input line 126.
-Package microtype Info: Applying patch `item' on input line 126.
-Package microtype Info: Applying patch `toc' on input line 126.
-Package microtype Info: Applying patch `eqnum' on input line 126.
-Package microtype Info: Applying patch `footnote' on input line 126.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Info: Redefining \microtypecontext on input line 127.
+Package microtype Info: Applying patch `item' on input line 127.
+Package microtype Info: Applying patch `toc' on input line 127.
+Package microtype Info: Applying patch `eqnum' on input line 127.
+Package microtype Info: Applying patch `footnote' on input line 127.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 126.
+LaTeX Info: Redefining \showhyphens on input line 127.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -693,8 +689,8 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Info: Redefining \. on input line 126.
-LaTeX Info: Redefining \% on input line 126.
+LaTeX Info: Redefining \. on input line 127.
+LaTeX Info: Redefining \% on input line 127.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -718,14 +714,14 @@ LaTeX Info: Redefining \% on input line 126.
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=4.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
 * \columnsep=20.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
-* \@twocolumntrue
+* \@twocolumnfalse
 * \@twosidefalse
 * \@mparswitchfalse
 * \@reversemarginfalse
@@ -736,7 +732,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count345
-Package hyperref Info: Link coloring OFF on input line 126.
+Package hyperref Info: Link coloring OFF on input line 127.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -749,9 +745,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count346
 )
-LaTeX Info: Redefining \ref on input line 126.
-LaTeX Info: Redefining \pageref on input line 126.
-LaTeX Info: Redefining \nameref on input line 126.
+LaTeX Info: Redefining \ref on input line 127.
+LaTeX Info: Redefining \pageref on input line 127.
+LaTeX Info: Redefining \nameref on input line 127.
  (./article_2.out) (./article_2.out)
 \@outlinefile=\write3
 \openout3 = `article_2.out'.
@@ -780,31 +776,31 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Trying to load font information for OT1+pplx on input line 
-130.
+131.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-130.
+131.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-130.
+131.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-130.
+131.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-130.
+131.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -824,392 +820,78 @@ Package lettrine.sty Info: Targeted height = 30.07506pt
 (lettrine.sty)             Lettrine height = 30.07518pt (L);
 (lettrine.sty)             reported on input line 137.
 
-Underfull \hbox (badness 1917) in paragraph at lines 137--138
-\T1/pplx/m/n/10 (+20) rue-das du-ran-te la na-ve-ga-ción. Pa-ra
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
 
-Underfull \hbox (badness 2111) in paragraph at lines 139--140
-\T1/pplx/m/n/10 (+20) pa-la-bras grie-gas \T1/pplx/b/n/10 (+20) ho-dos \T1/pplx
-/m/n/10 (+20) (via-jar,trayecto) y
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
+[1
 
-Underfull \vbox (badness 2781) has occurred while \output is active []
-
- [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
+<graficos/bloque.png, id=38, 418.56375pt x 107.40125pt>
+File: graficos/bloque.png Graphic file (type png)
+<use graficos/bloque.png>
+Package pdftex.def Info: graficos/bloque.png  used on input line 166.
+(pdftex.def)             Requested size: 292.99261pt x 75.18034pt.
+<graficos/grafico.png, id=40, 314.17375pt x 263.98625pt>
+File: graficos/grafico.png Graphic file (type png)
+<use graficos/grafico.png>
+Package pdftex.def Info: graficos/grafico.png  used on input line 177.
+(pdftex.def)             Requested size: 219.92012pt x 184.78911pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--174
+LaTeX Warning: `h' float specifier changed to `ht'.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
-
- []
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-81.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `cmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 
 Underfull \hbox (badness 10000) in paragraph at lines 181--182
 
  []
 
+[2 <./graficos/bloque.png>]
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+LaTeX Warning: Empty `thebibliography' environment on input line 213.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 187--189
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
-
- []
-
-[2
-
-]
-Overfull \hbox (66.57903pt too wide) in paragraph at lines 227--227
- []    \T1/cmtt/m/n/10 # Status: Include path = /home/pierre/code/nbc-compiler/
-;/usr/local/include/nbc/;tests/[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 229--230
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 235--237
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 251--253
-
- []
-
-<graficos/motor.png, id=83, 827.34094pt x 438.13687pt>
-File: graficos/motor.png Graphic file (type png)
-<use graficos/motor.png>
-Package pdftex.def Info: graficos/motor.png  used on input line 255.
-(pdftex.def)             Requested size: 413.66946pt x 219.06789pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 258--259
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 260--261
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--263
-
- []
-
-[4 <./graficos/motor.png>]
-<graficos/robot.png, id=88, 2023.56pt x 1517.67pt>
-File: graficos/robot.png Graphic file (type png)
-<use graficos/robot.png>
-Package pdftex.def Info: graficos/robot.png  used on input line 268.
-(pdftex.def)             Requested size: 202.36784pt x 151.77588pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
-
- []
-
-<graficos/odometria.png, id=89, 238.8925pt x 212.795pt>
-File: graficos/odometria.png Graphic file (type png)
-<use graficos/odometria.png>
-Package pdftex.def Info: graficos/odometria.png  used on input line 291.
-(pdftex.def)             Requested size: 143.3366pt x 127.67796pt.
-[5 <./graficos/robot.png> <./graficos/odometria.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 322--323
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 324--325
-
- []
-
-[6]
-<graficos/error1.png, id=106, 1517.67pt x 2023.56pt>
-File: graficos/error1.png Graphic file (type png)
-<use graficos/error1.png>
-Package pdftex.def Info: graficos/error1.png  used on input line 385.
-(pdftex.def)             Requested size: 136.5844pt x 182.11253pt.
-<graficos/error2.png, id=107, 1517.67pt x 2023.56pt>
-File: graficos/error2.png Graphic file (type png)
-<use graficos/error2.png>
-Package pdftex.def Info: graficos/error2.png  used on input line 386.
-(pdftex.def)             Requested size: 136.5844pt x 182.11253pt.
-<graficos/error3.png, id=108, 1517.67pt x 2023.56pt>
-File: graficos/error3.png Graphic file (type png)
-<use graficos/error3.png>
-Package pdftex.def Info: graficos/error3.png  used on input line 387.
-(pdftex.def)             Requested size: 136.5844pt x 182.11253pt.
- [7]
-<graficos/prueba1.JPG, id=118, 2448.14626pt x 1246.6575pt>
-File: graficos/prueba1.JPG Graphic file (type jpg)
-<use graficos/prueba1.JPG>
-Package pdftex.def Info: graficos/prueba1.JPG  used on input line 393.
-(pdftex.def)             Requested size: 440.64732pt x 224.38867pt.
-
-Overfull \hbox (10.6427pt too wide) in paragraph at lines 393--394
- [][] 
- []
-
-[8 <./graficos/error1.png> <./graficos/error2.png> <./graficos/error3.png> <./g
-raficos/prueba1.JPG>]
-<graficos/prueba2.JPG, id=124, 2448.14626pt x 1246.6575pt>
-File: graficos/prueba2.JPG Graphic file (type jpg)
-<use graficos/prueba2.JPG>
-Package pdftex.def Info: graficos/prueba2.JPG  used on input line 400.
-(pdftex.def)             Requested size: 440.64732pt x 224.38867pt.
-
-Overfull \hbox (10.6427pt too wide) in paragraph at lines 400--401
- [][] 
- []
-
-<graficos/prueba3.JPG, id=125, 2448.14626pt x 1246.6575pt>
-File: graficos/prueba3.JPG Graphic file (type jpg)
-<use graficos/prueba3.JPG>
-Package pdftex.def Info: graficos/prueba3.JPG  used on input line 407.
-(pdftex.def)             Requested size: 440.64732pt x 224.38867pt.
-
-Overfull \hbox (10.6427pt too wide) in paragraph at lines 407--408
- [][] 
- []
-
-[9 <./graficos/prueba2.JPG> <./graficos/prueba3.JPG>]
-<graficos/path_robot.png, id=132, 1093.08376pt x 2023.56pt>
-File: graficos/path_robot.png Graphic file (type png)
-<use graficos/path_robot.png>
-Package pdftex.def Info: graficos/path_robot.png  used on input line 417.
-(pdftex.def)             Requested size: 1093.08109pt x 2023.55507pt.
-<graficos/corrida1.png, id=133, 1517.67pt x 2023.56pt>
-File: graficos/corrida1.png Graphic file (type png)
-<use graficos/corrida1.png>
-Package pdftex.def Info: graficos/corrida1.png  used on input line 419.
-(pdftex.def)             Requested size: 136.5844pt x 182.11253pt.
-<graficos/corrida2.png, id=134, 1517.67pt x 2023.56pt>
-File: graficos/corrida2.png Graphic file (type png)
-<use graficos/corrida2.png>
-Package pdftex.def Info: graficos/corrida2.png  used on input line 420.
-(pdftex.def)             Requested size: 136.5844pt x 182.11253pt.
-<graficos/corrida3.png, id=135, 1517.67pt x 2023.56pt>
-File: graficos/corrida3.png Graphic file (type png)
-<use graficos/corrida3.png>
-Package pdftex.def Info: graficos/corrida3.png  used on input line 421.
-(pdftex.def)             Requested size: 136.5844pt x 182.11253pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 419--424
-
- []
-
-[10 <./graficos/path_robot.png> <./graficos/corrida1.png> <./graficos/corrida2.
-png> <./graficos/corrida3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 430--432
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 438--439
-
- []
-
-
-Underfull \hbox (badness 1377) in paragraph at lines 440--441
-[]\T1/pplx/m/n/10 (+20) Para re-du-cir los erro-res, es im-por-ten-te
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
-
- []
-
-
-LaTeX Warning: Empty `thebibliography' environment on input line 461.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--461
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--461
-
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 450--461
-[]\T1/pplx/m/n/10 (+20) Documento pa-ra evi-tar el su-do en el
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--461
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--461
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--461
-
- []
-
-
-Underfull \hbox (badness 6110) in paragraph at lines 450--461
-[]\T1/pplx/m/n/10 (+20) VALENCIA V., JHONNY A.; MON-
- []
-
-
-Underfull \hbox (badness 2837) in paragraph at lines 450--461
-\T1/pplx/m/n/10 (+20) TO-YA O., ALE-JAN-DRO; RIOS, LUIS
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 450--461
-
- []
-
-
-Underfull \hbox (badness 2020) in paragraph at lines 450--461
-[]\T1/pplx/m/n/10 (+20) Modelo Ci-ne-má-ti-co de un ro-bot mó-
- []
-
-
-Underfull \vbox (badness 1221) has occurred while \output is active []
-
- [11
-
-]
-(./article_2.aux
+[3 <./graficos/grafico.png>] (./article_2.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
 Package rerunfilecheck Info: File `article_2.out' has not changed.
-(rerunfilecheck)             Checksum: 13DE306154D8AE19B7F9BE53D236E3AA;1557.
+(rerunfilecheck)             Checksum: 052479EC0549B4A0E46B870E77FCCBC8;852.
  ) 
 Here is how much of TeX's memory you used:
- 19419 strings out of 478268
- 310430 string characters out of 5846348
- 673965 words of memory out of 5000000
- 36994 multiletter control sequences out of 15000+600000
- 531753 words of font info for 291 fonts, out of 8000000 for 9000
+ 19217 strings out of 478268
+ 306956 string characters out of 5846348
+ 670973 words of memory out of 5000000
+ 36900 multiletter control sequences out of 15000+600000
+ 527869 words of font info for 244 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,12n,63p,1006b,668s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2022/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2022/
-texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2022/texm
-f-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2022/texmf-dist/f
-onts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2022/texmf-dist/fon
-ts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
-1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/p
-alatino/uplri8a.pfb>
-Output written on article_2.pdf (11 pages, 35407407 bytes).
+ 60i,12n,63p,1015b,496s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
+ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/20
+22/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2022/t
+exmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2022/texmf-dis
+t/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts
+/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
+urw/palatino/uplri8a.pfb>
+Output written on article_2.pdf (3 pages, 117414 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
- 87714 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 105 PDF objects out of 1000 (max. 8388607)
+ 77 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
+ 85051 words of extra memory for PDF output out of 89155 (max. 10000000)
 

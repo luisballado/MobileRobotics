@@ -1,0 +1,13 @@
+https://raw.githubusercontent.com/yangmingustb/planning_books_1/master/Principles%20of%20Robot%20Motion%20Theory%2C%20Algorithms%2C%20and%20Implementations.pdf
+
+Pág 90
+
+Wave-Front Planner
+
+http://lavalle.pl/planning/node372.html
+https://journals.sagepub.com/doi/full/10.5772/5799
+https://hal.science/hal-00920122/document
+https://www.societyofrobots.com/programming_wavefront.shtml
+https://arxiv.org/ftp/cs/papers/0601/0601053.pdf
+https://www.cs.cmu.edu/~16311/s07/labs/lab05/
+http://geodynamics.usc.edu/~becker/teaching/557/problem_sets/problem_set_fd_wave.pdf

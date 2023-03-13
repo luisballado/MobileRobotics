@@ -7,20 +7,22 @@
 #define SCREEN_WIDTH  100 //DIMENSION WIDTH PANTALLA
 #define SCREEN_HEIGHT 60  //DIMENSION HEIGHT PANTALLA
 
+///////USADOS PARA LA ESTIMACION DE ATAN /////////////////////
 #define A0 1.5707288
 #define A1 0.2121144
 #define A2 0.074261
 #define A3 0.0187293
+//////////////////////////////////////////////////////////////
 
 #define RMotor OUT_C  // MOTOR DERECHO
 #define LMotor OUT_A  // MOTOR IZQUIERDO
 #define SpeedSlow 0   // VELOCIDAD MINIMA
 #define SpeedFast 40  // VELOCIDAD MAXIMA
 
+///////CONSTANTES/////////////////////////////////////////////
 #define k1 0.5
 #define k2 1
-
-//#define Atan(_X) asm {atan __FLTRETVAL__,_X}
+//////////////////////////////////////////////////////////////
 
 int SD;               // Valor obtenido tachometer MotorDerecho
 int SI;               // Valor obtenido tachometer MotorIzquierdo
@@ -29,6 +31,9 @@ float pi = 3.1416;
 
 float x = 0.0;        //distancia recorrido eje x
 float y = 0.0;        //distancia recorrido eje y
+
+float theta = 0.0;   //Angulo inclinacion theta
+
 float ttemp;          //theta
 
 //360 es una vuelta completa
@@ -36,15 +41,9 @@ float ttemp;          //theta
 //humbral 5-10
 //Sen Cos - aceptan valores en grados
 void show_text(float x,float y,float ttemp){
-
      TextOut(30,LCD_LINE3,"X:"  + NumToStr(x) + "    "); //x LPOS el valor se actualiza
      TextOut(30,LCD_LINE4,"Y:"  + NumToStr(y) + "     "); //y RPOS el valor se actualiza
-     //TextOut(0,LCD_LINE2,"Th: " + NumToStr(theta) + "   ");
-     //TextOut(0,LCD_LINE3,"DW: " + NumToStr(DD) + "   ");
-     //TextOut(0,LCD_LINE4,"DD: " + NumToStr(DW) + "   ");
-     //TextOut(0,LCD_LINE5,"DL: " + NumToStr(DL) + "   ");
      TextOut(30,LCD_LINE5,"O:" + NumToStr(ttemp) + "       ");
-     //TextOut(0,LCD_LINE6,"DR: " + NumToStr(DR) + "   ");
 }
 
 
@@ -54,8 +53,6 @@ void show_text(float x,float y,float ttemp){
 float grados_radianes(int grados){
       return (grados * (pi/180.0));
 }
-
-float theta = 0.0;   //Angulo inclinacion theta
 
 //TODO: PONER TODAS LAS VARIABLES DENTRO DEL TASK DEL ODOMETRO
 //TODO: INCLUIR SHOW_TEXT (SI APLICA)
@@ -68,8 +65,6 @@ task odometria(){
      int RPOS = 0; //Posicion MotorC
 
      int umbral = 5;
-
-     
      
      int Rprev;    //Posicion MotorC Previa
      int Lprev;    //Posicion MotorA Previa
@@ -168,7 +163,7 @@ float asin(float x){
       resultado = pi/2 - (rr2*rr);
 
       if(x<0){
-         resultdo = -resultado
+         resultado = -resultado;
       }
 
       return resultado;
@@ -182,16 +177,14 @@ float pow ( float a , float b ) {
     int power = 1 , i ;  
     for (i=1;i<=b;++i) {  
         power = power * a ;  
-    }  
+    }
     return power ;  
 }  
 
 //limitar a theta para -pi - pi
 //si se pasa pi restarle 2pi
 //si se pasa -pi sumarle 2pi
-
 /////////////////////////////////////////////////////////////////
-//arcsen ye/a
 task control(){
      while(true){
 	
@@ -206,10 +199,18 @@ task control(){
 	float longitud = 16.2;  //distancia entre ruedas
 	float VR,VL;
 
+	if(theta > pi){
+	   theta = theta - 2*pi;
+	}
+
+	if(theta < -pi){
+	   theta = theta + 2*pi;
+	}
+
 	_xe_ = xf-x;
 	_ye_ = yf-y;
 	_a_ = pow(_xe_,2) + pow(_ye_,2);
-	
+
 	a = sqrt(_a_);
 
 	_alpha_ = (_ye_ / a) - theta;
@@ -221,7 +222,7 @@ task control(){
 	VR = (_v_ + (longitud / 2)*_w_)*2;
 	VL = (_v_ - (longitud / 2)*_w_)*2;
 	
-	show_text(alpha,x,y);
+	show_text(x,y,theta);
 
 	OnFwd(OUT_A, VL);
 	OnFwd(OUT_C, VR);
@@ -229,46 +230,6 @@ task control(){
 	Wait(150);
 
      }
-}
-
-//TASK DE SIGUELINEAS
-task sigue_lineas(){
-    
-  int Threshold = 600; //UMBRAL DE OSCURIDAD
-    
-  // sensor1
-  SetSensorType(IN_1, IN_TYPE_LIGHT_ACTIVE);
-  SetSensorMode(IN_1, IN_MODE_RAW);
-
-  // sensor2
-  SetSensorType(IN_4, IN_TYPE_LIGHT_ACTIVE);
-  SetSensorMode(IN_4, IN_MODE_RAW);
-
-  int run = 0;
-  while (run == 0){
-
-    if(ButtonPressed(BTNCENTER, false)){
-     	run = run + 1;
-	Off(OUT_AC);
-	break;
-	
-    }
-
-    SD = SensorRaw(IN_4);
-    SI = SensorRaw(IN_1);    
-
-    //MOTOR IZQUIERDO
-    if (SI > Threshold)
-      OnFwdReg(LMotor, SpeedSlow,OUT_REGMODE_IDLE);
-    else
-      OnFwdReg(LMotor, SpeedFast,OUT_REGMODE_IDLE);
-
-    //MOTOR DERECHO
-    if (SD > Threshold)
-      OnFwdReg(RMotor, SpeedSlow,OUT_REGMODE_IDLE);
-    else
-      OnFwdReg(RMotor, SpeedFast,OUT_REGMODE_IDLE);
-  }
 }
 
 // TASK PARA DIBUJAR EN PANTALLA
@@ -282,7 +243,7 @@ task make_draw(){
   while(true){
   	
      xx = (x/2) + 50; //50 para iniciar en medio de la pantalla
-     yy = (y/2) + 5; //30 para iniciar en medio de la pantalla
+     yy = (y/2) + 5;  //30 para iniciar en medio de la pantalla
           
      CircleOut(xx,yy,2);
      
@@ -292,6 +253,5 @@ task make_draw(){
 //TASK PRINCIPAL SOLO CREA LOS HILOS
 task main(){
      ClearScreen(); //LIMPIAR PANTALLA
-     //Precedes(odometria,sigue_lineas,make_draw);     
      Precedes(odometria,control,make_draw);
 }

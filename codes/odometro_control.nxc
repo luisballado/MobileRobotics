@@ -170,8 +170,8 @@ float asin(float x){
       
 }
 
-int xf = 0;
-int yf = -100;
+int xf = 100;
+int yf = 100;
 
 float pow ( float a , float b ) {  
     int power = 1 , i ;  

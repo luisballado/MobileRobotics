@@ -1,6 +1,3 @@
-// OJO: no lleva el -EF para no forzar a nuevo firmware
-// sudo nbc -r r_linea2.nxc
-
 #include "NBCCommon.h"
 #include "NXCDefs.h"
 

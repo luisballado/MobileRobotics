@@ -1,13 +1,10 @@
-// OJO: no lleva el -EF para no forzar a nuevo firmware
-// sudo nbc -r r_linea2.nxc
-
 #include "NBCCommon.h"
 #include "NXCDefs.h"
 
 #define SCREEN_WIDTH  100 //DIMENSION WIDTH PANTALLA
 #define SCREEN_HEIGHT 60  //DIMENSION HEIGHT PANTALLA
 
-///////USADOS PARA LA ESTIMACION DE ATAN /////////////////////
+/////// USADOS PARA LA ESTIMACION DE ATAN ////////////////////
 #define A0 1.5707288
 #define A1 0.2121144
 #define A2 0.074261
@@ -17,12 +14,7 @@
 #define RMotor OUT_C  // MOTOR DERECHO
 #define LMotor OUT_A  // MOTOR IZQUIERDO
 #define SpeedSlow 0   // VELOCIDAD MINIMA
-#define SpeedFast 40  // VELOCIDAD MAXIMA
-
-///////CONSTANTES/////////////////////////////////////////////
-#define k1 0.5
-#define k2 1
-//////////////////////////////////////////////////////////////
+#define SpeedFast 50  // VELOCIDAD MAXIMA
 
 int SD;               // Valor obtenido tachometer MotorDerecho
 int SI;               // Valor obtenido tachometer MotorIzquierdo
@@ -45,7 +37,6 @@ void show_text(float x,float y,float ttemp){
      TextOut(30,LCD_LINE4,"Y:"  + NumToStr(y) + "     "); //y RPOS el valor se actualiza
      TextOut(30,LCD_LINE5,"O:" + NumToStr(ttemp) + "       ");
 }
-
 
 /**********************************************
  * Funcion para pasar de grados a radiales
@@ -120,12 +111,20 @@ task odometria(){
 	//y = y + ((DD * Sin(ttemp))/100);
 
 	theta = theta + DW;
-
+	
 	//Hacer validacion
 	////////////////////////////////////////////////////////////
 	//Si theta es mayor a pi -> restarle 2pi
 	//Si theta es menor a -pi -> sumarle 2pi
 	////////////////////////////////////////////////////////////
+	if(theta > pi){
+	   theta = theta - 2*pi;
+	}
+
+	if(theta < -pi){
+	   theta = theta + 2*pi;
+	}
+
 
 	Lprev = LPOS;
      	Rprev = RPOS;
@@ -141,7 +140,7 @@ task odometria(){
 /// probar si es simetrica
 /// si no es simetrica no puedo alimentarlo con valores negativos
 /// hacerlo como asin(-0.7) -> temp -(-0.7) -> aprox 
-//resultado en radianes
+/// resultado en radianes
 float asin(float x){
 
       float xtemp;
@@ -173,15 +172,110 @@ float asin(float x){
 int xf = 100;
 int yf = 100;
 
-float pow ( float a , float b ) {  
-    int power = 1 , i ;  
-    for (i=1;i<=b;++i) {  
-        power = power * a ;  
-    }
-    return power ;  
-}  
+long power(float a , float b) {  
+    long pow = 1;  
 
-//limitar a theta para -pi - pi
+    for (int i = 0; i < b; i++) {  
+        pow = pow * a; 
+    }
+    
+    return pow;
+}
+
+float VR[][] = {
+      	     {0,-10,-10,-10},
+      	     {0,-10,-10,-10},
+      	     {0, 10, 20, 30},
+      	     {0, 10, 10, 10},
+      	     {0, 10, 10, 10}
+      	  };
+
+float VL[][] = {
+      	     {0, 10, 10, 10},
+      	     {0, 10, 10, 10},
+      	     {0, 10, 20, 30},
+      	     {0,-10,-10,-10},
+      	     {0,-10,-10,-10}
+      	  };
+
+float MA[4];
+void getDistance(float a){
+
+     float z=0;
+     float c=0;
+     float l=0;
+     float ml=0;
+
+     if(a<10){
+	z = 1 - (a/10);
+	c = a/10;
+	l = 0; ml = 0;
+     }else if(a<50){
+	c=1-((a-10)/40);
+	l = ((a-10)/40);
+	ml = 0; z=0;
+     }else if(a<100){
+     	z = 0; c = 0;
+	l = (1-((a-50)/50));
+	ml = ((a-50)/50);
+     }else{
+	z = 0;c = 0;l = 0;ml = 1;
+     }
+
+     MA[0] = z;
+     MA[1] = c;
+     MA[2] = l;
+     MA[3] = ml;
+}
+
+float MAlpha[5];
+void getAlpha(float alpha){
+
+     
+     float DD = -pi;
+     float  D = -(pi/4);
+     float  Z = 0;
+     float  I = (pi/4);
+     float DI = pi;
+     
+     
+     float MDD = 0;
+     float  MD = 0;
+     float  MZ = 0;
+     float  MI = 0;
+     float MDI = 0;
+     
+     if(alpha < D){
+     	MD = ((alpha-DD)/(D-DD));
+	MDD = 1-MD;
+	MZ=0;MI=0;MDI=0;
+     }else if(alpha < Z){
+     	MZ = ((alpha-D)/(Z-D));
+	MD = 1-MZ;
+	MDD=0;MI=0;MDI=0;
+     }else if(alpha < I){
+     	MI = ((alpha-Z)/(I-Z));
+	MZ = 1-MI;
+	MDD=0;MD=0;MDI=0;
+     }else{
+        MDI = ((alpha-I)/(DI-I));
+	MI = 1-MDI;
+	MDD=0;MD=0;MZ=0;
+     }
+
+     MAlpha[0] = MDD;
+     MAlpha[1] = MD;
+     MAlpha[2] = MZ;
+     MAlpha[3] = MI;
+     MAlpha[4] = MDI;
+
+}
+
+float min(float a, float b){
+      return (a > b) ? b : a;
+}
+
+//limitar a theta para -pi ~ pi
 //si se pasa pi restarle 2pi
 //si se pasa -pi sumarle 2pi
 /////////////////////////////////////////////////////////////////
@@ -197,36 +291,75 @@ task control(){
 	float _v_;
 	float _w_;
 	float longitud = 16.2;  //distancia entre ruedas
-	float VR,VL;
-
-	if(theta > pi){
-	   theta = theta - 2*pi;
-	}
-
-	if(theta < -pi){
-	   theta = theta + 2*pi;
-	}
-
+	
+	
 	_xe_ = xf-x;
 	_ye_ = yf-y;
-	_a_ = pow(_xe_,2) + pow(_ye_,2);
+	_a_ = power(_xe_,2) + power(_ye_,2);
 
 	a = sqrt(_a_);
 
-	_alpha_ = (_ye_ / a) - theta;
-	alpha = asin(_alpha_);
+	_alpha_ = (_ye_ / a);
+	alpha = asin(_alpha_) - theta;
 	
-	_v_ = k1 * Cos(alpha) * a;
-	_w_ = k1 * Sin(alpha) * Cos(alpha) + k2 * alpha;
+	//cotrol_difuso
+	getDistance(a); //se obtiene MA[]
+	getAlpha(alpha); //se obtine MAlpha[]
+	
+	float acc_coef = 0.0;
+	float acc_accion = 0.0;
+	float accion_VL = 0.0;
+	float coef = 0.0;
+	
+	for(int i=0;i<4;i++){
+	   for(int j=0;j<5;j++){
+	      if (MA[i]<MAlpha[j]) coef=MA[i]; else coef=MAlpha[j];
+	      //coef = min(MA[i],MAlpha[j]);
+	      acc_coef = acc_coef + coef;
+	      acc_accion = acc_accion + coef * VL[j][i];
+	   }
+	}
+	
+	accion_VL = (acc_accion/acc_coef);
+	
+	float acc_coef2 = 0;
+	float acc_accion2 = 0;
+	float coef2 = 0;
+	float accion_VR = 0;
+	
+	for(int i=0;i<4;i++){
+	   for(int j=0;j<5;j++){
+	      coef2 = min(MA[i],MAlpha[j]);
+	      acc_coef2 = acc_coef2 + coef2;
+	      acc_accion2 = acc_accion2 + coef2 * VR[j][i];
+	   }
+	}
 
-	VR = (_v_ + (longitud / 2)*_w_)*2;
-	VL = (_v_ - (longitud / 2)*_w_)*2;
-	
-	show_text(x,y,theta);
+	accion_VR = (acc_accion2/acc_coef2);
 
-	OnFwd(OUT_A, VL);
-	OnFwd(OUT_C, VR);
-	
+	//Mostrar valores
+	TextOut(0,LCD_LINE1,"z:"  + NumToStr(MA[0])); 
+	TextOut(0,LCD_LINE2,"c:"  + NumToStr(MA[1])); 
+	TextOut(0,LCD_LINE3,"l:"  + NumToStr(MA[2])); 
+	TextOut(0,LCD_LINE4,"ml:"  + NumToStr(MA[3])); 
+	TextOut(0,LCD_LINE5,"a:"  + NumToStr(a));
+	TextOut(0,LCD_LINE6,"alph:"  + NumToStr(alpha)); 
+
+	TextOut(30,LCD_LINE1,"DD:"  + NumToStr(MAlpha[0])); 
+	TextOut(30,LCD_LINE2,"D:"  + NumToStr(MAlpha[1])); 
+	TextOut(30,LCD_LINE3,"Z:"  + NumToStr(MAlpha[2])); 
+	TextOut(30,LCD_LINE4,"I:"  + NumToStr(MAlpha[3])); 
+	TextOut(60,LCD_LINE1,"DI:"  + NumToStr(MAlpha[4]));
+	TextOut(0,LCD_LINE7,"VR:"  + NumToStr(accion_VR)); 
+	TextOut(0,LCD_LINE8,"VL:"  + NumToStr(accion_VL));
+
+	float minimo;
+
+	minimo = coef;
+	TextOut(0,LCD_LINE8,"MIN:"  + NumToStr(minimo));
+	OnFwd(OUT_A, accion_VL);
+	OnFwd(OUT_C, accion_VR);
+		
 	Wait(150);
 
      }

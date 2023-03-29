@@ -1,0 +1,13 @@
+#define NEAR 25 //cm
+mutex block;
+task verify_obstacle(){
+while(true){
+OnFwd(OUT_AC,20);
+while(SensorUS(IN_4)>NEAR);
+Off(OUT_AC);
+OnRev(OUT_AC,20);
+Wait(400);
+OnFwd(OUT_A,20);
+Wait(400);
+}
+}//end Task verify_obstacl

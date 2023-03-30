@@ -1,13 +1,39 @@
-#define NEAR 25 //cm
-mutex block;
-task verify_obstacle(){
-while(true){
-OnFwd(OUT_AC,20);
-while(SensorUS(IN_4)>NEAR);
-Off(OUT_AC);
-OnRev(OUT_AC,20);
-Wait(400);
-OnFwd(OUT_A,20);
-Wait(400);
+#define ULTRASONIC_RIGHT   S1
+#define ULTRASONIC_LEFT    S4
+#define OBSTACLE_THRESHOLD 25
+#define LEFT_MOTOR         OUT_C
+#define RIGHT_MOTOR        OUT_A
+#define BOTH_MOTORS        OUT_AC
+
+task main()
+{
+    short ultrasonicCM_R; /* cm measured by ultrasonic */
+    short ultrasonicCM_L; /* cm measured by ultrasonic */
+    SetSensorLowspeed(ULTRASONIC_RIGHT);
+    SetSensorLowspeed(ULTRASONIC_LEFT);
+    
+    while (1) {
+    	  
+        ultrasonicCM_R = SensorUS(ULTRASONIC_RIGHT); /* read from ultrasonic port */
+	ultrasonicCM_L = SensorUS(ULTRASONIC_LEFT); /* read from ultrasonic port */
+
+	NumOut(0, LCD_LINE1, ultrasonicCM_R);
+	NumOut(0, LCD_LINE2, ultrasonicCM_L);
+	
+	if ((ultrasonicCM_L>OBSTACLE_THRESHOLD) && (ultrasonicCM_R>OBSTACLE_THRESHOLD)) {
+            OnFwd(RIGHT_MOTOR, 55);
+	    OnFwd(LEFT_MOTOR, 20);
+        } else if(ultrasonicCM_L<OBSTACLE_THRESHOLD) { /* we need to turn */
+	    Off(BOTH_MOTORS);
+            OnFwd(RIGHT_MOTOR, 25); // Turn right
+            OnRev(LEFT_MOTOR, 25);	   
+        } else if(ultrasonicCM_R<OBSTACLE_THRESHOLD){
+	    Off(BOTH_MOTORS);
+            OnFwd(LEFT_MOTOR, 25); // Turn right
+            OnRev(RIGHT_MOTOR, 25);
+	}
+	
+	Wait(40); /* This is a good sample rate */
+        
+    }
 }
-}//end Task verify_obstacl

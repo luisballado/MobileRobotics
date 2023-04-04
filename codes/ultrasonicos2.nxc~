@@ -1,0 +1,15 @@
+#define UMBRAL 40
+
+task main(){
+     SetSensorLowspeed(IN_3);
+
+     while (true){
+
+     	   Wait(500);
+	   ClearScreen();
+	   NumOut(0,0,SensorUS(IN_3));
+	   if (SensorUS(IN_3)<UMBRAL)
+	      Off(OUT_BC);
+	   else
+	      OnFwd(OUT_BC,50);
+}

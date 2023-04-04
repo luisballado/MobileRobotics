@@ -1,0 +1,28 @@
+#define UMBRAL 20
+
+task main(){
+     SetSensorLowspeed(S2);
+     SetSensorLowspeed(S1);
+     SetSensorLowspeed(S4);
+     while (true){
+
+     	   Wait(500);
+	   ClearScreen();
+	   NumOut(0,LCD_LINE1,SensorUS(S2));
+	   NumOut(1,LCD_LINE2,SensorUS(S1));
+	   NumOut(2,LCD_LINE3,SensorUS(S4));
+	   if (SensorUS(S1)<UMBRAL&&SensorUS(S4)<UMBRAL) //izquierda
+	      TextOut(30,LCD_LINE6,"ESPACIO REDUCIDO");
+	   else if (SensorUS(S2)<UMBRAL) //frente
+	      TextOut(30,LCD_LINE6,"FRENTE");
+	   else if (SensorUS(S1)<UMBRAL) //derecha
+	      TextOut(30,LCD_LINE6,"DERECHA");
+	   else if (SensorUS(S4)<UMBRAL) //izquierda
+	      TextOut(30,LCD_LINE6,"IZQUIERDA");
+	   else if (SensorUS(S4)<UMBRAL&&SensorUS(S2)<UMBRAL) //izquierda
+	      TextOut(30,LCD_LINE6,"IZQUIERDA FRENTE");
+	   else if (SensorUS(S1)<UMBRAL&&SensorUS(S2)<UMBRAL) //izquierda
+	      TextOut(30,LCD_LINE6,"DERECHA FRENTE");
+	   
+     }
+}

@@ -1,9 +1,11 @@
 #define UMBRAL 20
 
 task main(){
+
      SetSensorLowspeed(S2);
      SetSensorLowspeed(S1);
      SetSensorLowspeed(S4);
+
      while (true){
 
      	   Wait(500);

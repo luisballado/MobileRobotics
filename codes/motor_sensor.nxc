@@ -1,0 +1,73 @@
+#define DELANTE 0
+#define IZQUIERDA -90
+#define DERECHA 90
+
+int sensor;
+string state = "";
+
+task sensar(){
+     
+     while(true){
+	RotateMotor(OUT_B,40,DELANTE);
+	state = "deltante";
+	Wait(500);
+     	RotateMotor(OUT_B,40,45);
+	state = "m_izq";
+	Wait(500);
+     	RotateMotor(OUT_B,40,45); //regresar a delante
+	state = "izq";
+	Wait(500);
+     	RotateMotor(OUT_B,40,-45); //ir a derecha
+	state = "m_izq";
+	Wait(500);
+     	RotateMotor(OUT_B,40,-45); //ir a delante
+	state = "delante";
+	Wait(500);
+	RotateMotor(OUT_B,40,DELANTE);
+	state = "delante";
+	Wait(500);
+     	RotateMotor(OUT_B,40,-45);
+	state = "m_der";
+	Wait(500);
+     	RotateMotor(OUT_B,40,-45); //regresar a delante
+	state = "der";
+	Wait(500);
+     	RotateMotor(OUT_B,40,45); //ir a derecha
+	state = "m_der";
+	Wait(500);
+     	RotateMotor(OUT_B,40,45); //ir a delante
+	state = "delante";
+	Wait(500);
+
+     }
+}
+
+task print(){
+
+     SetSensorLowspeed(S2);
+     while(true){
+     
+     	  sensor = SensorUS(S2);
+     	  TextOut(0,LCD_LINE6, state + " " + NumToStr(sensor) + "       ");
+	  
+     }
+}
+
+task mover(){
+
+     while(true){
+	if(sensor < 20){
+     		  Off(OUT_AC);
+    	}else{
+		OnFwd(OUT_AC,70);
+     	}
+     }
+}
+
+task main(){
+
+     
+     Precedes(mover,print,sensar);
+     
+
+}

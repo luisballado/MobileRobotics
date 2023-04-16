@@ -1,0 +1,110 @@
+/* PUERTOS SENSORES */
+#define us_port_derecha IN_4
+#define us_port_izquierda IN_1
+#define us_port_frente IN_2
+
+/* PUERTOS MOTORES */
+#define MOTOR_DERECHA OUT_C
+#define MOTOR_IZQUIERDA OUT_A
+#define MOTOR_FRENTE OUT_AC
+
+/* DEBUG PARA SOLO VER SENSORES  */
+#define ACTIVAR_MOTORES
+
+/* DISTANCIA A VER UN OBSTACULO */
+#define THRESHOLD 25
+
+/* VELOCIDAD DEFAULT  */
+#define SPEED 70
+
+/*  GANACIA PROPORCIONAL */
+#define KP 5
+
+float variable;
+
+int min(int a, int b){
+    return (a > b) ? b : a;
+}
+
+int us_derecha = 0;
+int us_izquierda = 0;
+int us_frente = 0;
+
+task print(){
+
+     SetSensorLowspeed(us_port_izquierda);
+     SetSensorLowspeed(us_port_frente);
+     SetSensorLowspeed(us_port_derecha);
+     
+     //true para que siempre se ejecute
+     while(true){
+     
+     	us_derecha   = SensorUS(us_port_derecha);
+	us_izquierda = SensorUS(us_port_izquierda);
+	us_frente    = SensorUS(us_port_frente);
+
+	TextOut(0,LCD_LINE1, "US-IZQ: " + NumToStr(us_izquierda) + "       ");
+	TextOut(0,LCD_LINE2, "US-FRE: " + NumToStr(us_frente)    + "       ");
+	TextOut(0,LCD_LINE3, "US-DER: " + NumToStr(us_derecha)   + "       ");
+	
+	Wait(400);
+	
+     }
+}
+
+task mover(){
+
+     int error;
+     int boundary_position = 0;
+     int movement;
+     int velCrucero = 40;
+     int leftSpeed;
+     int rightSpeed;
+     Wait(1000);
+     
+     while(true){
+
+	// calcular error
+	error = us_izquierda - us_derecha;
+
+	movement = KP * error;
+
+	leftSpeed = velCrucero + movement;
+	rightSpeed = velCrucero - movement;
+
+	if(leftSpeed > 60)
+	    leftSpeed = 60;
+	if(leftSpeed < -60)
+	    leftSpeed = -60;
+
+	if(rightSpeed > 60)
+	    rightSpeed = 60;
+
+	if(rightSpeed < -60)
+	    rightSpeed = -60;
+
+	TextOut(0,LCD_LINE6, "error: " + NumToStr(error) + "       ");		
+	TextOut(0,LCD_LINE7, "leftSpeed: " + NumToStr(leftSpeed) + "       ");
+	TextOut(0,LCD_LINE8, "rightSpeed: " + NumToStr(rightSpeed) + "       ");
+	// control tipo proporcional
+	//TURN RIGHT
+	if(error > THRESHOLD){
+	      //OnFwd(OUT_C,rightSpeed); //derecha
+	      //OnFwd(OUT_A,leftSpeed); //izquierda
+	      	
+	}else if(boundary_position > THRESHOLD){
+	      //TURN LEFT
+	      
+	}
+
+	
+
+     }
+     
+}
+
+task main(){
+
+     Precedes(print,mover);
+
+}

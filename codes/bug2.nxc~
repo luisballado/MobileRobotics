@@ -1,0 +1,5 @@
+#define ACTIVAR_MOTORES
+
+int us_derecha;
+int us_izquierda;
+int us_frente;

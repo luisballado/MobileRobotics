@@ -1,0 +1,44 @@
+//Punto donde encontre el objeto
+int x0 = 25;
+int y0 = 40;
+
+//Punto final
+int xf = 120;
+int yf = 100;
+
+//LECTURA ODOMETRO
+int ODO_X = 10;
+int ODO_Y = 80;
+
+//CUANDO IDENTIFIQUE UN CAMBIO DE SIGNO CAMBIAR CONTROL
+
+task main(){
+
+     int x,y;
+     int n[2];
+     
+     while(true){
+          //Calcular Vector XoXf
+     	  x = (xf-x0);
+     	  y = (yf-y0);
+
+     	  //rotar
+     	  n[0] = -y;
+     	  n[1] =  x;
+
+	  //<VECTOR ROT>
+     	  TextOut(0,LCD_LINE1,"N: <"
+	  + NumToStr(n[0])+","
+	  + NumToStr(n[1]) + ">    ");
+	  
+	  //ODOM - X0
+	  int ODO_X0 = ODO_X - x0;
+	  int ODO_Y0 = ODO_Y - y0;
+
+	  //MULTIPLICAR
+	  int res = (ODO_X0*n[0]) + (ODO_Y0*n[1]);
+
+	  TextOut(0,LCD_LINE3,"RES: <" + NumToStr(res));
+
+     }
+}

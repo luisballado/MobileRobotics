@@ -169,8 +169,8 @@ float asin(float x){
       
 }
 
-int xf = 100;
-int yf = 100;
+int xf = 360;
+int yf = 360;
 
 long power(float a , float b) {  
     long pow = 1;  

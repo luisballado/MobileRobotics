@@ -184,7 +184,7 @@ task gallina(){
 
 //siguiendo por derecha
 task gallina2(){
-
+     
      int error;
 
      Wait(1000);

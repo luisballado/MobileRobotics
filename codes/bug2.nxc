@@ -9,7 +9,7 @@
 #define MOTOR_FRENTE OUT_AC
 
 /* DEBUG PARA SOLO VER SENSORES  */
-#define ACTIVAR_MOTORES
+//#define ACTIVAR_MOTORES
 
 /* DISTANCIA A VER UN OBSTACULO */
 #define THRESHOLD 25
@@ -19,6 +19,230 @@
 
 /*  GANACIA PROPORCIONAL */
 #define KP 5
+
+///////USADOS PARA LA ESTIMACION DE ATAN /////////////////////
+#define A0 1.5707288
+#define A1 0.2121144
+#define A2 0.074261
+#define A3 0.0187293
+//////////////////////////////////////////////////////////////
+
+#define RMotor OUT_C  // MOTOR DERECHO
+#define LMotor OUT_A  // MOTOR IZQUIERDO
+#define SpeedSlow 0   // VELOCIDAD MINIMA
+#define SpeedFast 60  // VELOCIDAD MAXIMA
+
+///////CONSTANTES/////////////////////////////////////////////
+#define k1 0.5
+#define k2 1
+//////////////////////////////////////////////////////////////
+
+int SD;               // Valor obtenido tachometer MotorDerecho
+int SI;               // Valor obtenido tachometer MotorIzquierdo
+
+float pi = 3.1416;
+
+float x = 0.0;        //distancia recorrido eje x
+float y = 0.0;        //distancia recorrido eje y
+
+float theta = 0.0;   //Angulo inclinacion theta
+
+float ttemp;          //theta
+
+void show_text(float x,float y,float ttemp){
+     TextOut(0,LCD_LINE4,"X:"  + NumToStr(x) + "    "); //x LPOS el valor se actualiza
+     TextOut(0,LCD_LINE5,"Y:"  + NumToStr(y) + "     "); //y RPOS el valor se actualiza
+     TextOut(0,LCD_LINE6,"O:" + NumToStr(ttemp) + "       ");
+     
+}
+
+/**********************************************
+ * Funcion para pasar de grados a radiales
+ *********************************************/
+float grados_radianes(int grados){
+      return (grados * (pi/180.0));
+}
+
+//TODO: PONER TODAS LAS VARIABLES DENTRO DEL TASK DEL ODOMETRO
+//TODO: INCLUIR SHOW_TEXT (SI APLICA)
+/**********************************************
+ * TASK ODOMETRIA
+ *********************************************/
+task odometria(){
+
+     int LPOS = 0; //Posicion MotorA
+     int RPOS = 0; //Posicion MotorC
+
+     int umbral = 5;
+     
+     int Rprev;    //Posicion MotorC Previa
+     int Lprev;    //Posicion MotorA Previa
+
+     float DD; //Distancia recorrida del punto medio robot
+     float DL; //Distancia recorrida llanta izquierda
+     float DW; //
+     float DR; //Distancia recorrida llanta derecha
+
+     float radio = 2.85;      //radio ruedas
+     float longitud = 16.2;  //distancia entre ruedas
+
+     while(true){
+
+	LPOS = MotorRotationCount(LMotor);
+	RPOS = MotorRotationCount(RMotor);
+	
+	float xx, yy;
+	
+	DR = RPOS - Rprev; //calcular delta derecha
+     	DL = LPOS - Lprev; //calcular delta izquierda
+
+	// Si sobrepasa un valor considerable continuar con el programa
+     	if (abs(DR) < umbral && abs(DL) < umbral) continue;
+
+	// Calcular distancias Derecha-Izquierda
+     	DR = radio * grados_radianes(DR);
+     	DL = radio * grados_radianes(DL);
+
+	// DISTANCIA DEL VEHICULO POSICION MEDIA
+	DD = ((DR+DL)/2.0);
+
+	//
+     	DW = (DR-DL)/longitud;
+
+	//theta temporal
+	ttemp = theta * (180.0/pi);
+	//DD=10.0;
+	
+	//x
+	//x = x + ((DD * Cos(ttemp))/100);
+	// x = x + ((DD * Cos(ttemp))/100.0);
+	xx=Cos(ttemp) / 100.0;
+	xx=DD*xx;
+	xx=x+xx;
+	x = xx;
+	
+	yy =  Sin(ttemp)/100.0;
+	yy=DD*yy;
+	yy=y+yy;
+	y = yy;
+	//y = y + ((DD * Sin(theta))/100);
+	//y = y + ((DD * Sin(ttemp))/100);
+
+	theta = theta + DW;
+
+	//Hacer validacion
+	////////////////////////////////////////////////////////////
+	//Si theta es mayor a pi -> restarle 2pi
+	//Si theta es menor a -pi -> sumarle 2pi
+	////////////////////////////////////////////////////////////
+
+	Lprev = LPOS;
+     	Rprev = RPOS;
+	Wait(50);
+
+	//show_text(x,y,ttemp);
+	
+     } 
+}
+
+/// probar si es simetrica
+/// si no es simetrica no puedo alimentarlo con valores negativos
+/// hacerlo como asin(-0.7) -> temp -(-0.7) -> aprox 
+//resultado en radianes
+float asin(float x){
+
+      float xtemp;
+      if(x<0){
+	xtemp = -x;
+      }else{
+        xtemp = x;
+      }
+
+      float rr;
+      float rr2;
+      float resultado;
+      
+      rr2 = 1 - xtemp;
+      //Validar que no truene
+      rr2 = sqrt(rr2);
+      rr = (A0 +(-A1+(A2-A3*xtemp)*xtemp)*xtemp);
+
+      resultado = pi/2 - (rr2*rr);
+
+      if(x<0){
+         resultado = -resultado;
+      }
+
+      return resultado;
+      
+}
+
+int xf = 150;
+int yf = 150;
+
+float pow ( float a , float b ) {  
+    int power = 1 , i ;  
+    for (i=1;i<=b;++i) {  
+        power = power * a ;  
+    }
+    return power ;  
+}  
+
+
+///////////////////////////////////////////////
+
+
+//limitar a theta para -pi - pi
+//si se pasa pi restarle 2pi
+//si se pasa -pi sumarle 2pi
+/////////////////////////////////////////////////////////////////
+task control(){
+     while(true){
+	
+	float _a_;
+	float _xe_;
+	float _ye_;
+	float a;
+	float alpha;
+	float _alpha_;
+	float _v_;
+	float _w_;
+	float longitud = 16.2;  //distancia entre ruedas
+	float VR,VL;
+
+	if(theta > pi){
+	   theta = theta - 2*pi;
+	}
+
+	if(theta < -pi){
+	   theta = theta + 2*pi;
+	}
+
+	_xe_ = xf-x;
+	_ye_ = yf-y;
+	_a_ = pow(_xe_,2) + pow(_ye_,2);
+
+	a = sqrt(_a_);
+
+	_alpha_ = (_ye_ / a) - theta;
+	alpha = asin(_alpha_);
+	
+	_v_ = k1 * Cos(alpha) * a;
+	_w_ = k1 * Sin(alpha) * Cos(alpha) + k2 * alpha;
+
+	VR = (_v_ + (longitud / 2)*_w_)*2;
+	VL = (_v_ - (longitud / 2)*_w_)*2;
+	
+	show_text(x,y,theta);
+
+	OnFwd(OUT_A, VL);
+	OnFwd(OUT_C, VR);
+	
+	Wait(150);
+
+     }
+}
+
 
 float variable;
 
@@ -37,19 +261,116 @@ task print(){
      SetSensorLowspeed(us_port_derecha);
      
      //true para que siempre se ejecute
+     int count = 0;
      while(true){
-     
-     	us_derecha   = SensorUS(us_port_derecha);
-	us_izquierda = SensorUS(us_port_izquierda);
-	us_frente    = SensorUS(us_port_frente);
 
+	if(count==0){
+		us_derecha = SensorUS(us_port_derecha);
+		count = count + 1;
+	}
+	if(count==1){
+		us_izquierda = SensorUS(us_port_izquierda);
+		count = count + 1;
+	}
+	if(count==2){
+		us_frente = SensorUS(us_port_frente);
+		count = 0;
+	}
 	TextOut(0,LCD_LINE1, "US-IZQ: " + NumToStr(us_izquierda) + "       ");
 	TextOut(0,LCD_LINE2, "US-FRE: " + NumToStr(us_frente)    + "       ");
 	TextOut(0,LCD_LINE3, "US-DER: " + NumToStr(us_derecha)   + "       ");
 	
-	Wait(400);
+	Wait(200);
 	
      }
+}
+
+task mover2(){
+
+     float Kp = 0.5;
+
+     float r_desired = 30;
+
+     int left_speed  = 50;
+     int right_speed = 50;
+
+     int distance_left, distance_right;
+     int error;
+     int err_derecha;
+     int err_izquierda;
+     int pot_a;
+     int pot_c;
+     
+     while(true){
+
+        pot_a = 50;
+        pot_c = 50;
+        
+	//si veo algo
+	
+	while(us_derecha <= 60 || us_izquierda <= 60){
+	   
+	   
+	   if(us_frente <= 10 ||(us_derecha <= 10 && us_izquierda <= 10)){
+	      pot_a = 0;
+	      pot_c = 0;
+	   }else{
+	     
+	     //saber que sentido esta el objeto
+	     error = us_izquierda-us_derecha;
+	     TextOut(0,LCD_LINE4, "err:" + NumToStr(error) + "       ");
+
+
+	     //DERECHA
+	     if(error>0){
+		TextOut(0,LCD_LINE5, "DER:" + NumToStr(us_derecha) + "       ");
+
+		if(us_derecha < 10)
+		  err_derecha = 50;
+
+		
+		if((us_derecha > 10) && (us_derecha < 100))
+		   err_derecha = (30 - us_derecha) * 2;
+
+		if(us_derecha > 100)
+		   err_derecha = -10;
+		
+		pot_a = 50-err_derecha;
+		pot_c = 50+err_derecha;
+		
+	     }else if(error<0){
+		TextOut(0,LCD_LINE5, "IZQ:" + NumToStr(us_izquierda) + "       ");
+
+		if(us_izquierda < 10)
+		  err_izquierda = 50;
+		
+
+		if((us_izquierda > 10) && (us_izquierda < 100))
+		   err_izquierda = (30 - us_izquierda) * 2;
+
+		if(us_izquierda > 100)
+		   err_izquierda = -10;
+
+		pot_a = 50+err_izquierda;
+		pot_c = 50-err_izquierda;
+		
+	     }
+	     
+	   }
+	   
+	   OnFwd(OUT_C,pot_c);
+	   OnFwd(OUT_A,pot_a);
+	}
+		
+	TextOut(0,LCD_LINE4, "VEO:" + NumToStr(us_frente) + "       ");
+
+	OnFwd(OUT_C,pot_c);
+	OnFwd(OUT_A,pot_a);
+	
+
+	//Wait(200);
+     }
+
 }
 
 task mover(){
@@ -71,7 +392,18 @@ task mover(){
 
 	leftSpeed = velCrucero + movement;
 	rightSpeed = velCrucero - movement;
+	
+	boundary_position += movement;
 
+	/* Check if boundary position has reached the limit */
+	if(boundary_position < -THRESHOLD){
+	      boundary_position = THRESHOLD;
+	}else if(boundary_position > THRESHOLD){
+	      boundary_position = -THRESHOLD;
+	}
+
+	TextOut(0,LCD_LINE4, "b_pos:" + NumToStr(boundary_position) + "       ");		
+	Wait(500);
 	if(leftSpeed > 60)
 	    leftSpeed = 60;
 	if(leftSpeed < -60)
@@ -79,22 +411,32 @@ task mover(){
 
 	if(rightSpeed > 60)
 	    rightSpeed = 60;
-
 	if(rightSpeed < -60)
 	    rightSpeed = -60;
-
-	TextOut(0,LCD_LINE6, "error: " + NumToStr(error) + "       ");		
-	TextOut(0,LCD_LINE7, "leftSpeed: " + NumToStr(leftSpeed) + "       ");
-	TextOut(0,LCD_LINE8, "rightSpeed: " + NumToStr(rightSpeed) + "       ");
+	    
+	TextOut(0,LCD_LINE5, "error: " + NumToStr(error) + "       ");		
+	TextOut(0,LCD_LINE6, "leftSpeed: " + NumToStr(leftSpeed) + "       ");
+	TextOut(0,LCD_LINE7, "rightSpeed: " + NumToStr(rightSpeed) + "       ");
+	TextOut(0,LCD_LINE8, "movement: " + NumToStr(movement) + "       ");
 	// control tipo proporcional
+	
 	//TURN RIGHT
 	if(error > THRESHOLD){
-	      //OnFwd(OUT_C,rightSpeed); //derecha
-	      //OnFwd(OUT_A,leftSpeed); //izquierda
-	      	
-	}else if(boundary_position > THRESHOLD){
+#ifdef ACTIVAR_MOTORES
+	      OnFwd(OUT_C,rightSpeed); //derecha
+	      OnFwd(OUT_A,leftSpeed); //izquierda
+#endif	      	
+	}else if(error < -THRESHOLD){
 	      //TURN LEFT
-	      
+#ifdef ACTIVAR_MOTORES
+	      OnFwd(OUT_C,rightSpeed); //derecha
+	      OnFwd(OUT_A,leftSpeed); //izquierda
+#endif
+	}else{
+#ifdef ACTIVAR_MOTORES
+	      OnFwd(OUT_C,rightSpeed); //derecha
+	      OnFwd(OUT_A,leftSpeed); //izquierda
+#endif
 	}
 
 	
@@ -105,6 +447,6 @@ task mover(){
 
 task main(){
 
-     Precedes(print,mover);
+     Precedes(print,odometria,mover2);
 
 }

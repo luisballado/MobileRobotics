@@ -1,10 +1,26 @@
-#include "NBCCommon.h"
-#include "NXCDefs.h"
+/* PUERTOS SENSORES */
+#define us_port_derecha IN_4
+#define us_port_izquierda IN_1
+#define us_port_frente IN_2
 
-#define SCREEN_WIDTH  100 //DIMENSION WIDTH PANTALLA
-#define SCREEN_HEIGHT 60  //DIMENSION HEIGHT PANTALLA
+/* PUERTOS MOTORES */
+#define MOTOR_DERECHA OUT_C
+#define MOTOR_IZQUIERDA OUT_A
+#define MOTOR_FRENTE OUT_AC
 
-/////// USADOS PARA LA ESTIMACION DE ATAN ////////////////////
+/* DEBUG PARA SOLO VER SENSORES  */
+//#define ACTIVAR_MOTORES
+
+/* DISTANCIA A VER UN OBSTACULO */
+#define THRESHOLD 25
+
+/* VELOCIDAD DEFAULT  */
+#define SPEED 70
+
+/*  GANACIA PROPORCIONAL */
+#define KP 5
+
+///////USADOS PARA LA ESTIMACION DE ATAN /////////////////////
 #define A0 1.5707288
 #define A1 0.2121144
 #define A2 0.074261
@@ -14,7 +30,12 @@
 #define RMotor OUT_C  // MOTOR DERECHO
 #define LMotor OUT_A  // MOTOR IZQUIERDO
 #define SpeedSlow 0   // VELOCIDAD MINIMA
-#define SpeedFast 80  // VELOCIDAD MAXIMA
+#define SpeedFast 60  // VELOCIDAD MAXIMA
+
+///////CONSTANTES/////////////////////////////////////////////
+#define k1 0.5
+#define k2 1
+//////////////////////////////////////////////////////////////
 
 int SD;               // Valor obtenido tachometer MotorDerecho
 int SI;               // Valor obtenido tachometer MotorIzquierdo
@@ -28,14 +49,10 @@ float theta = 0.0;   //Angulo inclinacion theta
 
 float ttemp;          //theta
 
-//360 es una vuelta completa
-//convertir grados a radianes
-//humbral 5-10
-//Sen Cos - aceptan valores en grados
 void show_text(float x,float y,float ttemp){
-     TextOut(30,LCD_LINE3,"X:"  + NumToStr(x) + "    "); //x LPOS el valor se actualiza
-     TextOut(30,LCD_LINE4,"Y:"  + NumToStr(y) + "     "); //y RPOS el valor se actualiza
-     TextOut(30,LCD_LINE5,"O:" + NumToStr(ttemp) + "       ");
+     TextOut(0,LCD_LINE4,"X:"  + NumToStr(x) + "    "); //x LPOS el valor se actualiza
+     TextOut(0,LCD_LINE5,"Y:"  + NumToStr(y) + "     "); //y RPOS el valor se actualiza
+     TextOut(0,LCD_LINE6,"O:" + NumToStr(ttemp) + "       ");     
 }
 
 /**********************************************
@@ -111,20 +128,12 @@ task odometria(){
 	//y = y + ((DD * Sin(ttemp))/100);
 
 	theta = theta + DW;
-	
+
 	//Hacer validacion
 	////////////////////////////////////////////////////////////
 	//Si theta es mayor a pi -> restarle 2pi
 	//Si theta es menor a -pi -> sumarle 2pi
 	////////////////////////////////////////////////////////////
-	if(theta > pi){
-	   theta = theta - 2*pi;
-	}
-
-	if(theta < -pi){
-	   theta = theta + 2*pi;
-	}
-
 
 	Lprev = LPOS;
      	Rprev = RPOS;
@@ -135,11 +144,10 @@ task odometria(){
      } 
 }
 
-///////////////////////////////////////////////
 /// probar si es simetrica
 /// si no es simetrica no puedo alimentarlo con valores negativos
 /// hacerlo como asin(-0.7) -> temp -(-0.7) -> aprox 
-/// resultado en radianes
+//resultado en radianes
 float asin(float x){
 
       float xtemp;
@@ -168,8 +176,8 @@ float asin(float x){
       
 }
 
-int xf = 400;
-int yf = 400;
+int xf = 150;
+int yf = 150;
 
 long power(float a , float b) {  
     long pow = 1;  
@@ -290,7 +298,8 @@ task control(){
 	float _v_;
 	float _w_;
 	float longitud = 16.2;  //distancia entre ruedas
-		
+	
+	
 	_xe_ = xf-x;
 	_ye_ = yf-y;
 	_a_ = power(_xe_,2) + power(_ye_,2);
@@ -335,29 +344,12 @@ task control(){
 
 	accion_VR = (acc_accion2/acc_coef2);
 
-	//Mostrar valores
-	TextOut(0,LCD_LINE1,"z:"  + NumToStr(MA[0])); 
-	TextOut(0,LCD_LINE2,"c:"  + NumToStr(MA[1])); 
-	TextOut(0,LCD_LINE3,"l:"  + NumToStr(MA[2])); 
-	TextOut(0,LCD_LINE4,"ml:"  + NumToStr(MA[3])); 
-	TextOut(0,LCD_LINE5,"a:"  + NumToStr(a));
-	TextOut(0,LCD_LINE6,"alph:"  + NumToStr(alpha)); 
-
-	TextOut(30,LCD_LINE1,"DD:"  + NumToStr(MAlpha[0])); 
-	TextOut(30,LCD_LINE2,"D:"  + NumToStr(MAlpha[1])); 
-	TextOut(30,LCD_LINE3,"Z:"  + NumToStr(MAlpha[2])); 
-	TextOut(30,LCD_LINE4,"I:"  + NumToStr(MAlpha[3])); 
-	TextOut(60,LCD_LINE1,"DI:"  + NumToStr(MAlpha[4]));
-	TextOut(0,LCD_LINE7,"VR:"  + NumToStr(accion_VR)); 
-	TextOut(0,LCD_LINE8,"VL:"  + NumToStr(accion_VL));
-
 	float minimo;
 
 	minimo = coef;
 	TextOut(0,LCD_LINE8,"MIN:"  + NumToStr(minimo));
-
-	OnFwd(OUT_A, accion_VL*2);
-	OnFwd(OUT_C, accion_VR*2);
+	OnFwd(OUT_A, accion_VL);
+	OnFwd(OUT_C, accion_VR);
 		
 	Wait(150);
 
@@ -382,8 +374,216 @@ task make_draw(){
   }
 }
 
-//TASK PRINCIPAL SOLO CREA LOS HILOS
+int min(int a, int b){
+    return (a > b) ? b : a;
+}
+
+int us_derecha = 0;
+int us_izquierda = 0;
+int us_frente = 0;
+
+task print(){
+
+     SetSensorLowspeed(us_port_izquierda);
+     SetSensorLowspeed(us_port_frente);
+     SetSensorLowspeed(us_port_derecha);
+     
+     //true para que siempre se ejecute
+     int count = 0;
+     while(true){
+
+	if(count==0){
+		us_frente = SensorUS(us_port_frente);
+		count = count + 1;
+	}
+	
+	if(count==1){
+		us_izquierda = SensorUS(us_port_izquierda);
+		count = count + 1;
+	}
+	
+	if(count==2){
+		us_derecha = SensorUS(us_port_derecha);
+		count = 0;
+	}
+	
+	TextOut(0,LCD_LINE1, "US-IZQ: " + NumToStr(us_izquierda) + "       ");
+	TextOut(0,LCD_LINE2, "US-FRE: " + NumToStr(us_frente)    + "       ");
+	TextOut(0,LCD_LINE3, "US-DER: " + NumToStr(us_derecha)   + "       ");
+	
+	Wait(200);
+	
+     }
+}
+
+task mover2(){
+
+     float Kp = 0.5;
+
+     float r_desired = 30;
+
+     int left_speed  = 50;
+     int right_speed = 50;
+
+     int distance_left, distance_right;
+     int error;
+     int err_derecha;
+     int err_izquierda;
+     int pot_a;
+     int pot_c;
+     
+     while(true){
+
+        pot_a = 50;
+        pot_c = 50;
+        
+	//si veo algo
+	while(us_derecha <= 60 || us_izquierda <= 60){
+	   
+	   //evitar chocar
+	   if(us_frente <= 10 || (us_derecha <= 10 && us_izquierda <= 10)){
+	      pot_a = 0;
+	      pot_c = 0;
+	   }else{
+	     
+	     //saber que sentido esta el objeto
+	     error = us_izquierda-us_derecha;
+	     TextOut(0,LCD_LINE4, "err:" + NumToStr(error) + "       ");
+
+	     //DERECHA
+	     if(error>0){
+		TextOut(0,LCD_LINE5, "DER:" + NumToStr(us_derecha) + "       ");
+
+		if(us_derecha < 10)
+		  err_derecha = 0;
+		
+				
+		if((us_derecha > 10) && (us_derecha < 100))
+		   err_derecha = (30 - us_derecha) * 2;
+
+		if(us_derecha > 100)
+		   err_derecha = -10;
+		   
+		if(us_derecha > 200)
+		  err_derecha = 0;
+
+		pot_a = 50-err_derecha;
+		pot_c = 50+err_derecha;
+		
+	     }else if(error<0){
+		TextOut(0,LCD_LINE5, "IZQ:" + NumToStr(us_izquierda) + "       ");
+
+		if(us_izquierda < 10)
+		  err_izquierda = 0;
+		
+		if((us_izquierda > 10) && (us_izquierda < 100))
+		  err_izquierda = (30 - us_izquierda) * 2;
+
+		if(us_izquierda > 100)
+		   err_izquierda = -10;
+
+		if(us_izquierda > 200)
+		  err_izquierda = 0;
+
+		pot_a = 50+err_izquierda;
+		pot_c = 50-err_izquierda;
+		
+	     }
+	     
+	   }
+	   
+	   OnFwd(OUT_C,pot_c);
+	   OnFwd(OUT_A,pot_a);
+	   //**********************************************
+	   //CALCULAR AQUI SI SALIR O NO RESPECTO AL SIGNO
+	   //**********************************************
+
+	   // TOMAR LECTURAS DEL ODOMETRO
+	   
+
+	}
+		
+	TextOut(0,LCD_LINE4, "FREN:" + NumToStr(us_frente) + "       ");
+
+	OnFwd(OUT_C,pot_c);
+	OnFwd(OUT_A,pot_a);
+	
+
+	//Wait(200);
+     }
+
+}
+
+task mover(){
+
+     int error;
+     int boundary_position = 0;
+     int movement;
+     int velCrucero = 40;
+     int leftSpeed;
+     int rightSpeed;
+     Wait(1000);
+     
+     while(true){
+
+	// calcular error
+	error = us_izquierda - us_derecha;
+
+	movement = KP * error;
+
+	leftSpeed = velCrucero + movement;
+	rightSpeed = velCrucero - movement;
+	
+	boundary_position += movement;
+
+	/* Check if boundary position has reached the limit */
+	if(boundary_position < -THRESHOLD){
+	      boundary_position = THRESHOLD;
+	}else if(boundary_position > THRESHOLD){
+	      boundary_position = -THRESHOLD;
+	}
+
+	TextOut(0,LCD_LINE4, "b_pos:" + NumToStr(boundary_position) + "       ");		
+	Wait(500);
+	if(leftSpeed > 60)
+	    leftSpeed = 60;
+	if(leftSpeed < -60)
+	    leftSpeed = -60;
+
+	if(rightSpeed > 60)
+	    rightSpeed = 60;
+	if(rightSpeed < -60)
+	    rightSpeed = -60;
+	    
+	TextOut(0,LCD_LINE5, "error: " + NumToStr(error) + "       ");		
+	TextOut(0,LCD_LINE6, "leftSpeed: " + NumToStr(leftSpeed) + "       ");
+	TextOut(0,LCD_LINE7, "rightSpeed: " + NumToStr(rightSpeed) + "       ");
+	TextOut(0,LCD_LINE8, "movement: " + NumToStr(movement) + "       ");
+	// control tipo proporcional
+	
+	//TURN RIGHT
+	if(error > THRESHOLD){
+#ifdef ACTIVAR_MOTORES
+	      OnFwd(OUT_C,rightSpeed); //derecha
+	      OnFwd(OUT_A,leftSpeed); //izquierda
+#endif	      	
+	}else if(error < -THRESHOLD){
+	      //TURN LEFT
+#ifdef ACTIVAR_MOTORES
+	      OnFwd(OUT_C,rightSpeed); //derecha
+	      OnFwd(OUT_A,leftSpeed); //izquierda
+#endif
+	}else{
+#ifdef ACTIVAR_MOTORES
+	      OnFwd(OUT_C,rightSpeed); //derecha
+	      OnFwd(OUT_A,leftSpeed); //izquierda
+#endif
+	}
+     }
+}
+
 task main(){
-     ClearScreen(); //LIMPIAR PANTALLA
-     Precedes(odometria,control,make_draw);
+
+     Precedes(print,odometria,mover2);
+
 }

@@ -417,12 +417,12 @@ task boundary_following(){
         pot_c = 50;
         
 	//si veo algo
-	while(us_izquierda <= 60){
+	//while(us_izquierda <= 60){
         
 	   //evitar chocar
 	   if(us_frente <= 10 || us_izquierda <= 10){
-	      pot_a = 0;
-	      pot_c = 0;
+	      //pot_a = 0;
+	      //pot_c = 0;
 	   }else{
 	     
 	     if(us_izquierda < 10)
@@ -434,16 +434,15 @@ task boundary_following(){
 	     if(us_izquierda > 100)
 		 err_izquierda = -10;
 
-	     if(us_izquierda > 200)
-		 err_izquierda = 0;
+	     
 
 	     pot_a = 50+err_izquierda;
 	     pot_c = 50-err_izquierda;
 		     
 	   }
 	   
-	   OnFwd(MOTOR_DERECHA,pot_c);
-	   OnFwd(MOTOR_IZQUIERDA,pot_a);
+	   //OnFwd(MOTOR_DERECHA,pot_c);
+	   //OnFwd(MOTOR_IZQUIERDA,pot_a);
 
 	   //**********************************************
 	   //CALCULAR AQUI SI SALIR O NO RESPECTO AL SIGNO
@@ -452,7 +451,7 @@ task boundary_following(){
 	   // TOMAR LECTURAS DEL ODOMETRO
 	   
 
-	}
+	//}
 
 	OnFwd(MOTOR_DERECHA,pot_c);
 	OnFwd(MOTOR_IZQUIERDA,pot_a);

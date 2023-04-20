@@ -374,9 +374,11 @@ task make_draw(){
   }
 }
 
+/**
 int min(int a, int b){
     return (a > b) ? b : a;
 }
+**/
 
 int us_derecha = 0;
 int us_izquierda = 0;
@@ -386,7 +388,7 @@ task print(){
 
      SetSensorLowspeed(us_port_izquierda);
      SetSensorLowspeed(us_port_frente);
-     SetSensorLowspeed(us_port_derecha);
+     //SetSensorLowspeed(us_port_derecha);
      
      //true para que siempre se ejecute
      int count = 0;
@@ -442,8 +444,8 @@ task mover2(){
 	   
 	   //evitar chocar
 	   if(us_frente <= 10 || (us_derecha <= 10 && us_izquierda <= 10)){
-	      pot_a = 0;
-	      pot_c = 0;
+	      //pot_a = 0;
+	      //pot_c = 0;
 	   }else{
 	     
 	     //saber que sentido esta el objeto
@@ -456,7 +458,7 @@ task mover2(){
 
 		if(us_derecha < 10)
 		  err_derecha = 0;
-		
+		  		
 				
 		if((us_derecha > 10) && (us_derecha < 100))
 		   err_derecha = (30 - us_derecha) * 2;

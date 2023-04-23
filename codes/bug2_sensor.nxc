@@ -421,8 +421,8 @@ task boundary_following(){
         
 	   //evitar chocar
 	   if(us_frente <= 10 || us_izquierda <= 10){
-	      //pot_a = 0;
-	      //pot_c = 0;
+	      pot_a = 0;
+	      pot_c = 0;
 	   }else{
 	     
 	     if(us_izquierda < 10)
@@ -433,9 +433,7 @@ task boundary_following(){
 
 	     if(us_izquierda > 100)
 		 err_izquierda = -10;
-
 	     
-
 	     pot_a = 50+err_izquierda;
 	     pot_c = 50-err_izquierda;
 		     
@@ -458,7 +456,6 @@ task boundary_following(){
 	
 	//Wait(200);
      }
-
 }
 
 task main(){

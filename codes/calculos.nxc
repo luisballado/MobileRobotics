@@ -7,8 +7,8 @@ int xf = 120;
 int yf = 100;
 
 //LECTURA ODOMETRO
-int ODO_X = 10;
-int ODO_Y = 80;
+int ODO_X = 35;
+int ODO_Y = 20;
 
 //CUANDO IDENTIFIQUE UN CAMBIO DE SIGNO CAMBIAR CONTROL
 

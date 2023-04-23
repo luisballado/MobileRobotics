@@ -1,8 +1,6 @@
-#include "NBCCommon.h"
-#include "NXCDefs.h"
-
-#define SCREEN_WIDTH  100 //DIMENSION WIDTH PANTALLA
-#define SCREEN_HEIGHT 60  //DIMENSION HEIGHT PANTALLA
+// PUERTOS SENSORES
+#define us_port_izquierda IN_1
+#define us_port_frente IN_2
 
 /////// USADOS PARA LA ESTIMACION DE ATAN ////////////////////
 #define A0 1.5707288
@@ -11,10 +9,8 @@
 #define A3 0.0187293
 //////////////////////////////////////////////////////////////
 
-#define RMotor OUT_C  // MOTOR DERECHO
-#define LMotor OUT_A  // MOTOR IZQUIERDO
-#define SpeedSlow 0   // VELOCIDAD MINIMA
-#define SpeedFast 80  // VELOCIDAD MAXIMA
+int us_izquierda = 0;
+int us_frente = 0;
 
 int SD;               // Valor obtenido tachometer MotorDerecho
 int SI;               // Valor obtenido tachometer MotorIzquierdo
@@ -27,16 +23,6 @@ float y = 0.0;        //distancia recorrido eje y
 float theta = 0.0;   //Angulo inclinacion theta
 
 float ttemp;          //theta
-
-//360 es una vuelta completa
-//convertir grados a radianes
-//humbral 5-10
-//Sen Cos - aceptan valores en grados
-void show_text(float x,float y,float ttemp){
-     TextOut(30,LCD_LINE3,"X:"  + NumToStr(x) + "    "); //x LPOS el valor se actualiza
-     TextOut(30,LCD_LINE4,"Y:"  + NumToStr(y) + "     "); //y RPOS el valor se actualiza
-     TextOut(30,LCD_LINE5,"O:" + NumToStr(ttemp) + "       ");
-}
 
 /**********************************************
  * Funcion para pasar de grados a radiales
@@ -70,8 +56,8 @@ task odometria(){
 
      while(true){
 
-	LPOS = MotorRotationCount(LMotor);
-	RPOS = MotorRotationCount(RMotor);
+	LPOS = MotorRotationCount(OUT_A);
+	RPOS = MotorRotationCount(OUT_C);
 	
 	float xx, yy;
 	
@@ -129,8 +115,7 @@ task odometria(){
 	Lprev = LPOS;
      	Rprev = RPOS;
 	Wait(50);
-
-	//show_text(x,y,ttemp);
+	
 	
      } 
 }
@@ -168,8 +153,8 @@ float asin(float x){
       
 }
 
-int xf = 400;
-int yf = 400;
+int xf = 300;
+int yf = 300;
 
 long power(float a , float b) {  
     long pow = 1;  
@@ -196,6 +181,7 @@ float VL[][] = {
       	     {0,-10,-10,-10},
       	     {0,-10,-10,-10}
       	  };
+
 
 float MA[4];
 void getDistance(float a){
@@ -274,116 +260,221 @@ float min(float a, float b){
       return (a > b) ? b : a;
 }
 
+task sensores(){
+
+     SetSensorLowspeed(us_port_izquierda);
+     SetSensorLowspeed(us_port_frente);
+
+     int count = 0;
+     while(true){
+
+	if(count==0){
+	    us_frente = SensorUS(us_port_frente);
+	    count = count + 1;
+	}
+
+	if(count>0){
+	   us_izquierda = SensorUS(us_port_izquierda);
+	   count = 0;
+	}
+			
+	Wait(200);
+     }
+}
+
+
 //limitar a theta para -pi ~ pi
 //si se pasa pi restarle 2pi
 //si se pasa -pi sumarle 2pi
 /////////////////////////////////////////////////////////////////
 task control(){
-     while(true){
-	
-	float _a_;
-	float _xe_;
-	float _ye_;
-	float a;
-	float alpha;
-	float _alpha_;
-	float _v_;
-	float _w_;
-	float longitud = 16.2;  //distancia entre ruedas
-		
-	_xe_ = xf-x;
-	_ye_ = yf-y;
-	_a_ = power(_xe_,2) + power(_ye_,2);
-
-	a = sqrt(_a_);
-
-	_alpha_ = (_ye_ / a);
-	alpha = asin(_alpha_) - theta;
-	
-	//cotrol_difuso
-	getDistance(a); //se obtiene MA[]
-	getAlpha(alpha); //se obtine MAlpha[]
-	
-	float acc_coef = 0.0;
-	float acc_accion = 0.0;
-	float accion_VL = 0.0;
-	float coef = 0.0;
-	
-	for(int i=0;i<4;i++){
-	   for(int j=0;j<5;j++){
-	      if (MA[i]<MAlpha[j]) coef=MA[i]; else coef=MAlpha[j];
-	      //coef = min(MA[i],MAlpha[j]);
-	      acc_coef = acc_coef + coef;
-	      acc_accion = acc_accion + coef * VL[j][i];
-	   }
-	}
-	
-	accion_VL = (acc_accion/acc_coef);
-	
-	float acc_coef2 = 0;
-	float acc_accion2 = 0;
-	float coef2 = 0;
-	float accion_VR = 0;
-	
-	for(int i=0;i<4;i++){
-	   for(int j=0;j<5;j++){
-	      coef2 = min(MA[i],MAlpha[j]);
-	      acc_coef2 = acc_coef2 + coef2;
-	      acc_accion2 = acc_accion2 + coef2 * VR[j][i];
-	   }
-	}
-
-	accion_VR = (acc_accion2/acc_coef2);
-
-	//Mostrar valores
-	TextOut(0,LCD_LINE1,"z:"  + NumToStr(MA[0])); 
-	TextOut(0,LCD_LINE2,"c:"  + NumToStr(MA[1])); 
-	TextOut(0,LCD_LINE3,"l:"  + NumToStr(MA[2])); 
-	TextOut(0,LCD_LINE4,"ml:"  + NumToStr(MA[3])); 
-	TextOut(0,LCD_LINE5,"a:"  + NumToStr(a));
-	TextOut(0,LCD_LINE6,"alph:"  + NumToStr(alpha)); 
-
-	TextOut(30,LCD_LINE1,"DD:"  + NumToStr(MAlpha[0])); 
-	TextOut(30,LCD_LINE2,"D:"  + NumToStr(MAlpha[1])); 
-	TextOut(30,LCD_LINE3,"Z:"  + NumToStr(MAlpha[2])); 
-	TextOut(30,LCD_LINE4,"I:"  + NumToStr(MAlpha[3])); 
-	TextOut(60,LCD_LINE1,"DI:"  + NumToStr(MAlpha[4]));
-	TextOut(0,LCD_LINE7,"VR:"  + NumToStr(accion_VR)); 
-	TextOut(0,LCD_LINE8,"VL:"  + NumToStr(accion_VL));
-
-	float minimo;
-
-	minimo = coef;
-	TextOut(0,LCD_LINE8,"MIN:"  + NumToStr(minimo));
-
-	OnFwd(OUT_A, accion_VL*2);
-	OnFwd(OUT_C, accion_VR*2);
-		
-	Wait(150);
-
-     }
-}
-
-// TASK PARA DIBUJAR EN PANTALLA
-task make_draw(){
-
-  int xx;
-  int yy;
-
-  //10cm es un pixel
-
-  while(true){
-  	
-     xx = (x/2) + 50; //50 para iniciar en medio de la pantalla
-     yy = (y/2) + 5;  //30 para iniciar en medio de la pantalla
-          
-     CircleOut(xx,yy,2);
+     int x0;
+     int y0;
+     int pow_a;
+     int pow_c;
      
-  }
+     int err_izquierda;        
+     float _xe_;
+     float _ye_;
+     
+     float _a_;
+     float a;
+     float alpha;
+     float _alpha_;
+     
+     
+     float longitud = 16.2;  //distancia entre ruedas
+     float acc_coef;
+     float acc_accion;
+     float accion_VL;
+     float coef;
+
+     float acc_coef2;
+     float acc_accion2;
+     float coef2;
+     float accion_VR;
+     
+     int vx,vy;
+     int ODO_X0;
+     int ODO_Y0;
+     int calculos_signo = 0;
+     float prev_;
+     
+     follow_b:
+        
+     	
+     	ClearScreen(); //LIMPIAR PANTALLA
+	prev_ = calculos_signo;
+	//girar aqui
+	//OnFwd(OUT_A, -75);
+	while(true){
+		
+		TextOut(0,LCD_LINE1, "Estoy rodeando" + NumToStr(calculos_signo));
+				
+		if(us_izquierda < 10){
+		    err_izquierda = 0;
+		}else if(us_izquierda < 100){
+		    err_izquierda = (30 - us_izquierda)*2;
+		}
+		
+		if(us_izquierda > 100){
+		   err_izquierda = -10;
+		}
+		
+		pow_a = 50 + err_izquierda;
+		pow_c = 50 - err_izquierda;
+
+		OnFwd(OUT_A,pow_a);
+		OnFwd(OUT_C,pow_c);
+
+		
+		int n[2];
+
+     		//Calcular Vector XoXf
+     		vx = (xf-x0);
+     		vy = (yf-y0);
+
+     		//rotar
+     		n[0] = -vy;
+     		n[1] =  vx;
+
+     		//ODOM - X0
+     		float ODO_X0 = x - x0;
+     		float ODO_Y0 = y - y0;
+
+ 		//MULTIPLICAR
+     		calculos_signo = (ODO_X0*n[0]) + (ODO_Y0*n[1]);
+
+				
+		if((calculos_signo >= 0 && prev_ < 0) || (calculos_signo < 0 && prev_ >= 0)){
+		     goto fuzzy_control;
+		}
+		prev_ = calculos_signo;
+
+        }
+
+     fuzzy_control:
+
+	ClearScreen(); //LIMPIAR PANTALLA
+	
+	while(true){
+			
+		_xe_ = xf-x;
+		_ye_ = yf-y;
+		_a_ = power(_xe_,2) + power(_ye_,2);
+
+		a = sqrt(_a_);
+
+		_alpha_ = (_ye_ / a);
+		alpha = asin(_alpha_) - theta;
+	
+		//cotrol_difuso
+		getDistance(a); //se obtiene MA[]
+		getAlpha(alpha); //se obtine MAlpha[]
+	
+		
+	
+		for(int i=0;i<4;i++){
+	   	   for(int j=0;j<5;j++){
+	      	      if (MA[i]<MAlpha[j]) coef=MA[i]; else coef=MAlpha[j];
+	      	          //coef = min(MA[i],MAlpha[j]);
+	      		  acc_coef = acc_coef + coef;
+	      		  acc_accion = acc_accion + coef * VL[j][i];
+	           }
+	        }
+	
+		accion_VL = (acc_accion/acc_coef);
+	
+		acc_coef2 = 0;
+		acc_accion2 = 0;
+		coef2 = 0;
+		accion_VR = 0;
+	
+		for(int i=0;i<4;i++){
+	   	   for(int j=0;j<5;j++){
+	      	      coef2 = min(MA[i],MAlpha[j]);
+	      	      acc_coef2 = acc_coef2 + coef2;
+	      	      acc_accion2 = acc_accion2 + coef2 * VR[j][i];
+	   	   }
+		}
+
+		accion_VR = (acc_accion2/acc_coef2);
+		float minimo;
+
+		minimo = coef;
+
+		
+		//TextOut(0,LCD_LINE2,"distancia:"  + NumToStr(a) + "   ");
+
+		
+	
+		//SI a es menor a 2
+		//terminar el programa
+		if(a>4){
+		    //sensar que sea global
+	   	    if(us_frente < 30){
+		    	
+		        Off(OUT_AC);
+			
+			
+			x0 = x;
+			y0 = y;
+			
+			goto follow_b;
+	     	     
+	   	    }
+
+		    //TextOut(0,LCD_LINE1,"NAVEGANDO");
+	   	    pow_a = accion_VL*2;
+	   	    pow_c = accion_VR*2;
+	   	    
+
+	   	    
+
+		}else{
+
+		   pow_a = 0;
+	   	   pow_c = 0;
+	   	   ClearScreen(); //LIMPIAR PANTALLA
+	   	   //TextOut(20,LCD_LINE4,"TERMINE");
+	   	   PlayTone(440,1000);
+	   	   Wait(2000); 
+		}
+
+		
+		OnFwd(OUT_A, pow_a);
+		OnFwd(OUT_C, pow_c);
+		
+		Wait(150);
+
+	}
+
+     goto fuzzy_control;
+
 }
 
 //TASK PRINCIPAL SOLO CREA LOS HILOS
 task main(){
      ClearScreen(); //LIMPIAR PANTALLA
-     Precedes(odometria,control,make_draw);
+     Precedes(odometria,control,sensores);
 }

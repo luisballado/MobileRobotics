@@ -118,7 +118,7 @@
 \date{\today} % Leave empty to omit a date
 \renewcommand{\maketitlehookd}{%
   \begin{abstract}
-    \noindent El presente trabajo describe el uso de odometría para un robot móvil de tipo diferencial y su implementación utilizando un robot LEGO NXT bajo el lenguaje NXC (Not eXactly C). La odometría es una técnica utilizada en robótica móvil diferencial para estimar la posición y orientación de un robot mientras se mueve en un entorno. En robots móviles diferenciales, la odometría se basa en la medición de las velocidades de las ruedas y el diámetro de las mismas. La integración de las velocidades permite obtener una estimación de la trayectoria seguida por el robot, pero los errores acumulativos pueden afectar la precisión de la estimación.
+    \noindent El presente trabajo describe la implementación de un control de lógica borrosa (lógica difusa, fuzzy logic) para el control de un robot móvil no holonómico LEGO NXT bajo el lenguaje NXC (Not eXactly C). El control difuso es una técnica de control que se utiliza para sistemas que no tienen una modelización precisa o que son difíciles de modelar matemáticamente. Esta técnica permite trabajar con conceptos imprecisos y valores que no son necesariamente verdaderos o falsos, sino que tienen cierto grado de verdad o falsedad. Éste método depende mucho de un grado de experiencia de lo que se quiere controlar.
   \end{abstract}
 }
 
@@ -134,32 +134,34 @@
 %----------------------------------------------------------------------------------------
 \section{Introducción}
 
-\lettrine[nindent=0em,lines=3]{L}a teoría de sistemas de control se ocupa del análisis y el diseño de componentes interactuantes de un sistema en una configuración que brinde un comportamiento deseado. La configuración esencial usada en teoría de sistemas de control se basa en el concepto fundamental de realimentación, que consiste en el proceso de medir las variables de interés en el sistema y usar esa información para controlar su comportamiento. La teoría y la práctica del control tienen un amplio rango de aplicaciones en los campos de la ingeniería aeronáutica, química, mecánica, ambiental, civil y eléctrica, así como en muchas otras disciplinas no ingenieriles. Las ventajas del control eficiente en la industria son inmensas, e incluyen mejoras en la calidad de los productos, reducción en el consumo de energía, minimización de los material de desecho, mayores niveles de seguridad y reducción de la contaminación.\\
+\lettrine[nindent=0em,lines=3]{E}l control difuso utiliza reglas lingüísticas para describir el comportamiento del sistema y para tomar decisiones de control. Estas reglas se basan en el conocimiento experto y la experiencia de los operadores, y se expresan en términos lingüísticos, en lugar de expresiones matemáticas precisas.\\
 
-El punto de partida en el análisis de un sistema de control es su representación por un modelo matemático, generalmente como un operador entre entradas y salidas del sistema, o como un conjunto de ecuaciones diferencia y/o diferenciales. La mayoría de los modelos matemáticos usados tradicionalmente por teóricos y prácticos del control son lineales. De hecho, los modelos lineales son mucho más manejables que los no lineales, y pueden representar en forma precisa el comportamiento de sistemas reales en muchos casos útiles.
+El objetivo del control difuso es producir una salida que sea óptima en relación con las entradas del sistema, incluso si las condiciones de entrada cambian o si el sistema es complejo o no lineal. Esta técnica ha sido utilizada en una amplia variedad de aplicaciones, desde el control de robots y sistemas de control de procesos, hasta la gestión de tráfico y la toma de decisiones en sistemas de inteligencia artificial.\\
 
-\subsection{Sistema de Control} %https://www.oposinet.com/temario-de-tecnologia/temario-4-tecnologia/tema-65b-sistemas-de-control-elementos-componentes-variables/
+El control difuso se basa en el uso de funciones de pertenencia para representar el grado de pertenencia de un valor a un conjunto difuso. Estas funciones pueden ser triangulares, trapezoidales, gaussianas, entre otras, y se utilizan para describir el comportamiento del sistema en términos lingüísticos.\\
 
-Un sistema de control es una combinación de componentes que actúan conjuntamente por medio de una serie de variables para proporcionar una respuesta acerca del propio comportamiento del sistema.\\
+El proceso de control difuso consta de cuatro etapas principales: la fuzzificación de las entradas, la evaluación de las reglas, la agregación de las salidas y la defuzzificación de la salida. En la etapa de fuzzificación, las entradas del sistema se transforman en valores difusos utilizando las funciones de pertenencia. En la evaluación de las reglas, se utilizan las reglas lingüísticas para determinar la contribución de cada regla al resultado final. En la agregación de las salidas, se combinan las salidas de las reglas para obtener una salida global. Finalmente, en la etapa de defuzzificación, se transforma la salida difusa en un valor numérico para controlar el sistema.\\
 
-El control del sistema consiste en la actuación a partir de unas variables o señales de entrada. Para la representación gráfica de un sistema se utilizan bloques en el que las variables que actúan sobre el sistema (entradas) se indican con flechas que entran hacia el bloque, mientras que las variables producidas por el sistema (salidas) se indican mediante flechas que salen del bloque. Los tipos de sistema de control pueden ser, según se realice la acción de control.\\
+Una de las ventajas del control difuso es su capacidad para manejar sistemas no lineales, imprecisos o inciertos, lo que lo hace adecuado para una amplia gama de aplicaciones. Sin embargo, también presenta algunas limitaciones, como la necesidad de un conocimiento experto para establecer las reglas lingüísticas y la complejidad en la selección y diseño de las funciones de pertenencia.\\
 
+En general, el control difuso ha demostrado ser una técnica efectiva y flexible para el control de sistemas complejos, y continúa siendo objeto de investigación y desarrollo en la actualidad.\\
+
+Tipos de control difuso
 \begin{enumerate}
-\item \textbf{Sistema de control en lazo abierto} en estos sistemas, la única variable que se tiene en cuenta en la acción de control, es la señal de entrada. La señal de salida, no actúa de ninguna manera sobre el sistema. En consecuencia, no existe ninguna relación entre la respuesta del sistema y las variables de entrada.
-\item \textbf{Sistema de control en lazo cerrado} en estos sistemas, tanto la entrada de referencia como muestras de la señal de salida, actúan sobre la acción de control, es decir, se realiza una realimentación de la señal en la salida a la entrada del sistema. Esta retroalimentación tiene como finalidad, ir controlando la salida y minimizar el error que puede producirse frente a perturbaciones que afecten al sistema, obteniendo con más seguridad la señal deseada a la salida.
+\item \textbf{Sugeno}
+\item \textbf{Mandani}
 \end{enumerate}
 
-\subsection{Ley de Control}
+\subsection{Sugeno} 
 
-La teoría de estabilidad juega un rol central en teoría de sistemas e ingeniería. En sistemas dinámicos existen distintos tipos de problemas de estabilidad. La estabilidad de puntos de equilibrio generalmente se caracteriza en el sentido de Lyapunov. \\
+\subsection{Mandani}
 
-Un punto de equilibrio se dice estable si todas las soluciones que se inicien en las cercanías del punto de equilibrio permanecen en las cercanías del punto de equilibrio; de otro modo el punto de equilibrio es inestable. Un punto de equilibrio se dice asintóticamente estable si todas las soluciones que se inicien en las cercanías del punto de equilibrio no sólo permanecen en las cercanías del punto de equilibrio, sino que además tiendan hacia el equilibrio a medida que el tiempo se aproxima a infinito.
 
 %------------------------------------------------
 
-\section{Ley de Control aplicado en el Robot LEGO}
+\section{Control Difuso aplicado en el Robot LEGO}
 
-Se la planta el ROBOT a controlar, donde $xf, yf, \Theta_{f}$ son la entrada de control y $x, y. \Theta$ las posiciones finales a las que queremos llegar.
+Sea la planta el ROBOT a controlar, donde $xf, yf, \Theta_{f}$ son la entrada de control y $x, y. \Theta$ las posiciones finales a las que queremos llegar. Se toma 
 
 \begin{figure}[h]
   \centering
@@ -206,10 +208,18 @@ consideramos nuestro vector de error:
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
 
-\begin{thebibliography}{0} % Bibliography - this is intentionally simple in this template
+\begin{thebibliography}{2} % Bibliography - this is intentionally simple in this template
 
+\bibitem{Boney96} Boney, L., Tewfik, A.H., and Hamdy, K.N., ``Digital
+  Watermarks for Audio Signals," \emph{Proceedings of the Third IEEE
+    International Conference on Multimedia}, pp. 473-480, June 1996.
+\bibitem{MG} Goossens, M., Mittelbach, F., Samarin, \emph{A LaTeX
+  Companion}, Addison-Wesley, Reading, MA, 1994.
+\bibitem{HK} Kopka, H., Daly P.W., \emph{A Guide to LaTeX},
+  Addison-Wesley, Reading, MA, 1999.
+\bibitem{Pan} Pan, D., ``A Tutorial on MPEG/Audio Compression," \emph{IEEE
+  Multimedia}, Vol.2, pp.60-74, Summer 1998.
   
-    
 \end{thebibliography}
 
 %----------------------------------------------------------------------------------------

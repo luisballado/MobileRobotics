@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.11.4)  24 APR 2023 11:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.11.4)  30 APR 2023 20:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**BALLADO_LUIS_CONTROL_NOLINEAL
+**BALLADO_LUIS_CONTROL_NOLINEAL.tex
 (./BALLADO_LUIS_CONTROL_NOLINEAL.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14>
@@ -797,6 +797,9 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty
+Package: cancel 2013/04/12 v2.2 Cancel math terms
+)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/01/20 v2.17e AMS math features
 \@mathmargin=\skip114
@@ -872,30 +875,30 @@ LaTeX Info: Redefining \% on input line 29.
 )
 \openout1 = `BALLADO_LUIS_CONTROL_NOLINEAL.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Info: Redefining \microtypecontext on input line 133.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Info: Redefining \microtypecontext on input line 134.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 133.
+LaTeX Info: Redefining \showhyphens on input line 134.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -903,8 +906,8 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-LaTeX Info: Redefining \. on input line 133.
-LaTeX Info: Redefining \% on input line 133.
+LaTeX Info: Redefining \. on input line 134.
+LaTeX Info: Redefining \% on input line 134.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -947,7 +950,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count454
 \AtBeginShipoutBox=\box108
-Package hyperref Info: Link coloring OFF on input line 133.
+Package hyperref Info: Link coloring OFF on input line 134.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -959,9 +962,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count455
 )
-LaTeX Info: Redefining \ref on input line 133.
-LaTeX Info: Redefining \pageref on input line 133.
-LaTeX Info: Redefining \nameref on input line 133.
+LaTeX Info: Redefining \ref on input line 134.
+LaTeX Info: Redefining \pageref on input line 134.
+LaTeX Info: Redefining \nameref on input line 134.
 
 (./BALLADO_LUIS_CONTROL_NOLINEAL.out) (./BALLADO_LUIS_CONTROL_NOLINEAL.out)
 \@outlinefile=\write4
@@ -1005,34 +1008,34 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'BALLADO_LUIS_CONTROL_NOLINEAL.bbl' found.
 
 (./BALLADO_LUIS_CONTROL_NOLINEAL.bbl)
-Package biblatex Info: Reference section=0 on input line 133.
-Package biblatex Info: Reference segment=0 on input line 133.
+Package biblatex Info: Reference section=0 on input line 134.
+Package biblatex Info: Reference segment=0 on input line 134.
 LaTeX Font Info:    Trying to load font information for OT1+pplx on input line 
-137.
+138.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-137.
+138.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-137.
+138.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-137.
+138.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-137.
+138.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -1050,320 +1053,208 @@ Package microtype Info: Character `029' is missing
 Package lettrine.sty Info: Targeted height = 30.07506pt
 (lettrine.sty)             (no accent, loversize=0),
 (lettrine.sty)             Lettrine height = 30.07518pt (L);
-(lettrine.sty)             reported on input line 143.
+(lettrine.sty)             reported on input line 144.
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 
  []
 
-<graficos/bloque.png, id=37, 418.56375pt x 107.40125pt>
+<graficos/bloque.png, id=49, 418.56375pt x 107.40125pt>
 File: graficos/bloque.png Graphic file (type png)
 <use graficos/bloque.png>
-Package pdftex.def Info: graficos/bloque.png  used on input line 178.
+Package pdftex.def Info: graficos/bloque.png  used on input line 179.
 (pdftex.def)             Requested size: 292.99261pt x 75.18034pt.
 [2]
-<graficos/grafico.png, id=45, 314.17375pt x 263.98625pt>
+<graficos/grafico.png, id=57, 314.17375pt x 263.98625pt>
 File: graficos/grafico.png Graphic file (type png)
 <use graficos/grafico.png>
-Package pdftex.def Info: graficos/grafico.png  used on input line 188.
+Package pdftex.def Info: graficos/grafico.png  used on input line 189.
 (pdftex.def)             Requested size: 219.92012pt x 184.78911pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
 
 [3 <./graficos/bloque.png> <./graficos/grafico.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
 
-LaTeX Warning: Citation 'einstein:1' on page 4 undefined on input line 211.
-
-
-! LaTeX Error: Can be used only in preamble.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.222   \bibliography
-                     {BALLADO_LUIS_CONTROL_NOLINEAL}
-? 
-! Interruption.
-\GenericError  ...                                
-                                                  \endgroup 
-l.222   \bibliography
-                     {BALLADO_LUIS_CONTROL_NOLINEAL}
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.222   \bibliography{BALLADO_
-                              LUIS_CONTROL_NOLINEAL}
-? 
-! Extra }, or forgotten $.
-l.222 ...bliography{BALLADO_LUIS_CONTROL_NOLINEAL}
-                                                  
-? 
-
-LaTeX Warning: Empty `thebibliography' environment on input line 224.
+ []
 
 
-! LaTeX Error: Command \end{thebibliography} invalid in math mode.
+Underfull \hbox (badness 10000) in paragraph at lines 227--228
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.224 \end{thebibliography}
-                           
-? 
-
-LaTeX Warning: Empty `thebibliography' environment on input line 224.
+ []
 
 
-LaTeX Warning: Empty `thebibliography' environment on input line 224.
+Overfull \hbox (169.72363pt too wide) detected at line 239
+\OT1/zplm/m/n/10 = [] \OMS/zplm/m/n/10 ^^C []\OML/zplm/m/it/10 vcos\OT1/zplm/m/
+n/10 (\OML/zplm/m/it/10 ^^R\OT1/zplm/m/n/10 ) \OMS/zplm/m/n/10 ^^@ [] ^^C []\OM
+L/zplm/m/it/10 vsin\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^R\OT1/zplm/m/n/10 ) \O
+MS/zplm/m/n/10 ^^@ \OML/zplm/m/it/10 w \OT1/zplm/m/n/10 = []\OML/zplm/m/it/10 s
+in\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^R[]\OT1/zplm/m/n/10 )\OML/zplm/m/it/10 
+cos\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^R\OT1/zplm/m/n/10 )\OML/zplm/m/it/10 v
+ \OMS/zplm/m/n/10 ^^@ []\OML/zplm/m/it/10 cos\OT1/zplm/m/n/10 (\OML/zplm/m/it/1
+0 ^^R[]\OT1/zplm/m/n/10 )\OML/zplm/m/it/10 sin\OT1/zplm/m/n/10 (\OML/zplm/m/it/
+10 ^^R\OT1/zplm/m/n/10 )\OML/zplm/m/it/10 v \OMS/zplm/m/n/10 ^^@ \OML/zplm/m/it
+/10 w \OT1/zplm/m/n/10 = [] [] \OMS/zplm/m/n/10 ^^@ \OML/zplm/m/it/10 w
+ []
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.224 \end{thebibliography}
-                           
-? 
-! Missing } inserted.
-<inserted text> 
-                }
-l.224 \end{thebibliography}
-                           
-? 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 228.
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
+
+ []
+
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 228.
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 291--292
+
+ []
+
+<graficos/grafico_control_nolineal.png, id=81, 242.9075pt x 225.84375pt>
+File: graficos/grafico_control_nolineal.png Graphic file (type png)
+<use graficos/grafico_control_nolineal.png>
+Package pdftex.def Info: graficos/grafico_control_nolineal.png  used on input l
+ine 307.
+(pdftex.def)             Requested size: 170.03407pt x 158.08954pt.
+[6 <./graficos/grafico_control_nolineal.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
+27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 10000) in paragraph at lines 327--328
+[]\T1/pplx/m/n/10 (+20) Intalación NXC en LI-NUX, []$\T1/cmtt/m/n/10 http : / /
+ ubuntudaily . blogspot . com / 2011 / 03 /
+ []
+
+
+Underfull \hbox (badness 2245) in paragraph at lines 329--330
+[]\T1/pplx/m/n/10 (+20) Documento pa-ra evi-tar su-do en NXC, []$\T1/cmtt/m/n/1
+0 https : / / bricxcc . sourceforge . net / nbc / doc /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
+\T1/cmtt/m/n/10 source = web & cd = &cad = rja & uact = 8 & ved = 2ahUKEwiu0 _ 
+So28 _ 9AhViDkQIHRlXDtcQFnoECBQQAQ &
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
+\T1/cmtt/m/n/10 url = https % 3A % 2F % 2Frevistas . udistrital . edu . co % 2F
+index . php % 2FTecnura % 2Farticle %
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
  (./BALLADO_LUIS_CONTROL_NOLINEAL.aux
 LaTeX Info: Redefining \. on input line 29.
 LaTeX Info: Redefining \% on input line 29.
+)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
+Package rerunfilecheck Info: File `BALLADO_LUIS_CONTROL_NOLINEAL.out' has not c
+hanged.
+(rerunfilecheck)             Checksum: CEDE9F1199082F2FB61A68E6D0FAB42B;539.
+Package logreq Info: Writing requests to 'BALLADO_LUIS_CONTROL_NOLINEAL.run.xml
+'.
+\openout1 = `BALLADO_LUIS_CONTROL_NOLINEAL.run.xml'.
 
-! Interruption.
-<to be read again> 
-                   \par 
-l.80426285 
-           
-? 
-! Interruption.
-l.84916830 
-           
-? 
-! Interruption.
-l.93549117 
-           
-? 
-! Interruption.
-l.153947919 
-            
-? 
-! Interruption.
-l.159147802 
-            
-? 
-! Interruption.
-l.406622451 
-            
-? 
-! Interruption.
-l.412728433 
-            
-? 
-! Interruption.
-l.418956356 
-            
-? 
-! Interruption.
-l.430881317 
-            
-? 
-! Interruption.
-l.441297500 
-            
-? 
-! Interruption.
-l.442656645 
-            
-? 
-! Interruption.
-l.444194435 
-            
-? 
-! Interruption.
-l.445783856 
-            
-? 
-! Interruption.
-l.447372565 
-            
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.449234538 
-            
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.450957706 
-            
-? 
-! Interruption.
-l.526612221 
-            
-? 
-! Interruption.
-l.529534270 
-            
-? 
-! Interruption.
-l.534343161 
-            
-? 
-! Interruption.
-l.543340547 
-            
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.600622638 
-            
-? 
-! Interruption.
-l.605293901 
-            
-? 
-! Interruption.
-l.609592734 
-            
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.614872391 
-            
-? 
-! Interruption.
-l.620015092 
-            
-? 
-! Interruption.
-l.626008913 
-            
-? 
-! Interruption.
-l.964437320 
-            
-? 
-! Interruption.
-l.970813291 
-            
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.998283178 
-            
-? 
-! Interruption.
-l.1002982393 
-             
-? 
-! Interruption.
-l.1005051057 
-             
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.1012178949 
-             
-? 
-! Interruption.
-l.1013715002 
-             
-? 
-! Interruption.
-l.-1158880917 
-              
-? 
-! Interruption.
-l.-1154267640 
-              
-? 
-! Interruption.
-l.-1143992674 
-              
-? 
-! Interruption.
-l.-1137664690 
-              
-? 
-! Interruption.
-<to be read again> 
-                   \par 
-l.-1133255070 
-              
-? 
-! Interruption.
-l.-1122528905 
-              
-? 
-! Interruption.
-l.-1121139978 
-              
-? 
-! Interruption.
-l.-1119230010 
-              
-? 
-! Interruption.
-l.-1032178034 
-              
-? 
-! Interruption.
-l.-1014291654 
-              
-? 
-! Interruption.
-l.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
+ ) 
+Here is how much of TeX's memory you used:
+ 21632 strings out of 481239
+ 356194 string characters out of 5920377
+ 1085246 words of memory out of 5000000
+ 36318 multiletter control sequences out of 15000+600000
+ 593391 words of font info for 250 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,13n,45p,1031b,1830s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
+e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplm
+r.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texm
+f/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
+alatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr
+i8a.pfb>
+Output written on BALLADO_LUIS_CONTROL_NOLINEAL.pdf (7 pages, 183436 bytes).
+PDF statistics:
+ 166 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 47192 words of extra memory for PDF output out of 51595 (max. 10000000)
+

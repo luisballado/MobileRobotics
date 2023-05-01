@@ -157,8 +157,6 @@ La metodología para realizar odometría en robots móviles depende del tipo de 
 
 %------------------------------------------------
 
-\newpage
-\onecolumn
 \section{Métodos}
 
 \subsection{Instalación}
@@ -424,11 +422,13 @@ Al superponer los recorridos, donde se observa el error por la oscilación origi
 
 %------------------------------------------------
 \newpage
-\twocolumn
+\onecolumn
 \section{Resultados}
 
 Los resultados de la estimación de la posición están dentro de lo esperado, teniendo en cuenta la precisión de los sensores y motores. Al cabo de varios metros recorridos el error empieza
 a ser considerable. Lo que más error produce son las trayectorias curvas, ya que los rozamientos hacen que los cálculos hechos con las lecturas de los tacómetros de los motores introduzcan demasiado error cuando el robot está girando.\\
+
+El código se puede ver en la siguiente liga \href{https://github.com/luisballado/MobileRobotics/blob/main/codes/r_linea2.nxc}{Github}
 
 %------------------------------------------------
 \section{Conclusiones}
@@ -446,18 +446,14 @@ En resumen, aunque los erres sistemáticos son un desafío importante en la odom
 %----------------------------------------------------------------------------------------
 
 \begin{thebibliography}{0} % Bibliography - this is intentionally simple in this template
-
-  \href{http://ubuntudaily.blogspot.com/2011/03/using-lego-mindstorms-nxt-with-ubuntu.html}{Instalación NXC en Linux}\\\\
-  \href{https://github.com/pierre-24/nbc-compiler}{Repositorio NBC utilizado}\\\\
-  \href{https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt}{Documento para evitar el sudo en el comando NXC}\\\\
-  \href{https://howtoinstall.co/en/libusb-dev}{Comando para instalar libusb-dev}\\\\
-  \href{http://www.kramirez.net/Robotica/Material/Presentaciones/Odometria.pdf}{Presentación Odometría}\\\\
-  \href{https://www.redalyc.org/pdf/849/84916680034.pdf}{VALENCIA V., JHONNY A.; MONTOYA O., ALEJANDRO; RIOS, LUIS HERNANDO
-MODELO CINEMÁTICO DE UN ROBOT MÓVIL TIPO DIFERENCIAL Y NAVEGACIÓN A PARTIR DE
-LA ESTIMACIÓN ODOMÉTRICA}\\\\
-  \href{https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiu0_So28_9AhViDkQIHRlXDtcQFnoECBQQAQ&url=https%3A%2F%2Frevistas.udistrital.edu.co%2Findex.php%2FTecnura%2Farticle%2Fdownload%2F6810%2F8394%2F30717&usg=AOvVaw2PsCrkFGkk_nGN-G084B11}{Modelo Cinemático de un robot móvil implementado con LEGO NXT para un sistema de localización indoor diseñado en Labview}
-  
-  
+\bibitem{InstNXC} Intalación NXC en LINUX, \url{http://ubuntudaily.blogspot.com/2011/03/using-lego-mindstorms-nxt-with-ubuntu.html}
+\bibitem{NBC} Repositorio Compilador NBC utilizado, \url{https://github.com/pierre-24/nbc-compiler}
+\bibitem{avoidSudo} Documento para evitar sudo en NXC, \url{https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt}
+\bibitem{libusb} Comando para instalar libusb-dev, \url{https://howtoinstall.co/en/libusb-dev}
+\bibitem{Odom} Presentación Odometría, \url{http://www.kramirez.net/Robotica/Material/Presentaciones/Odometria.pdf}
+\bibitem{ModCin} Modelo Cinemático de un robot móvil tipo diferencial y navegación a partir de la estimación odométrica,\url{https://www.redalyc.org/pdf/849/84916680034.pdf} VALENCIA V., JHONNY A.; MONTOYA O., ALEJANDRO; RIOS, LUIS HERNANDO
+\bibitem{MoCin} Modelo cinemático de un robot móvil implementado con LEGO NXT para un sistema de localización indoor diseñado en Labview, \url{https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiu0_So28_9AhViDkQIHRlXDtcQFnoECBQQAQ&url=https%3A%2F%2Frevistas.udistrital.edu.co%2Findex.php%2FTecnura%2Farticle%2Fdownload%2F6810%2F8394%2F30717&usg=AOvVaw2PsCrkFGkk_nGN-G084B11}
+\bibitem{classNotes} Notas de clase, Robótica Móvil Inteligente, Dr. José Gabriel Ramírez Torres, Enero-Abril 2023
 \end{thebibliography}
 
 %----------------------------------------------------------------------------------------

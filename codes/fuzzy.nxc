@@ -166,6 +166,7 @@ long power(float a , float b) {
     return pow;
 }
 
+//matriz Z, C, L, ML vs. ID, I, Z, D, DD
 float VR[][] = {
       	     {0,-10,-10,-10},
       	     {0,-10,-10,-10},
@@ -174,6 +175,7 @@ float VR[][] = {
       	     {0, 10, 10, 10}
       	  };
 
+//matriz Z, C, L, ML vs. ID, I, Z, D, DD
 float VL[][] = {
       	     {0, 10, 10, 10},
       	     {0, 10, 10, 10},
@@ -435,8 +437,7 @@ task control(){
 	   	    if(us_frente < 30){
 		    	
 		        Off(OUT_AC);
-			
-			
+						
 			x0 = x;
 			y0 = y;
 			
@@ -447,10 +448,7 @@ task control(){
 		    //TextOut(0,LCD_LINE1,"NAVEGANDO");
 	   	    pow_a = accion_VL*2;
 	   	    pow_c = accion_VR*2;
-	   	    
-
-	   	    
-
+  	    
 		}else{
 
 		   pow_a = 0;

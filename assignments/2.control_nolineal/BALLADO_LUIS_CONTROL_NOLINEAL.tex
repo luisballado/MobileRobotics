@@ -101,7 +101,7 @@ style=alphabetic,
 sorting=ynt
 ]{biblatex}
 \addbibresource{BALLADO_LUIS_CONTROL_NOLINEAL.bib} %Import the bibliography file
-
+\usepackage{cancel}
 \usepackage{amsmath}
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -124,7 +124,8 @@ sorting=ynt
 \date{\today} % Leave empty to omit a date
 \renewcommand{\maketitlehookd}{%
   \begin{abstract}
-    \noindent El presente trabajo describe la implementación de un control no lineal con uso de la odometría para un robot móvil de tipo diferencial y su implementación utilizando un robot LEGO NXT bajo el lenguaje NXC (Not eXactly C) para la navegación de entre un punto inicial y final. El control no lineal se refiere a la técnica de controlar sistemas con comportamiento no lineal, es decir, sistemas cuyas relaciones de entrada-salida no pueden representarse mediante una  relación lineal simple e implica el uso de técnicas avanzadas de modelado y control para lograr el control deseado del sistema. Este tipo de control se utiliza en una amplia variedad de aplicaciones, desde el control de procesos industriales hasta la robótica y la navegación autónoma.
+    \noindent El presente trabajo describe la implementación de un control no lineal con uso de la odometría para un robot móvil de tipo diferencial y su implementación utilizando un robot LEGO NXT bajo el lenguaje NXC (Not eXactly C) para la navegación de entre un punto inicial y final.\\
+    El control no lineal se refiere a la técnica de controlar sistemas con comportamiento no lineal, es decir, sistemas cuyas relaciones de entrada-salida no pueden representarse mediante una  relación lineal simple e implica el uso de técnicas avanzadas de modelado y control para lograr el control deseado del sistema. Este tipo de control se utiliza en una amplia variedad de aplicaciones, desde el control de procesos industriales hasta la robótica y la navegación autónoma.
   \end{abstract}
 }
 
@@ -179,7 +180,7 @@ Sea la \textbf{planta} el ROBOT a controlar, donde $xf, yf, \Theta_{f}$ son la e
   \caption{Diagrama Control Lazo Cerrado}
 \end{figure}
 
-\[\dot{x} = v cos \Theta \qquad \dot{y} = v sin \Theta \dot{\Theta} = \omega \]
+\[\dot{x} = v cos \theta \qquad \dot{y} = v sin \theta \qquad \dot{\theta} = \omega \]
 
 Un vector de error compuesto por una distancia \textbf{a} y un ángulo \textbf{$\alpha$} 
 
@@ -189,14 +190,14 @@ Un vector de error compuesto por una distancia \textbf{a} y un ángulo \textbf{$
   \caption{Sistema}
 \end{figure}
 
-podemos ver $\Theta_{error}$ como: \\
-\[ \Theta_{error} = \Theta + \alpha = tg \frac{ye}{xe} \]
+podemos ver $\theta_{error}$ como: \\
+\[ \theta_{error} = \theta + \alpha = tg \frac{ye}{xe} \]
 
 consideramos nuestro vector de error:
 
 \[ a = \sqrt{(xf-x)^{2}+(yf-y)^2} = \sqrt{x_{error}^{2} + y_{error}^2} \]
 
-\[ \alpha = tg^{-1} \frac{y_{error}}{x_{error}} - \Theta\]
+\[ \alpha = tg^{-1} \frac{y_{error}}{x_{error}} - \theta\]
 
 \textbf{Dinámica del error} $\dot{a}$, $\dot{\alpha}$ en función de v, w
 
@@ -206,21 +207,131 @@ consideramos nuestro vector de error:
 
 \[ = \frac{1}{2} (x_{error}^{2} + y_{error}^{2})^{-\frac{1}{2}}*(2x_{error})*\dot{x_{error}} + \frac{1}{2} (x_{error}^{2}+y_{error}^2)^{-\frac{1}{2}}(2y_{error})*\dot{y_{error}}\]
 
+\[ = \frac{x_{error}}{\sqrt{x_{error}^{2} + y_{error}^2}}*\dot{x_{error}} + \frac{y_{error}}{\sqrt{x_{error}^{2} + y_{error}^2}}*\dot{y_{error}}\]
+
+\textbf{Sustituyendo} $a=\sqrt{x_{error}^2 + y_{error}^2}$ en la ecuación anterior tenemos,
+
+\[ \dot{a} = \frac{x_{error}}{a} * \dot{x_{error}} + \frac{y_{error}}{a} * \dot{y_{error}}\]
+
+\[ \dot{x_{error}} = \dot{x_{f}} - \dot{x} = -\dot{x} = -v cos \theta\]
+\[ \dot{y_{error}} = \dot{y_{f}} - \dot{y} = -\dot{y} = -v sin \theta\]
+
+\textbf{Sustituyendo}
+
+\[ \dot{a} = -\frac{x_{error}}{a} * v cos \theta - \frac{y_{error}}{a} * v sin \theta \]
+
+\[ -cos \theta_{error} cos \theta v - sin \theta_{error} sin \theta v = -v(cos \theta_{error} cos \theta + sin \theta_{error} sin \theta) \]
+
+Por identidad trigonometrica se tiene que $cos(\alpha-\beta) = cos \alpha cos \beta + sin \alpha sin \beta $ teniendo en nuestra ecuación anterior\\
+
+$-v cos(\theta_{error}-\theta)$, donde $\theta_{error} = \theta + \alpha$, sustituyendo se tiene que $-v cos (\theta + \alpha - \theta) = -v cos(\alpha) $ \\
+
+\textbf{Recordando que} $\alpha = tg^{-1} \frac{y_{error}}{x_{error}} - \theta$, derivando
+
+\[ \dot{\alpha} = \frac{\partial \alpha}{\partial x_{error}}*\dot{x_{error}} + \frac{\partial \alpha}{\partial y_{error}}*\dot{y_{error}}+ \frac{\partial \alpha}{\partial \theta} \dot{\theta}\]
+
+\[= \frac{1}{1+\frac{y_{error}^2}{x_{error}^2}}*\frac{-y_{error}}{x_{error}^2}* \dot{x_{error}} + \frac{1}{1+\frac{y_{error}^2}{x_{error}^2}}*\frac{1}{x_{error}} * \dot{y_{error}} - \dot{\theta} \]
+
+\[ \frac{\bcancel{x_{error}^2}}{x_{error}^2+y_{error}^2}*\left( \frac{-y_{error}}{\bcancel{x_{error}^2}} \right) * \dot{x_{error}} + \frac{\bcancel{x_{error}^2}}{x_{error}^2+y_{error}^2}*\left( \frac{1}{\bcancel{x_{error}^2}} \right ) * \dot{y_{error}}-\dot{\theta}\]
+
+\[= \frac{-y_{error}}{a^{2}} (-v cos(\theta)) + \frac{x_{error}}{a^{2}} (-v sin(\theta)) - w \]
+
+\[= \frac{1}{a}*\frac{y_{error}}{a} v cos(\theta) - \frac{1}{a}*\frac{x_{error}}{a} v sin(\theta) - w = \frac{1}{a} sin(\theta_{error}) cos(\theta) v - \frac{1}{a} cos(\theta_{error}) sin(\theta)v-w = \frac{v}{a} \left( sin(\theta{error}) cos(\theta)-cos(\theta_{error}) sin(\theta)\right)-w\]
+
+\[= \frac{v}{a} sin(\theta_{error}-\theta)-w = \frac{v}{a} sin(\alpha-w)\]
+
+\textbf{El módelo de error quedá representado como:}\\
+\begin{center}
+  $\dot{a} = -v cos(\alpha)$\\
+  $\dot{\alpha} = \frac{v}{a} sin(\alpha-w)$\\
+\end{center}
+
+Nuestro objetivo es hacer que $a \implies 0$, $\alpha \implies 0$ independientemente de su valor inicial en un tiempo finito (suficientemente rápido). Pero, ¿cómo construir v,w para que $a \implies 0$, $\alpha \implies 0$?
+
+\subsection{Teorema de Lyapunov}
+El Teorema de Lyapunov es un importante resultado en la teoría de sistemas dinámicos que se utiliza para analizar la estabilidad de un punto de equilibrio en un sistema. Fue desarrollado por el matemático ruso Aleksandr Lyapunov en el siglo XIX.\\
+
+El teorema establece que si existe una función llamada función de Lyapunov, que sea continua, definida positiva y que su derivada sea negativa o cero en el punto de equilibrio, entonces ese punto de equilibrio es estable. En otras palabras, si la función de Lyapunov puede demostrar que la perturbación del sistema cerca del punto de equilibrio siempre se aleja del mismo, entonces se puede decir que el punto de equilibrio es estable.\\
+
+Es importante destacar que este teorema no garantiza la existencia de un punto de equilibrio estable en todos los sistemas dinámicos, pero puede ser útil en muchos casos para analizar la estabilidad de un sistema. Además, existen diversas variantes del teorema de Lyapunov que pueden ser aplicadas a diferentes tipos de sistemas.\\
+
+punto de equilibrio $x=0$, $\dot{x}=f(x,u)$, si $\exists$ una función v(x,u) tal que v(x,u) > 0, $\dot(v)(x,u)<0$ entonces $x=0$ es exponencialmente estable.
+\[v(a,\alpha) = \frac{1}{2}a^{2} + \frac{1}{2}\alpha^{2}\]
+derivando se tiene que, $\dot{v}(a,\alpha) = \frac{1}{\bcancel{2}}(\bcancel{2a})\dot{a}+\frac{1}{\bcancel{2}}(\bcancel{2}\alpha)\dot{\alpha} = a\dot{a}+\alpha\dot{\alpha} < 0$
+
+\subsection{Backstepping}
+
+La estrategia de control Backstepping es un método utilizado en el diseño de controladores para sistemas no lineales. Fue desarrollado en la década de 1980 y es ampliamente utilizado en la ingeniería de control debido a su eficacia y simplicidad.\\
+
+La estrategia de control Backstepping se basa en una técnica de control en cascada, donde el controlador se diseña para controlar cada estado del sistema en cascada. El proceso comienza con la selección de una variable de salida del sistema, que se utiliza como la variable de control primaria. A continuación, se establece un controlador para esta variable, utilizando técnicas de control lineal estándar.
+
+\[ \dot{v} = a\dot{a}+\alpha\dot{\alpha} = a(-vcos(\alpha))+\alpha\left(\frac{v}{a}sin(\alpha -w)\right) < 0\]
+
+\[ -a v cos(\alpha) + \frac{v}{a} \alpha sin(\alpha) - \alpha w < 0\]
+
+\[\dot{a} = -k_{1}a ; \dot{\alpha} = -k_{2}\alpha ; \dot{v} = -k_{1}a^{2} - k_{2}\alpha^{2} \]
+
+\[ \dot{a} = -v cos(\alpha) = -k_{1}a \implies v = k_{1} \frac{a}{cos(\alpha)} \]
+
+\[ \dot{\alpha} = \frac{v}{a} sin(\alpha) - w = -k_{2}\alpha = \frac{1}{a} \left( \frac{k_{1}a}{cos(\alpha)} sin(\alpha)-w\right)\]
+
+\[ w = \frac{k_{1}}{cos(\alpha)} sin(a) + k_{2}\alpha\]
+
+\subsection{Ley de control}
+
+\[ v = \frac{k_{1}a}{cos(\alpha)},{  } w= \frac{k_{1}}{cos(a)}sin(\alpha)+k_{2}\alpha\]
+en $cos(\alpha) = 0$, la ley de control no tiene solución para eliminar la división por cero y para no cambiar el signo de v, multiplicamos por $cos^2(\alpha)$\\
+
+\[ v = \frac{k_{1}a}{cos(\alpha)}*cos^2(\alpha) = k_{1}a cos(\alpha)\]
+
+sustituyendo v, en w
+
+\[ w = \frac{v}{a} sin(\alpha) + k_{2}\alpha = \frac{k_{1}\bcancel{a} cos(\alpha)}{\bcancel{a}} sin(\alpha) + k_{2} \alpha = k_{1} cos(\alpha) sin(\alpha) + k_{2}\alpha\]
+
+teniendo, $v=k_{1}a cos(\alpha)$, $w=k_{1}cos(\alpha) sin(\alpha)+k_{2}\alpha$\\
+
+
+\[ \dot{a} = -v cos(\alpha) = -k_{1} a cos^{2}(\alpha)\]
+
+\[ \dot{\alpha} = \frac{v}{a} sin(\alpha) - w = \frac{k_{1}a cos(\alpha)}{a} sin a - k_{1} cos(\alpha) sin(\alpha)-k_{2}a = -k_{2} \alpha \]
+
+\[ v(a,\alpha) = \frac{1}{2}a^{2}+\frac{1}{2}a^{2} > 0\]
+\[ \dot{v} = a\dot{a} + \alpha\dot{\alpha} = a\left(-k_{1} a cos^{2}(\alpha)\right) + \alpha(-k_{2}\alpha) = -k_{1}a^{2} cos^{2} \alpha - k_{2} \alpha^{2} < 0 \]
+
 \section{Resultados}
 
-Random citation \cite{einstein:1} embeddeed in text.
+El desplazamiento que sigue el robot y su corrección de error es de forma incremental, es decir que a medida que se desplaza corrigue su orientación para poder llegar al punto final $x_f,y_f$
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{graficos/grafico_control_nolineal.png}
+  \caption{Desplazamiento del robot móvil}
+\end{figure}
+
+El código se puede ver en la siguiente loga de \href{https://github.com/luisballado/MobileRobotics/blob/main/codes/odometro_control.nxc}{github}
+
 %------------------------------------------------
+\newpage
 \section{Conclusiones}
 
+La continuidad es una propiedad importante de las funciones ya que nos permite hacer cálculos precisos y confiables. Por ejemplo, si una función es continua en un intervalo cerrado, entonces sabemos que tiene un máximo y un mínimo en ese intervalo, lo que es útil en la optimización y en la resolución de problemas de optimización.
+
+La continuidad también es importante en el análisis de sistemas dinámicos, ya que las funciones que modelan estos sistemas deben ser continuas para que podamos predecir con precisión su comportamiento.
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
 
-\begin{thebibliography}{0} % Bibliography - this is intentionally simple in this template
-
-  \bibliography{BALLADO_LUIS_CONTROL_NOLINEAL} 
-      
+\begin{thebibliography}{2} % Bibliography - this is intentionally simple in this template
+  
+\bibitem{InstNXC} Intalación NXC en LINUX, \url{http://ubuntudaily.blogspot.com/2011/03/using-lego-mindstorms-nxt-with-ubuntu.html}
+\bibitem{NBC} Repositorio Compilador NBC utilizado, \url{https://github.com/pierre-24/nbc-compiler}
+\bibitem{avoidSudo} Documento para evitar sudo en NXC, \url{https://bricxcc.sourceforge.net/nbc/doc/nxtlinux.txt}
+\bibitem{libusb} Comando para instalar libusb-dev, \url{https://howtoinstall.co/en/libusb-dev}
+\bibitem{Odom} Presentación Odometría, \url{http://www.kramirez.net/Robotica/Material/Presentaciones/Odometria.pdf}
+\bibitem{ModCin} Modelo Cinemático de un robot móvil tipo diferencial y navegación a partir de la estimación odométrica,\url{https://www.redalyc.org/pdf/849/84916680034.pdf} VALENCIA V., JHONNY A.; MONTOYA O., ALEJANDRO; RIOS, LUIS HERNANDO
+\bibitem{MoCin} Modelo cinemático de un robot móvil implementado con LEGO NXT para un sistema de localización indoor diseñado en Labview, \url{https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiu0_So28_9AhViDkQIHRlXDtcQFnoECBQQAQ&url=https%3A%2F%2Frevistas.udistrital.edu.co%2Findex.php%2FTecnura%2Farticle%2Fdownload%2F6810%2F8394%2F30717&usg=AOvVaw2PsCrkFGkk_nGN-G084B11}
+\bibitem{classNotes} Notas de clase, Robótica Móvil Inteligente, Dr. José Gabriel Ramírez Torres, Enero-Abril 2023
 \end{thebibliography}
 
 %----------------------------------------------------------------------------------------
